@@ -93,20 +93,25 @@ Every gate runs inside the container, never on host PHP. Start it once, then
 ```bash
 docker compose up -d
 docker compose exec tooling composer install
-docker compose exec tooling composer check-all
+docker compose exec tooling mago lint
+docker compose exec tooling mago analyze
+docker compose exec tooling mago guard
+docker compose exec tooling composer test
+docker compose exec tooling composer test-integration
 docker compose down
 ```
 
 Individual gates:
 
 ```bash
-composer check-all          # sa (lint + analyze + guard), unit tests, integration tests
-composer sa                 # mago lint && mago analyze && mago guard
+mago format --check         # formatting gate
+mago lint                   # linter, baselined
+mago analyze                # analyzer, baselined
+mago guard                  # boundary rules, never baselined
 composer test               # unit tests only
 composer test-integration   # integration tests only
 composer test-coverage      # clover.xml plus a text summary
 composer mutation-test      # infection
-mago format --check         # formatting gate, run directly
 ```
 
 Compare output against native Asciidoctor:
@@ -211,5 +216,5 @@ These five differences are expected and must not be fixed:
 - The dev image PHP version is the `PHP_VERSION` build argument in `compose.yml`
 - The full async activation checklist (for when PHP 8.6 releases stable) is in
   `planning/10-async-runtime.md`, section "Activating Full Async Support"
-- `composer check-all` is used instead of `composer check` to avoid a Composer
-  2.10 built-in command collision
+- The four Mago gates are invoked directly, as `mago format --check`, `mago lint`,
+  `mago analyze` and `mago guard`. There is no aggregate script.

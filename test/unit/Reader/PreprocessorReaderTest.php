@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Reader;
+namespace WebwareTest\AsciidocPhp\Reader;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\Reader\Cursor;
 use Webware\AsciidocPhp\Reader\PreprocessorReader;
 use Webware\AsciidocPhp\SafeMode;
-use Webware\AsciidocPhp\TestAsset\Reader\DocumentStub;
+use WebwareTestAsset\AsciidocPhp\Reader\DocumentStub;
 
 #[CoversClass(PreprocessorReader::class)]
 final class PreprocessorReaderTest extends TestCase

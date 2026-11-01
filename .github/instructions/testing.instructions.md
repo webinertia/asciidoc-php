@@ -73,7 +73,7 @@ these five differences are expected:
 ## Running Tests
 
 ```bash
-composer check-all                          # full suite: Mago gates + unit + integration
+composer test                               # unit only
 vendor/bin/phpunit --testsuite "unit test"  # unit only
 vendor/bin/phpunit --testsuite "integration test"  # integration only
 vendor/bin/phpunit --filter testSomething   # single test

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\TestAsset\Reader;
+namespace WebwareTestAsset\AsciidocPhp\Reader;
 
 use Webware\AsciidocPhp\DocumentInterface;
 use Webware\AsciidocPhp\SafeMode;

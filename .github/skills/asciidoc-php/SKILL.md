@@ -62,7 +62,7 @@ Any remaining diff lines are genuine bugs.
 ### 5 — Fix and verify
 
 ```bash
-composer check-all    # must stay green after any fix
+mago lint && mago analyze && mago guard   # must stay green after any fix
 ```
 
 ---

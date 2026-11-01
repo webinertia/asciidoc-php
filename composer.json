@@ -55,23 +55,17 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Webware\\AsciidocPhp\\IntegrationTest\\": "test/integration/",
-            "Webware\\AsciidocPhp\\TestAsset\\": "test/asset/",
-            "Webware\\AsciidocPhp\\Test\\": "test/unit/"
+            "WebwareTestAsset\\AsciidocPhp\\": "test/asset/",
+            "WebwareTestIntegration\\AsciidocPhp\\": "test/integration/",
+            "WebwareTest\\AsciidocPhp\\": "test/unit/"
         }
     },
     "scripts": {
-        "check-all": [
-            "@sa",
-            "@test",
-            "@test-integration"
-        ],
         "test": "phpunit --colors=always --testsuite \"unit test\"",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "test-integration": "phpunit --colors=always --testsuite \"integration test\"",
         "mutation-test": "infection",
         "test-all": "@test && @test-integration && @mutation-test",
-        "sa": "mago lint && mago analyze && mago guard",
         "sa-gen-baseline": [
             "mago lint --generate-baseline",
             "mago analyze --generate-baseline"
