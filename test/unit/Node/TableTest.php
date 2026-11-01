@@ -12,22 +12,25 @@ use Webware\AsciidocPhp\Node\Table;
 use Webware\AsciidocPhp\Node\Table\Column;
 use Webware\AsciidocPhp\Node\Table\Row;
 
-
 #[CoversClass(Table::class)]
 final class TableTest extends TestCase
 {
     private Document $doc;
 
-    protected function setUp(): void
-    {
-        $this->doc = new Document();
-    }
+    // ── Columns ───────────────────────────────────────────────────────────────
 
-    public function testDefaultFormatAndSeparator(): void
+    public function testAppendColumnAndGetColumns(): void
     {
         $table = new Table($this->doc, null);
-        self::assertSame('psv', $table->getFormat());
-        self::assertSame('|', $table->getSeparator());
+        $col   = new Column(1);
+        $table->appendColumn($col);
+        self::assertSame([$col], $table->getColumns());
+    }
+
+    public function testContentModelIsCompound(): void
+    {
+        $table = new Table($this->doc, null);
+        self::assertSame(ContentModel::COMPOUND, $table->getContentModel());
     }
 
     public function testCustomFormatAndSeparator(): void
@@ -37,35 +40,21 @@ final class TableTest extends TestCase
         self::assertSame(',', $table->getSeparator());
     }
 
-    public function testNodeNameAndContext(): void
+    public function testDefaultFormatAndSeparator(): void
     {
         $table = new Table($this->doc, null);
-        self::assertSame('table', $table->getNodeName());
-        self::assertSame('table', $table->getContext());
+        self::assertSame('psv', $table->getFormat());
+        self::assertSame('|', $table->getSeparator());
     }
 
-    public function testContentModelIsCompound(): void
+    public function testGetBodyRows(): void
     {
         $table = new Table($this->doc, null);
-        self::assertSame(ContentModel::COMPOUND, $table->getContentModel());
-    }
-
-    // ── Columns ───────────────────────────────────────────────────────────────
-
-    public function testAppendColumnAndGetColumns(): void
-    {
-        $table  = new Table($this->doc, null);
-        $col    = new Column(1);
-        $table->appendColumn($col);
-        self::assertSame([$col], $table->getColumns());
-    }
-
-    public function testSetColumns(): void
-    {
-        $table = new Table($this->doc, null);
-        $cols  = [new Column(1), new Column(2)];
-        $table->setColumns($cols);
-        self::assertSame($cols, $table->getColumns());
+        $row1  = new Row();
+        $row2  = new Row();
+        $table->appendBodyRow($row1);
+        $table->appendBodyRow($row2);
+        self::assertSame([$row1, $row2], $table->getBodyRows());
     }
 
     public function testGetColumnCount(): void
@@ -75,6 +64,30 @@ final class TableTest extends TestCase
         $table->appendColumn(new Column(1));
         $table->appendColumn(new Column(2));
         self::assertSame(2, $table->getColumnCount());
+    }
+
+    public function testGetHeadAndFootRows(): void
+    {
+        $table   = new Table($this->doc, null);
+        $headRow = new Row();
+        $footRow = new Row();
+        $table->appendHeadRow($headRow);
+        $table->appendFootRow($footRow);
+        self::assertSame([$headRow], $table->getHeadRows());
+        self::assertSame([$footRow], $table->getFootRows());
+    }
+
+    public function testHasFooterFalseByDefault(): void
+    {
+        $table = new Table($this->doc, null);
+        self::assertFalse($table->hasFooter());
+    }
+
+    public function testHasFooterTrueAfterFootRow(): void
+    {
+        $table = new Table($this->doc, null);
+        $table->appendFootRow(new Row());
+        self::assertTrue($table->hasFooter());
     }
 
     // ── Rows ──────────────────────────────────────────────────────────────────
@@ -92,37 +105,23 @@ final class TableTest extends TestCase
         self::assertTrue($table->hasHeader());
     }
 
-    public function testHasFooterFalseByDefault(): void
+    public function testNodeNameAndContext(): void
     {
         $table = new Table($this->doc, null);
-        self::assertFalse($table->hasFooter());
+        self::assertSame('table', $table->getNodeName());
+        self::assertSame('table', $table->getContext());
     }
 
-    public function testHasFooterTrueAfterFootRow(): void
+    public function testSetColumns(): void
     {
         $table = new Table($this->doc, null);
-        $table->appendFootRow(new Row());
-        self::assertTrue($table->hasFooter());
+        $cols  = [new Column(1), new Column(2)];
+        $table->setColumns($cols);
+        self::assertSame($cols, $table->getColumns());
     }
 
-    public function testGetBodyRows(): void
+    protected function setUp(): void
     {
-        $table = new Table($this->doc, null);
-        $row1  = new Row();
-        $row2  = new Row();
-        $table->appendBodyRow($row1);
-        $table->appendBodyRow($row2);
-        self::assertSame([$row1, $row2], $table->getBodyRows());
-    }
-
-    public function testGetHeadAndFootRows(): void
-    {
-        $table   = new Table($this->doc, null);
-        $headRow = new Row();
-        $footRow = new Row();
-        $table->appendHeadRow($headRow);
-        $table->appendFootRow($footRow);
-        self::assertSame([$headRow], $table->getHeadRows());
-        self::assertSame([$footRow], $table->getFootRows());
+        $this->doc = new Document();
     }
 }

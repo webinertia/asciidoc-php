@@ -17,50 +17,50 @@ final class Application
     private const VERSION = '0.1.0';
 
     private const HELP = <<<'HELP'
-Usage: asciidoc-php [options] FILE [FILE ...]
-       asciidoc-php [options] -          (read from STDIN)
+        Usage: asciidoc-php [options] FILE [FILE ...]
+               asciidoc-php [options] -          (read from STDIN)
 
-Options:
-  -b, --backend BACKEND
-        Output backend (default: html5)
+        Options:
+          -b, --backend BACKEND
+                Output backend (default: html5)
 
-  -d, --doctype DOCTYPE
-        Document type: article | book | manpage | inline (default: article)
+          -d, --doctype DOCTYPE
+                Document type: article | book | manpage | inline (default: article)
 
-  -o, --out-file FILE
-        Write output to FILE. Use '-' for STDOUT.
+          -o, --out-file FILE
+                Write output to FILE. Use '-' for STDOUT.
 
-  -D, --destination-dir DIR
-        Write all output files into DIR.
+          -D, --destination-dir DIR
+                Write all output files into DIR.
 
-  -B, --base-dir DIR
-        Set the base directory for include:: resolution.
+          -B, --base-dir DIR
+                Set the base directory for include:: resolution.
 
-  -S, --safe-mode MODE
-        Set safe mode: unsafe | safe | server | secure (default: safe)
+          -S, --safe-mode MODE
+                Set safe mode: unsafe | safe | server | secure (default: safe)
 
-  -a, --attribute KEY[=VALUE]
-        Set a document attribute. Repeatable.
+          -a, --attribute KEY[=VALUE]
+                Set a document attribute. Repeatable.
 
-  -s, --no-header-footer
-        Suppress HTML header and footer (embedded/fragment output).
+          -s, --no-header-footer
+                Suppress HTML header and footer (embedded/fragment output).
 
-  --concurrency N
-        Maximum number of files to convert in parallel (default: 0 = unbounded).
+          --concurrency N
+                Maximum number of files to convert in parallel (default: 0 = unbounded).
 
-  -q, --quiet        Suppress all messages except errors.
-  -v, --verbose      Log each converted file.
-  -t, --timings      Print timing breakdown.
-      --trace        Print stack trace on error.
-  -h, --help         Print this help message and exit.
-      --version      Print the library version and exit.
+          -q, --quiet        Suppress all messages except errors.
+          -v, --verbose      Log each converted file.
+          -t, --timings      Print timing breakdown.
+              --trace        Print stack trace on error.
+          -h, --help         Print this help message and exit.
+              --version      Print the library version and exit.
 
-Examples:
-  asciidoc-php docs/index.adoc
-  asciidoc-php -D html/ docs/*.adoc
-  asciidoc-php -b html5 -a toc docs/guide.adoc
-  asciidoc-php -s -o - docs/fragment.adoc | cat
-HELP;
+        Examples:
+          asciidoc-php docs/index.adoc
+          asciidoc-php -D html/ docs/*.adoc
+          asciidoc-php -b html5 -a toc docs/guide.adoc
+          asciidoc-php -s -o - docs/fragment.adoc | cat
+        HELP;
 
     /** @param list<string> $args Raw $argv. */
     public function __construct(

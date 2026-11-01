@@ -38,16 +38,16 @@ final class Rx
 
     // ── Block delimiters ──────────────────────────────────────────────────────
 
-    public const string BLOCK_DELIMITER       = '/^(-{4,}|\.{4,}|={4,}|\*{4,}|_{4,}|\+{4,}|\/{4,}|-{2})\s*$/';
-    public const string TABLE_DELIMITER       = '/^\|={3,}\s*$/';
-    public const string LISTING_DELIMITER     = '/^-{4,}\s*$/';
-    public const string LITERAL_DELIMITER     = '/^\.{4,}\s*$/';
-    public const string EXAMPLE_DELIMITER     = '/^={4,}\s*$/';
-    public const string SIDEBAR_DELIMITER     = '/^\*{4,}\s*$/';
-    public const string QUOTE_DELIMITER       = '/^_{4,}\s*$/';
-    public const string PASS_DELIMITER        = '/^\+{4,}\s*$/';
-    public const string COMMENT_DELIMITER     = '/^\/{4,}\s*$/';
-    public const string OPEN_BLOCK_DELIMITER  = '/^--\s*$/';
+    public const string BLOCK_DELIMITER      = '/^(-{4,}|\.{4,}|={4,}|\*{4,}|_{4,}|\+{4,}|\/{4,}|-{2})\s*$/';
+    public const string TABLE_DELIMITER      = '/^\|={3,}\s*$/';
+    public const string LISTING_DELIMITER    = '/^-{4,}\s*$/';
+    public const string LITERAL_DELIMITER    = '/^\.{4,}\s*$/';
+    public const string EXAMPLE_DELIMITER    = '/^={4,}\s*$/';
+    public const string SIDEBAR_DELIMITER    = '/^\*{4,}\s*$/';
+    public const string QUOTE_DELIMITER      = '/^_{4,}\s*$/';
+    public const string PASS_DELIMITER       = '/^\+{4,}\s*$/';
+    public const string COMMENT_DELIMITER    = '/^\/{4,}\s*$/';
+    public const string OPEN_BLOCK_DELIMITER = '/^--\s*$/';
 
     // ── Block macros ──────────────────────────────────────────────────────────
 
@@ -64,13 +64,13 @@ final class Rx
     // ── Block metadata ────────────────────────────────────────────────────────
 
     /** Inline anchor:  [[id]] or [[id,reftext]] */
-    public const string ANCHOR       = '/^\[\[(\S+?)(?:,\s*(.+?))?\]\]\s*$/';
+    public const string ANCHOR = '/^\[\[(\S+?)(?:,\s*(.+?))?\]\]\s*$/';
 
     /** Block attribute list:  [attrlist] */
-    public const string ATTR_LIST    = '/^\[([^\[\]]*)\]\s*$/';
+    public const string ATTR_LIST = '/^\[([^\[\]]*)\]\s*$/';
 
     /** Block title:  .Title text */
-    public const string BLOCK_TITLE  = '/^\.([^\s.].*)$/';
+    public const string BLOCK_TITLE = '/^\.([^\s.].*)$/';
 
     // ── Thematic / page breaks ────────────────────────────────────────────────
 
@@ -99,16 +99,16 @@ final class Rx
     // ── Inline quotes ─────────────────────────────────────────────────────────
 
     /** Unconstrained (double-marker) quote patterns */
-    public const string STRONG_UNCONSTRAINED    = '/\*{2}([\s\S]+?)\*{2}/';
-    public const string EMPHASIS_UNCONSTRAINED  = '/_{2}([\s\S]+?)_{2}/';
-    public const string MONO_UNCONSTRAINED      = '/`{2}([\s\S]+?)`{2}/';
-    public const string MARK_UNCONSTRAINED      = '/#{2}([\s\S]+?)#{2}/';
+    public const string STRONG_UNCONSTRAINED   = '/\*{2}([\s\S]+?)\*{2}/';
+    public const string EMPHASIS_UNCONSTRAINED = '/_{2}([\s\S]+?)_{2}/';
+    public const string MONO_UNCONSTRAINED     = '/`{2}([\s\S]+?)`{2}/';
+    public const string MARK_UNCONSTRAINED     = '/#{2}([\s\S]+?)#{2}/';
 
     /** Constrained (single-marker, word-boundary) quote patterns */
-    public const string STRONG_CONSTRAINED      = '/(?<![a-zA-Z0-9\*])\*([^\s*][^*]*[^\s*]|\S)\*(?![a-zA-Z0-9\*])/';
-    public const string EMPHASIS_CONSTRAINED    = '/(?<![a-zA-Z0-9_])_([^\s_][^_]*[^\s_]|\S)_(?![a-zA-Z0-9_])/';
-    public const string MONO_CONSTRAINED        = '/(?<![a-zA-Z0-9`])`([^\s`][^`]*[^\s`]|\S)`(?![a-zA-Z0-9`])/';
-    public const string MARK_CONSTRAINED        = '/(?<![a-zA-Z0-9#])#([^\s#][^#]*[^\s#]|\S)#(?![a-zA-Z0-9#])/';
+    public const string STRONG_CONSTRAINED   = '/(?<![a-zA-Z0-9\*])\*([^\s*][^*]*[^\s*]|\S)\*(?![a-zA-Z0-9\*])/';
+    public const string EMPHASIS_CONSTRAINED = '/(?<![a-zA-Z0-9_])_([^\s_][^_]*[^\s_]|\S)_(?![a-zA-Z0-9_])/';
+    public const string MONO_CONSTRAINED     = '/(?<![a-zA-Z0-9`])`([^\s`][^`]*[^\s`]|\S)`(?![a-zA-Z0-9`])/';
+    public const string MARK_CONSTRAINED     = '/(?<![a-zA-Z0-9#])#([^\s#][^#]*[^\s#]|\S)#(?![a-zA-Z0-9#])/';
 
     /** Superscript and subscript */
     public const string SUPERSCRIPT = '/\^([^\s^]+)\^/';
@@ -132,16 +132,16 @@ final class Rx
 
     // ── Inline macros ─────────────────────────────────────────────────────────
 
-    public const string LINK_MACRO         = '/\blink:(\S+?)\[([^\]]*)\]/';
-    public const string URL_MACRO          = '/\b(https?|ftp|file):\/\/\S+?(?=\[|[.,;:?!]?\s|$)/';
-    public const string XREF_SHORTHAND     = '/<<(\S+?)(?:,\s*([^\]]+?))?>>/';
-    public const string XREF_MACRO         = '/\bxref:(\S+?)\[([^\]]*)\]/';
-    public const string IMAGE_MACRO        = '/\bimage:(\S+?)\[([^\]]*)\]/';
-    public const string ANCHOR_MACRO       = '/\banchor:(\S+?)\[([^\]]*)\]/';
-    public const string FOOTNOTE_MACRO     = '/\bfootnote(?:ref)?:\[([^\]]*)\]/';
-    public const string KBD_MACRO          = '/\bkbd:\[([^\]]+)\]/';
-    public const string MENU_MACRO         = '/\bmenu:(\S+?)\[([^\]]*)\]/';
-    public const string BTN_MACRO          = '/\bbtn:\[([^\]]+)\]/';
+    public const string LINK_MACRO     = '/\blink:(\S+?)\[([^\]]*)\]/';
+    public const string URL_MACRO      = '/\b(https?|ftp|file):\/\/\S+?(?=\[|[.,;:?!]?\s|$)/';
+    public const string XREF_SHORTHAND = '/<<(\S+?)(?:,\s*([^\]]+?))?>>/';
+    public const string XREF_MACRO     = '/\bxref:(\S+?)\[([^\]]*)\]/';
+    public const string IMAGE_MACRO    = '/\bimage:(\S+?)\[([^\]]*)\]/';
+    public const string ANCHOR_MACRO   = '/\banchor:(\S+?)\[([^\]]*)\]/';
+    public const string FOOTNOTE_MACRO = '/\bfootnote(?:ref)?:\[([^\]]*)\]/';
+    public const string KBD_MACRO      = '/\bkbd:\[([^\]]+)\]/';
+    public const string MENU_MACRO     = '/\bmenu:(\S+?)\[([^\]]*)\]/';
+    public const string BTN_MACRO      = '/\bbtn:\[([^\]]+)\]/';
 
     // ── Explicit line break ───────────────────────────────────────────────────
 

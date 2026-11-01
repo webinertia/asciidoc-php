@@ -22,9 +22,14 @@ class Inline extends AbstractNode
         Document $document,
         string $type,
         private string $text,
-        private string|null $target = null,
+        private ?string $target = null,
     ) {
         parent::__construct("inline_{$type}", $type, $document, null);
+    }
+
+    public function getTarget(): ?string
+    {
+        return $this->target;
     }
 
     // ── Accessors ─────────────────────────────────────────────────────────────
@@ -34,19 +39,10 @@ class Inline extends AbstractNode
         return $this->text;
     }
 
-    public function setText(string $text): void
+    #[\Override]
+    public function isBlock(): bool
     {
-        $this->text = $text;
-    }
-
-    public function getTarget(): string|null
-    {
-        return $this->target;
-    }
-
-    public function setTarget(string|null $target): void
-    {
-        $this->target = $target;
+        return false;
     }
 
     // ── AbstractNode overrides ────────────────────────────────────────────────
@@ -57,9 +53,13 @@ class Inline extends AbstractNode
         return true;
     }
 
-    #[\Override]
-    public function isBlock(): bool
+    public function setTarget(?string $target): void
     {
-        return false;
+        $this->target = $target;
+    }
+
+    public function setText(string $text): void
+    {
+        $this->text = $text;
     }
 }

@@ -17,9 +17,9 @@ class Cell
     public function __construct(
         public readonly Column $column,
         public string $text,
-        public string|null $style = null,
+        public ?string $style = null,
         public int $colspan = 1,
         public int $rowspan = 1,
-        public Document|null $innerDocument = null,
+        public ?Document $innerDocument = null,
     ) {}
 }

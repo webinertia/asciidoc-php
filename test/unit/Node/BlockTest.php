@@ -15,32 +15,13 @@ final class BlockTest extends TestCase
 {
     private Document $doc;
 
-    protected function setUp(): void
+    public function testContentCompoundConvertsChildren(): void
     {
-        $this->doc = new Document();
-    }
-
-    // ── Lines ─────────────────────────────────────────────────────────────────
-
-    public function testGetSetLines(): void
-    {
-        $block = new Block($this->doc, null, 'paragraph');
-        self::assertSame([], $block->getLines());
-        $block->setLines(['Hello', 'World']);
-        self::assertSame(['Hello', 'World'], $block->getLines());
-    }
-
-    public function testGetSource(): void
-    {
-        $block = new Block($this->doc, null, 'paragraph');
-        $block->setLines(['line one', 'line two']);
-        self::assertSame("line one\nline two", $block->getSource());
-    }
-
-    public function testGetSourceEmptyWhenNoLines(): void
-    {
-        $block = new Block($this->doc, null, 'paragraph');
-        self::assertSame('', $block->getSource());
+        $parent = new Block($this->doc, null, 'sidebar', ContentModel::COMPOUND);
+        $child  = new Block($this->doc, $parent, 'paragraph');
+        $parent->append($child);
+        // NullConverter → ''
+        self::assertSame('', $parent->content());
     }
 
     // ── content() per ContentModel ────────────────────────────────────────────
@@ -67,6 +48,12 @@ final class BlockTest extends TestCase
         self::assertStringContainsString('&lt;', $block->content());
     }
 
+    public function testContentSimpleEmptyLinesReturnsEmpty(): void
+    {
+        $block = new Block($this->doc, null, 'paragraph', ContentModel::SIMPLE);
+        self::assertSame('', $block->content());
+    }
+
     public function testContentVerbatimAppliesVerbatimSubs(): void
     {
         $block = new Block($this->doc, null, 'listing', ContentModel::VERBATIM);
@@ -74,19 +61,33 @@ final class BlockTest extends TestCase
         self::assertStringContainsString('&lt;', $block->content());
     }
 
-    public function testContentSimpleEmptyLinesReturnsEmpty(): void
+    public function testExplicitNodeNameOverridesContext(): void
     {
-        $block = new Block($this->doc, null, 'paragraph', ContentModel::SIMPLE);
-        self::assertSame('', $block->content());
+        $block = new Block($this->doc, null, 'admonition', ContentModel::COMPOUND, 'admonition');
+        self::assertSame('admonition', $block->getNodeName());
     }
 
-    public function testContentCompoundConvertsChildren(): void
+    // ── Lines ─────────────────────────────────────────────────────────────────
+
+    public function testGetSetLines(): void
     {
-        $parent = new Block($this->doc, null, 'sidebar', ContentModel::COMPOUND);
-        $child  = new Block($this->doc, $parent, 'paragraph');
-        $parent->append($child);
-        // NullConverter → ''
-        self::assertSame('', $parent->content());
+        $block = new Block($this->doc, null, 'paragraph');
+        self::assertSame([], $block->getLines());
+        $block->setLines(['Hello', 'World']);
+        self::assertSame(['Hello', 'World'], $block->getLines());
+    }
+
+    public function testGetSource(): void
+    {
+        $block = new Block($this->doc, null, 'paragraph');
+        $block->setLines(['line one', 'line two']);
+        self::assertSame("line one\nline two", $block->getSource());
+    }
+
+    public function testGetSourceEmptyWhenNoLines(): void
+    {
+        $block = new Block($this->doc, null, 'paragraph');
+        self::assertSame('', $block->getSource());
     }
 
     // ── nodeName / context ────────────────────────────────────────────────────
@@ -98,9 +99,8 @@ final class BlockTest extends TestCase
         self::assertSame('listing', $block->getContext());
     }
 
-    public function testExplicitNodeNameOverridesContext(): void
+    protected function setUp(): void
     {
-        $block = new Block($this->doc, null, 'admonition', ContentModel::COMPOUND, 'admonition');
-        self::assertSame('admonition', $block->getNodeName());
+        $this->doc = new Document();
     }
 }

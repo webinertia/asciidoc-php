@@ -25,7 +25,7 @@ class AsciiList extends AbstractBlock
 
     public function __construct(
         Document $document,
-        AbstractBlock|null $parent,
+        ?AbstractBlock $parent,
         string $context,
     ) {
         parent::__construct($context, $context, $document, $parent, ContentModel::COMPOUND);

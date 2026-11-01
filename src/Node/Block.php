@@ -24,7 +24,7 @@ class Block extends AbstractBlock
 
     public function __construct(
         Document $document,
-        AbstractBlock|null $parent,
+        ?AbstractBlock $parent,
         string $context,
         ContentModel $contentModel = ContentModel::SIMPLE,
         string $nodeName = '',
@@ -36,29 +36,6 @@ class Block extends AbstractBlock
             $parent,
             $contentModel,
         );
-    }
-
-    // ── Lines ─────────────────────────────────────────────────────────────────
-
-    /**
-     * @return list<string>
-     */
-    public function getLines(): array
-    {
-        return $this->lines;
-    }
-
-    /**
-     * @param list<string> $lines
-     */
-    public function setLines(array $lines): void
-    {
-        $this->lines = $lines;
-    }
-
-    public function getSource(): string
-    {
-        return implode("\n", $this->lines);
     }
 
     // ── Content ───────────────────────────────────────────────────────────────
@@ -82,6 +59,29 @@ class Block extends AbstractBlock
             ContentModel::RAW      => implode("\n", $this->lines),
             ContentModel::EMPTY    => '',
         };
+    }
+
+    // ── Lines ─────────────────────────────────────────────────────────────────
+
+    /**
+     * @return list<string>
+     */
+    public function getLines(): array
+    {
+        return $this->lines;
+    }
+
+    public function getSource(): string
+    {
+        return implode("\n", $this->lines);
+    }
+
+    /**
+     * @param list<string> $lines
+     */
+    public function setLines(array $lines): void
+    {
+        $this->lines = $lines;
     }
 
     /** @param list<string> $subs */

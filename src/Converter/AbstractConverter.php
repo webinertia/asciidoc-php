@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Converter;
 
-
-
 /**
  * Base converter: provides `handles()` and the camelCase method-name resolver.
  *

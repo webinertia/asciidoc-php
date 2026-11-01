@@ -27,196 +27,6 @@ final class Html5ConverterTest extends TestCase
         return $doc->getConverter()->convert($doc, $transform);
     }
 
-    // ── Document ──────────────────────────────────────────────────────────────
-
-    public function testConvertDocumentContainsDoctypeDeclaration(): void
-    {
-        $html = self::convert("= Hello\n");
-        self::assertStringContainsString('<!DOCTYPE html>', $html);
-    }
-
-    public function testConvertDocumentContainsHtmlElement(): void
-    {
-        $html = self::convert("= Hello\n");
-        self::assertStringContainsString('<html lang="en">', $html);
-    }
-
-    public function testConvertDocumentContainsTitleElement(): void
-    {
-        $html = self::convert("= My Document\n");
-        self::assertStringContainsString('<title>My Document</title>', $html);
-    }
-
-    public function testConvertDocumentContainsMetaCharset(): void
-    {
-        $html = self::convert('');
-        self::assertStringContainsString('<meta charset="UTF-8">', $html);
-    }
-
-    public function testConvertDocumentContainsBodyTag(): void
-    {
-        $html = self::convert('');
-        self::assertStringContainsString('<body', $html);
-        self::assertStringContainsString('</body>', $html);
-    }
-
-    public function testConvertDocumentHeaderShowsDocTitle(): void
-    {
-        $html = self::convert("= My Title\n\n");
-        self::assertStringContainsString('<h1>My Title</h1>', $html);
-    }
-
-    public function testConvertDocumentHeaderShowsAuthor(): void
-    {
-        $html = self::convert("= Title\nJane Doe <jane@example.com>\n\n");
-        self::assertStringContainsString('Jane Doe', $html);
-        self::assertStringContainsString('class="author"', $html);
-    }
-
-    // ── Embedded ──────────────────────────────────────────────────────────────
-
-    public function testConvertEmbeddedDoesNotContainDoctypeDeclaration(): void
-    {
-        $html = self::convert("Hello world.\n", embedded: true);
-        self::assertStringNotContainsString('<!DOCTYPE html>', $html);
-    }
-
-    public function testConvertEmbeddedContainsContentWrapper(): void
-    {
-        $html = self::convert("Hello.\n", embedded: true);
-        self::assertStringContainsString('<div id="content">', $html);
-    }
-
-    // ── Section ───────────────────────────────────────────────────────────────
-
-    public function testConvertSectionContainsSect1Div(): void
-    {
-        $html = self::convert("= Title\n\n== Section One\n\nContent.\n");
-        self::assertStringContainsString('class="sect1"', $html);
-    }
-
-    public function testConvertSectionContainsH2Heading(): void
-    {
-        $html = self::convert("= Title\n\n== Section One\n\nContent.\n");
-        self::assertMatchesRegularExpression('/<h2[^>]*>Section One<\/h2>/', $html);
-    }
-
-    public function testConvertSection2ContainsH3Heading(): void
-    {
-        $html = self::convert("= Title\n\n== Section One\n\n=== Sub Section\n\nContent.\n");
-        self::assertMatchesRegularExpression('/<h3[^>]*>Sub Section<\/h3>/', $html);
-    }
-
-    public function testConvertSectionWithIdAttribute(): void
-    {
-        $html = self::convert("= Title\n\n[[my-id]]\n== Named Section\n\nContent.\n");
-        self::assertStringContainsString('id="my-id"', $html);
-    }
-
-    // ── Paragraph ─────────────────────────────────────────────────────────────
-
-    public function testConvertParagraphContainsDiv(): void
-    {
-        $html = self::convert("Hello world.\n");
-        self::assertStringContainsString('<div class="paragraph">', $html);
-        self::assertStringContainsString('<p>Hello world.</p>', $html);
-    }
-
-    public function testConvertParagraphWithTitle(): void
-    {
-        $html = self::convert(".My Paragraph\nHello.\n");
-        self::assertStringContainsString('<div class="title">My Paragraph</div>', $html);
-    }
-
-    // ── Listing block ─────────────────────────────────────────────────────────
-
-    public function testConvertListingContainsPre(): void
-    {
-        $html = self::convert("----\necho hello\n----\n");
-        self::assertStringContainsString('<div class="listingblock">', $html);
-        self::assertStringContainsString('<pre class="highlight"><code>', $html);
-    }
-
-    public function testConvertListingWithSourceLanguage(): void
-    {
-        $html = self::convert("[source,php]\n----\n<?php echo 'hi';\n----\n");
-        self::assertStringContainsString('class="language-php hljs"', $html);
-        self::assertStringContainsString('data-lang="php"', $html);
-    }
-
-    public function testConvertDocumentWithHighlightJsIncludesCdnAssets(): void
-    {
-        $src  = "= Doc\n:source-highlighter: highlight.js\n\n[source,php]\n----\necho 1;\n----\n";
-        $html = self::convert($src);
-        self::assertStringContainsString('github.min.css', $html);
-        self::assertStringContainsString('highlight.min.js', $html);
-        self::assertStringContainsString('hljs.highlightBlock(el)', $html);
-    }
-
-    public function testConvertDocumentWithHighlightJsCustomTheme(): void
-    {
-        $src  = "= Doc\n:source-highlighter: highlight.js\n:highlightjs-theme: monokai\n\n[source,php]\n----\necho 1;\n----\n";
-        $html = self::convert($src);
-        self::assertStringContainsString('monokai.min.css', $html);
-    }
-
-    public function testConvertDocumentWithHighlightJsCustomDir(): void
-    {
-        $src  = "= Doc\n:source-highlighter: highlight.js\n:highlightjsdir: /assets/hljs\n\n[source,php]\n----\necho 1;\n----\n";
-        $html = self::convert($src);
-        self::assertStringContainsString('/assets/hljs/styles/', $html);
-        self::assertStringContainsString('/assets/hljs/highlight.min.js', $html);
-    }
-
-    public function testConvertDocumentWithoutHighlighterHasNoHljsScript(): void
-    {
-        $src  = "= Doc\n\n[source,php]\n----\necho 1;\n----\n";
-        $html = self::convert($src);
-        self::assertStringNotContainsString('hljs.highlightBlock(el)', $html);
-    }
-
-    // ── Icon font ─────────────────────────────────────────────────────────────
-
-    public function testConvertDocumentWithIconFontIncludesFontAwesome(): void
-    {
-        $html = self::convert("= Doc\n:icons: font\n\nNOTE: hi\n");
-        self::assertStringContainsString('font-awesome', $html);
-    }
-
-    public function testConvertDocumentWithIconFontRendersIElement(): void
-    {
-        $html = self::convert("= Doc\n:icons: font\n\nNOTE: hi\n");
-        self::assertStringContainsString('<i class="fa icon-note"', $html);
-    }
-
-    public function testConvertDocumentWithIconFontCustomCdn(): void
-    {
-        $html = self::convert("= Doc\n:icons: font\n:iconfont-cdn: /assets/fa/fa.css\n\nTIP: hi\n");
-        self::assertStringContainsString('/assets/fa/fa.css', $html);
-        self::assertStringNotContainsString('font-awesome', $html);
-    }
-
-    public function testConvertDocumentWithoutIconFontHasNoFontAwesome(): void
-    {
-        $html = self::convert("= Doc\n\nNOTE: hi\n");
-        self::assertStringNotContainsString('font-awesome', $html);
-    }
-
-    public function testConvertAdmonitionWithoutIconFontRendersTextLabel(): void
-    {
-        $html = self::convert("WARNING: danger.\n");
-        self::assertStringContainsString('<div class="title">Warning</div>', $html);
-        self::assertStringNotContainsString('<i class=', $html);
-    }
-
-    // ── Literal block ─────────────────────────────────────────────────────────
-
-    public function testConvertLiteralContainsLiteralblockDiv(): void
-    {
-        $html = self::convert("....\nliteral text\n....\n");
-        self::assertStringContainsString('<div class="literalblock">', $html);
-    }
-
     // ── Admonition ────────────────────────────────────────────────────────────
 
     public function testConvertAdmonitionNoteContainsClass(): void
@@ -237,21 +47,245 @@ final class Html5ConverterTest extends TestCase
         self::assertStringContainsString('class="admonitionblock warning"', $html);
     }
 
-    // ── Sidebar ───────────────────────────────────────────────────────────────
-
-    public function testConvertSidebarContainsDiv(): void
+    public function testConvertAdmonitionWithoutIconFontRendersTextLabel(): void
     {
-        $html = self::convert("****\nSidebar content.\n****\n");
-        self::assertStringContainsString('<div class="sidebarblock">', $html);
+        $html = self::convert("WARNING: danger.\n");
+        self::assertStringContainsString('<div class="title">Warning</div>', $html);
+        self::assertStringNotContainsString('<i class=', $html);
     }
 
-    // ── Quote block ───────────────────────────────────────────────────────────
-
-    public function testConvertQuoteContainsBlockquote(): void
+    public function testConvertDocumentContainsBodyTag(): void
     {
-        $html = self::convert("____\nQuoted text.\n____\n");
-        self::assertStringContainsString('<blockquote>', $html);
-        self::assertStringContainsString('<div class="quoteblock">', $html);
+        $html = self::convert('');
+        self::assertStringContainsString('<body', $html);
+        self::assertStringContainsString('</body>', $html);
+    }
+
+    // ── Document ──────────────────────────────────────────────────────────────
+
+    public function testConvertDocumentContainsDoctypeDeclaration(): void
+    {
+        $html = self::convert("= Hello\n");
+        self::assertStringContainsString('<!DOCTYPE html>', $html);
+    }
+
+    public function testConvertDocumentContainsHtmlElement(): void
+    {
+        $html = self::convert("= Hello\n");
+        self::assertStringContainsString('<html lang="en">', $html);
+    }
+
+    public function testConvertDocumentContainsMetaCharset(): void
+    {
+        $html = self::convert('');
+        self::assertStringContainsString('<meta charset="UTF-8">', $html);
+    }
+
+    public function testConvertDocumentContainsTitleElement(): void
+    {
+        $html = self::convert("= My Document\n");
+        self::assertStringContainsString('<title>My Document</title>', $html);
+    }
+
+    public function testConvertDocumentHeaderShowsAuthor(): void
+    {
+        $html = self::convert("= Title\nJane Doe <jane@example.com>\n\n");
+        self::assertStringContainsString('Jane Doe', $html);
+        self::assertStringContainsString('class="author"', $html);
+    }
+
+    public function testConvertDocumentHeaderShowsDocTitle(): void
+    {
+        $html = self::convert("= My Title\n\n");
+        self::assertStringContainsString('<h1>My Title</h1>', $html);
+    }
+
+    public function testConvertDocumentWithHighlightJsCustomDir(): void
+    {
+        $src  = "= Doc\n:source-highlighter: highlight.js\n:highlightjsdir: /assets/hljs\n\n[source,php]\n----\necho 1;\n----\n";
+        $html = self::convert($src);
+        self::assertStringContainsString('/assets/hljs/styles/', $html);
+        self::assertStringContainsString('/assets/hljs/highlight.min.js', $html);
+    }
+
+    public function testConvertDocumentWithHighlightJsCustomTheme(): void
+    {
+        $src  = "= Doc\n:source-highlighter: highlight.js\n:highlightjs-theme: monokai\n\n[source,php]\n----\necho 1;\n----\n";
+        $html = self::convert($src);
+        self::assertStringContainsString('monokai.min.css', $html);
+    }
+
+    public function testConvertDocumentWithHighlightJsIncludesCdnAssets(): void
+    {
+        $src  = "= Doc\n:source-highlighter: highlight.js\n\n[source,php]\n----\necho 1;\n----\n";
+        $html = self::convert($src);
+        self::assertStringContainsString('github.min.css', $html);
+        self::assertStringContainsString('highlight.min.js', $html);
+        self::assertStringContainsString('hljs.highlightBlock(el)', $html);
+    }
+
+    public function testConvertDocumentWithIconFontCustomCdn(): void
+    {
+        $html = self::convert("= Doc\n:icons: font\n:iconfont-cdn: /assets/fa/fa.css\n\nTIP: hi\n");
+        self::assertStringContainsString('/assets/fa/fa.css', $html);
+        self::assertStringNotContainsString('font-awesome', $html);
+    }
+
+    // ── Icon font ─────────────────────────────────────────────────────────────
+
+    public function testConvertDocumentWithIconFontIncludesFontAwesome(): void
+    {
+        $html = self::convert("= Doc\n:icons: font\n\nNOTE: hi\n");
+        self::assertStringContainsString('font-awesome', $html);
+    }
+
+    public function testConvertDocumentWithIconFontRendersIElement(): void
+    {
+        $html = self::convert("= Doc\n:icons: font\n\nNOTE: hi\n");
+        self::assertStringContainsString('<i class="fa icon-note"', $html);
+    }
+
+    public function testConvertDocumentWithInlineTocHasNoSidebarClass(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => ''],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        self::assertStringNotContainsString('<body class="article toc2', $html);
+        self::assertStringNotContainsString('<div id="toc" class="toc2">', $html);
+    }
+
+    public function testConvertDocumentWithoutHighlighterHasNoHljsScript(): void
+    {
+        $src  = "= Doc\n\n[source,php]\n----\necho 1;\n----\n";
+        $html = self::convert($src);
+        self::assertStringNotContainsString('hljs.highlightBlock(el)', $html);
+    }
+
+    public function testConvertDocumentWithoutIconFontHasNoFontAwesome(): void
+    {
+        $html = self::convert("= Doc\n\nNOTE: hi\n");
+        self::assertStringNotContainsString('font-awesome', $html);
+    }
+
+    // ── TOC ───────────────────────────────────────────────────────────────────
+
+    public function testConvertDocumentWithTocAttributeContainsTocDiv(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => ''],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        self::assertStringContainsString('<div id="toc"', $html);
+        self::assertStringContainsString('<ul class="sectlevel1">', $html);
+    }
+
+    public function testConvertDocumentWithTocLeftDoesNotDuplicateToc(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => 'left'],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        self::assertSame(1, substr_count($html, '<div id="toc"'));
+    }
+
+    public function testConvertDocumentWithTocLeftHasSidebarBodyClass(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => 'left'],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        self::assertStringContainsString('<body class="article toc2 toc-left">', $html);
+    }
+
+    public function testConvertDocumentWithTocLeftHasToc2Div(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => 'left'],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        self::assertStringContainsString('<div id="toc" class="toc2">', $html);
+    }
+
+    public function testConvertDocumentWithTocLeftPlacesSidebarBeforeHeader(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => 'left'],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        // The sidebar toc must appear before #header in the output
+        $tocPos    = strpos($html, '<div id="toc"');
+        $headerPos = strpos($html, '<div id="header">');
+        self::assertNotFalse($tocPos);
+        self::assertNotFalse($headerPos);
+        // The sidebar TOC is now rendered inside #header (matches Asciidoctor structure).
+        self::assertGreaterThan($headerPos, $tocPos);
+    }
+
+    public function testConvertDocumentWithTocPlacementLeftAttribute(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => '', 'toc-placement' => 'left'],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        self::assertStringContainsString('<body class="article toc2 toc-left">', $html);
+        self::assertStringContainsString('<div id="toc" class="toc2">', $html);
+    }
+
+    public function testConvertDocumentWithTocRightHasTocRightBodyClass(): void
+    {
+        $doc = new Document([
+            'converter'  => new Html5Converter(),
+            'attributes' => ['toc' => 'right'],
+        ]);
+        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
+        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
+        Parser::parse($reader, $doc);
+        $html = $doc->getConverter()->convert($doc);
+        self::assertStringContainsString('<body class="article toc2 toc-right">', $html);
+        self::assertStringContainsString('<div id="toc" class="toc2">', $html);
+    }
+
+    public function testConvertEmbeddedContainsContentWrapper(): void
+    {
+        $html = self::convert("Hello.\n", embedded: true);
+        self::assertStringContainsString('<div id="content">', $html);
+    }
+
+    // ── Embedded ──────────────────────────────────────────────────────────────
+
+    public function testConvertEmbeddedDoesNotContainDoctypeDeclaration(): void
+    {
+        $html = self::convert("Hello world.\n", embedded: true);
+        self::assertStringNotContainsString('<!DOCTYPE html>', $html);
     }
 
     // ── Example block ─────────────────────────────────────────────────────────
@@ -260,56 +294,6 @@ final class Html5ConverterTest extends TestCase
     {
         $html = self::convert("====\nExample content.\n====\n");
         self::assertStringContainsString('<div class="exampleblock">', $html);
-    }
-
-    // ── Pass block ────────────────────────────────────────────────────────────
-
-    public function testConvertPassOutputsRawContent(): void
-    {
-        $html = self::convert("++++\n<b>raw</b>\n++++\n");
-        self::assertStringContainsString('<b>raw</b>', $html);
-    }
-
-    // ── Unordered list ────────────────────────────────────────────────────────
-
-    public function testConvertUlistContainsUl(): void
-    {
-        $html = self::convert("* Alpha\n* Beta\n* Gamma\n");
-        self::assertStringContainsString('<div class="ulist">', $html);
-        self::assertStringContainsString('<ul>', $html);
-        self::assertStringContainsString('<li>', $html);
-        self::assertStringContainsString('Alpha', $html);
-    }
-
-    public function testConvertUlistThreeItems(): void
-    {
-        $html = self::convert("* A\n* B\n* C\n");
-        self::assertSame(3, substr_count($html, '<li>'));
-    }
-
-    // ── Ordered list ──────────────────────────────────────────────────────────
-
-    public function testConvertOlistContainsOl(): void
-    {
-        $html = self::convert(". First\n. Second\n");
-        self::assertStringContainsString('<div class="olist arabic">', $html);
-        self::assertStringContainsString('<ol class="arabic">', $html);
-        self::assertSame(2, substr_count($html, '<li>'));
-    }
-
-    // ── Table ─────────────────────────────────────────────────────────────────
-
-    public function testConvertTableContainsTableElement(): void
-    {
-        $html = self::convert("|===\n|A |B\n|C |D\n|===\n");
-        self::assertStringContainsString('<table', $html);
-        self::assertStringContainsString('</table>', $html);
-    }
-
-    public function testConvertTableContainsCells(): void
-    {
-        $html = self::convert("|===\n|A |B\n|===\n");
-        self::assertStringContainsString('<td', $html);
     }
 
     // ── Image macro ───────────────────────────────────────────────────────────
@@ -328,12 +312,38 @@ final class Html5ConverterTest extends TestCase
         self::assertStringContainsString('<div class="imageblock">', $html);
     }
 
-    // ── Thematic break ────────────────────────────────────────────────────────
+    // ── Listing block ─────────────────────────────────────────────────────────
 
-    public function testConvertThematicBreakOutputsHr(): void
+    public function testConvertListingContainsPre(): void
     {
-        $html = self::convert("'''\n");
-        self::assertStringContainsString('<hr>', $html);
+        $html = self::convert("----\necho hello\n----\n");
+        self::assertStringContainsString('<div class="listingblock">', $html);
+        self::assertStringContainsString('<pre class="highlight"><code>', $html);
+    }
+
+    public function testConvertListingWithSourceLanguage(): void
+    {
+        $html = self::convert("[source,php]\n----\n<?php echo 'hi';\n----\n");
+        self::assertStringContainsString('class="language-php hljs"', $html);
+        self::assertStringContainsString('data-lang="php"', $html);
+    }
+
+    // ── Literal block ─────────────────────────────────────────────────────────
+
+    public function testConvertLiteralContainsLiteralblockDiv(): void
+    {
+        $html = self::convert("....\nliteral text\n....\n");
+        self::assertStringContainsString('<div class="literalblock">', $html);
+    }
+
+    // ── Ordered list ──────────────────────────────────────────────────────────
+
+    public function testConvertOlistContainsOl(): void
+    {
+        $html = self::convert(". First\n. Second\n");
+        self::assertStringContainsString('<div class="olist arabic">', $html);
+        self::assertStringContainsString('<ol class="arabic">', $html);
+        self::assertSame(2, substr_count($html, '<li>'));
     }
 
     // ── Page break ────────────────────────────────────────────────────────────
@@ -344,180 +354,110 @@ final class Html5ConverterTest extends TestCase
         self::assertStringContainsString('page-break-after: always', $html);
     }
 
-    // ── TOC ───────────────────────────────────────────────────────────────────
+    // ── Paragraph ─────────────────────────────────────────────────────────────
 
-    public function testConvertDocumentWithTocAttributeContainsTocDiv(): void
+    public function testConvertParagraphContainsDiv(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => ''],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        self::assertStringContainsString('<div id="toc"', $html);
-        self::assertStringContainsString('<ul class="sectlevel1">', $html);
+        $html = self::convert("Hello world.\n");
+        self::assertStringContainsString('<div class="paragraph">', $html);
+        self::assertStringContainsString('<p>Hello world.</p>', $html);
     }
 
-    public function testConvertDocumentWithTocLeftHasSidebarBodyClass(): void
+    public function testConvertParagraphWithTitle(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => 'left'],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        self::assertStringContainsString('<body class="article toc2 toc-left">', $html);
+        $html = self::convert(".My Paragraph\nHello.\n");
+        self::assertStringContainsString('<div class="title">My Paragraph</div>', $html);
     }
 
-    public function testConvertDocumentWithTocLeftHasToc2Div(): void
+    // ── Pass block ────────────────────────────────────────────────────────────
+
+    public function testConvertPassOutputsRawContent(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => 'left'],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        self::assertStringContainsString('<div id="toc" class="toc2">', $html);
+        $html = self::convert("++++\n<b>raw</b>\n++++\n");
+        self::assertStringContainsString('<b>raw</b>', $html);
     }
 
-    public function testConvertDocumentWithTocLeftPlacesSidebarBeforeHeader(): void
+    // ── Quote block ───────────────────────────────────────────────────────────
+
+    public function testConvertQuoteContainsBlockquote(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => 'left'],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        // The sidebar toc must appear before #header in the output
-        $tocPos    = strpos($html, '<div id="toc"');
-        $headerPos = strpos($html, '<div id="header">');
-        self::assertNotFalse($tocPos);
-        self::assertNotFalse($headerPos);
-        // The sidebar TOC is now rendered inside #header (matches Asciidoctor structure).
-        self::assertGreaterThan($headerPos, $tocPos);
+        $html = self::convert("____\nQuoted text.\n____\n");
+        self::assertStringContainsString('<blockquote>', $html);
+        self::assertStringContainsString('<div class="quoteblock">', $html);
     }
 
-    public function testConvertDocumentWithTocLeftDoesNotDuplicateToc(): void
+    public function testConvertSection2ContainsH3Heading(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => 'left'],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        self::assertSame(1, substr_count($html, '<div id="toc"'));
+        $html = self::convert("= Title\n\n== Section One\n\n=== Sub Section\n\nContent.\n");
+        self::assertMatchesRegularExpression('/<h3[^>]*>Sub Section<\/h3>/', $html);
     }
 
-    public function testConvertDocumentWithTocRightHasTocRightBodyClass(): void
+    public function testConvertSectionContainsH2Heading(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => 'right'],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        self::assertStringContainsString('<body class="article toc2 toc-right">', $html);
-        self::assertStringContainsString('<div id="toc" class="toc2">', $html);
+        $html = self::convert("= Title\n\n== Section One\n\nContent.\n");
+        self::assertMatchesRegularExpression('/<h2[^>]*>Section One<\/h2>/', $html);
     }
 
-    public function testConvertDocumentWithTocPlacementLeftAttribute(): void
+    // ── Section ───────────────────────────────────────────────────────────────
+
+    public function testConvertSectionContainsSect1Div(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => '', 'toc-placement' => 'left'],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n\n== Two\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        self::assertStringContainsString('<body class="article toc2 toc-left">', $html);
-        self::assertStringContainsString('<div id="toc" class="toc2">', $html);
+        $html = self::convert("= Title\n\n== Section One\n\nContent.\n");
+        self::assertStringContainsString('class="sect1"', $html);
     }
 
-    public function testConvertDocumentWithInlineTocHasNoSidebarClass(): void
+    public function testConvertSectionWithIdAttribute(): void
     {
-        $doc    = new Document([
-            'converter'  => new Html5Converter(),
-            'attributes' => ['toc' => ''],
-        ]);
-        $src    = "= Title\n\n== One\n\nContent.\n";
-        $reader = new PreprocessorReader($doc, $src, new Cursor(null, null, null));
-        Parser::parse($reader, $doc);
-        $html   = $doc->getConverter()->convert($doc);
-        self::assertStringNotContainsString('<body class="article toc2', $html);
-        self::assertStringNotContainsString('<div id="toc" class="toc2">', $html);
+        $html = self::convert("= Title\n\n[[my-id]]\n== Named Section\n\nContent.\n");
+        self::assertStringContainsString('id="my-id"', $html);
     }
 
-    // ── Inline quoted ─────────────────────────────────────────────────────────
+    // ── Sidebar ───────────────────────────────────────────────────────────────
 
-    public function testInlineQuotedStrong(): void
+    public function testConvertSidebarContainsDiv(): void
     {
-        $doc    = new Document(['converter' => new Html5Converter()]);
-        $inline = new Inline($doc, 'quoted', 'bold text');
-        $inline->setAttribute('type', 'strong');
-        $html = $doc->getConverter()->convert($inline);
-        self::assertStringContainsString('<strong>bold text</strong>', $html);
+        $html = self::convert("****\nSidebar content.\n****\n");
+        self::assertStringContainsString('<div class="sidebarblock">', $html);
     }
 
-    public function testInlineQuotedEmphasis(): void
+    public function testConvertTableContainsCells(): void
     {
-        $doc    = new Document(['converter' => new Html5Converter()]);
-        $inline = new Inline($doc, 'quoted', 'italic');
-        $inline->setAttribute('type', 'emphasis');
-        $html   = $doc->getConverter()->convert($inline);
-        self::assertStringContainsString('<em>italic</em>', $html);
+        $html = self::convert("|===\n|A |B\n|===\n");
+        self::assertStringContainsString('<td', $html);
     }
 
-    public function testInlineQuotedMonospaced(): void
+    // ── Table ─────────────────────────────────────────────────────────────────
+
+    public function testConvertTableContainsTableElement(): void
     {
-        $doc    = new Document(['converter' => new Html5Converter()]);
-        $inline = new Inline($doc, 'quoted', 'code');
-        $inline->setAttribute('type', 'monospaced');
-        $html   = $doc->getConverter()->convert($inline);
-        self::assertStringContainsString('<code>code</code>', $html);
+        $html = self::convert("|===\n|A |B\n|C |D\n|===\n");
+        self::assertStringContainsString('<table', $html);
+        self::assertStringContainsString('</table>', $html);
     }
 
-    // ── Inline anchor ─────────────────────────────────────────────────────────
+    // ── Thematic break ────────────────────────────────────────────────────────
 
-    public function testInlineAnchorRef(): void
+    public function testConvertThematicBreakOutputsHr(): void
     {
-        $doc    = new Document(['converter' => new Html5Converter()]);
-        $inline = new Inline($doc, 'ref', '', 'my-anchor');
-        $html   = $doc->getConverter()->convert($inline);
-        self::assertStringContainsString('<a id="my-anchor"></a>', $html);
+        $html = self::convert("'''\n");
+        self::assertStringContainsString('<hr>', $html);
     }
 
-    public function testInlineAnchorLink(): void
+    // ── Unordered list ────────────────────────────────────────────────────────
+
+    public function testConvertUlistContainsUl(): void
     {
-        $doc    = new Document(['converter' => new Html5Converter()]);
-        $inline = new Inline($doc, 'link', 'Click me', 'https://example.com');
-        $html   = $doc->getConverter()->convert($inline);
-        self::assertStringContainsString('href="https://example.com"', $html);
-        self::assertStringContainsString('Click me', $html);
+        $html = self::convert("* Alpha\n* Beta\n* Gamma\n");
+        self::assertStringContainsString('<div class="ulist">', $html);
+        self::assertStringContainsString('<ul>', $html);
+        self::assertStringContainsString('<li>', $html);
+        self::assertStringContainsString('Alpha', $html);
     }
 
-    // ── Inline kbd ────────────────────────────────────────────────────────────
-
-    public function testInlineKbd(): void
+    public function testConvertUlistThreeItems(): void
     {
-        $doc    = new Document(['converter' => new Html5Converter()]);
-        $inline = new Inline($doc, 'kbd', 'Ctrl+C');
-        $html   = $doc->getConverter()->convert($inline);
-        self::assertStringContainsString('<kbd class="keyseq">', $html);
-        self::assertStringContainsString('<kbd>Ctrl</kbd>', $html);
-        self::assertStringContainsString('<kbd>C</kbd>', $html);
+        $html = self::convert("* A\n* B\n* C\n");
+        self::assertSame(3, substr_count($html, '<li>'));
     }
 
     // ── Fallback ──────────────────────────────────────────────────────────────
@@ -538,5 +478,65 @@ final class Html5ConverterTest extends TestCase
         $html = self::convert("= <script>alert(1)</script>\n\n");
         self::assertStringNotContainsString('<script>alert(1)</script>', $html);
         self::assertStringContainsString('&lt;script&gt;', $html);
+    }
+
+    public function testInlineAnchorLink(): void
+    {
+        $doc    = new Document(['converter' => new Html5Converter()]);
+        $inline = new Inline($doc, 'link', 'Click me', 'https://example.com');
+        $html   = $doc->getConverter()->convert($inline);
+        self::assertStringContainsString('href="https://example.com"', $html);
+        self::assertStringContainsString('Click me', $html);
+    }
+
+    // ── Inline anchor ─────────────────────────────────────────────────────────
+
+    public function testInlineAnchorRef(): void
+    {
+        $doc    = new Document(['converter' => new Html5Converter()]);
+        $inline = new Inline($doc, 'ref', '', 'my-anchor');
+        $html   = $doc->getConverter()->convert($inline);
+        self::assertStringContainsString('<a id="my-anchor"></a>', $html);
+    }
+
+    // ── Inline kbd ────────────────────────────────────────────────────────────
+
+    public function testInlineKbd(): void
+    {
+        $doc    = new Document(['converter' => new Html5Converter()]);
+        $inline = new Inline($doc, 'kbd', 'Ctrl+C');
+        $html   = $doc->getConverter()->convert($inline);
+        self::assertStringContainsString('<kbd class="keyseq">', $html);
+        self::assertStringContainsString('<kbd>Ctrl</kbd>', $html);
+        self::assertStringContainsString('<kbd>C</kbd>', $html);
+    }
+
+    public function testInlineQuotedEmphasis(): void
+    {
+        $doc    = new Document(['converter' => new Html5Converter()]);
+        $inline = new Inline($doc, 'quoted', 'italic');
+        $inline->setAttribute('type', 'emphasis');
+        $html = $doc->getConverter()->convert($inline);
+        self::assertStringContainsString('<em>italic</em>', $html);
+    }
+
+    public function testInlineQuotedMonospaced(): void
+    {
+        $doc    = new Document(['converter' => new Html5Converter()]);
+        $inline = new Inline($doc, 'quoted', 'code');
+        $inline->setAttribute('type', 'monospaced');
+        $html = $doc->getConverter()->convert($inline);
+        self::assertStringContainsString('<code>code</code>', $html);
+    }
+
+    // ── Inline quoted ─────────────────────────────────────────────────────────
+
+    public function testInlineQuotedStrong(): void
+    {
+        $doc    = new Document(['converter' => new Html5Converter()]);
+        $inline = new Inline($doc, 'quoted', 'bold text');
+        $inline->setAttribute('type', 'strong');
+        $html = $doc->getConverter()->convert($inline);
+        self::assertStringContainsString('<strong>bold text</strong>', $html);
     }
 }

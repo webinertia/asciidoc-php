@@ -21,7 +21,7 @@ interface ConverterInterface
      *                                         $node->getNodeName().
      * @param array<string, mixed> $opts      Optional per-call options.
      */
-    public function convert(AbstractNode $node, string|null $transform = null, array $opts = []): string;
+    public function convert(AbstractNode $node, ?string $transform = null, array $opts = []): string;
 
     /**
      * Return true when this converter can handle the given transform name.

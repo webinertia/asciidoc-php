@@ -31,11 +31,16 @@ class Table extends AbstractBlock
 
     public function __construct(
         Document $document,
-        AbstractBlock|null $parent,
+        ?AbstractBlock $parent,
         private string $format = 'psv',
         private string $separator = '|',
     ) {
         parent::__construct('table', 'table', $document, $parent, ContentModel::COMPOUND);
+    }
+
+    public function appendBodyRow(Row $row): void
+    {
+        $this->bodyRows[] = $row;
     }
 
     // ── Columns ───────────────────────────────────────────────────────────────
@@ -45,12 +50,27 @@ class Table extends AbstractBlock
         $this->columns[] = $column;
     }
 
-    /**
-     * @param list<Column> $columns
-     */
-    public function setColumns(array $columns): void
+    public function appendFootRow(Row $row): void
     {
-        $this->columns = $columns;
+        $this->footRows[] = $row;
+    }
+
+    // ── Rows ──────────────────────────────────────────────────────────────────
+
+    public function appendHeadRow(Row $row): void
+    {
+        $this->headRows[] = $row;
+    }
+
+    /** @return list<Row> */
+    public function getBodyRows(): array
+    {
+        return $this->bodyRows;
+    }
+
+    public function getColumnCount(): int
+    {
+        return count($this->columns);
     }
 
     /**
@@ -61,54 +81,10 @@ class Table extends AbstractBlock
         return $this->columns;
     }
 
-    public function getColumnCount(): int
-    {
-        return count($this->columns);
-    }
-
-    // ── Rows ──────────────────────────────────────────────────────────────────
-
-    public function appendHeadRow(Row $row): void
-    {
-        $this->headRows[] = $row;
-    }
-
-    public function appendBodyRow(Row $row): void
-    {
-        $this->bodyRows[] = $row;
-    }
-
-    public function appendFootRow(Row $row): void
-    {
-        $this->footRows[] = $row;
-    }
-
-    /** @return list<Row> */
-    public function getHeadRows(): array
-    {
-        return $this->headRows;
-    }
-
-    /** @return list<Row> */
-    public function getBodyRows(): array
-    {
-        return $this->bodyRows;
-    }
-
     /** @return list<Row> */
     public function getFootRows(): array
     {
         return $this->footRows;
-    }
-
-    public function hasHeader(): bool
-    {
-        return [] !== $this->headRows;
-    }
-
-    public function hasFooter(): bool
-    {
-        return [] !== $this->footRows;
     }
 
     // ── Format ────────────────────────────────────────────────────────────────
@@ -118,8 +94,32 @@ class Table extends AbstractBlock
         return $this->format;
     }
 
+    /** @return list<Row> */
+    public function getHeadRows(): array
+    {
+        return $this->headRows;
+    }
+
     public function getSeparator(): string
     {
         return $this->separator;
+    }
+
+    public function hasFooter(): bool
+    {
+        return [] !== $this->footRows;
+    }
+
+    public function hasHeader(): bool
+    {
+        return [] !== $this->headRows;
+    }
+
+    /**
+     * @param list<Column> $columns
+     */
+    public function setColumns(array $columns): void
+    {
+        $this->columns = $columns;
     }
 }
