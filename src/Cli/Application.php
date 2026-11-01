@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Cli;
 
+use Closure;
 use Throwable;
 
 /**
@@ -62,10 +63,35 @@ final class Application
           asciidoc-php -s -o - docs/fragment.adoc | cat
         HELP;
 
-    /** @param list<string> $args Raw $argv. */
+    /**
+     * Diagnostics sink.  Defaults to a writer for the process STDERR stream;
+     * callers that must not touch the process streams (tests, embedders) pass
+     * their own.
+     *
+     * @var Closure(string): void
+     */
+    private readonly Closure $stderr;
+
+    /**
+     * @param list<string>                 $args   Raw $argv.
+     * @param (Closure(string): void)|null $stderr Diagnostics sink, defaults to STDERR.
+     */
     public function __construct(
         private readonly array $args,
-    ) {}
+        ?Closure $stderr = null,
+    ) {
+        $this->stderr = $stderr ?? self::stderrWriter();
+    }
+
+    /**
+     * @return Closure(string): void
+     */
+    private static function stderrWriter(): Closure
+    {
+        return static function (string $message): void {
+            fwrite(STDERR, $message);
+        };
+    }
 
     /**
      * Parse arguments, execute conversion, and return a POSIX exit code.
@@ -75,7 +101,7 @@ final class Application
         try {
             $options = Options::parse($this->args);
         } catch (ParseException $e) {
-            fwrite(STDERR, "asciidoc-php: {$e->getMessage()}\n");
+            ($this->stderr)("asciidoc-php: {$e->getMessage()}\n");
             return 1;
         }
 
@@ -90,18 +116,18 @@ final class Application
         }
 
         if ([] === $options->inputFiles) {
-            fwrite(STDERR, "asciidoc-php: No input files specified. Use -h for help.\n");
+            ($this->stderr)("asciidoc-php: No input files specified. Use -h for help.\n");
             return 1;
         }
 
         try {
-            $invoker = new Invoker($options);
+            $invoker = new Invoker($options, null, $this->stderr);
             return $invoker->invoke();
         } catch (Throwable $e) {
             if ($options->trace) {
-                fwrite(STDERR, (string) $e . "\n");
+                ($this->stderr)((string) $e . "\n");
             } else {
-                fwrite(STDERR, "asciidoc-php: {$e->getMessage()}\n");
+                ($this->stderr)("asciidoc-php: {$e->getMessage()}\n");
             }
             return 1;
         }

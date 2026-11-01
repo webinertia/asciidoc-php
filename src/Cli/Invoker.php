@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webware\AsciidocPhp\Cli;
 
 use Async\TaskGroup;
+use Closure;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Throwable;
@@ -25,10 +26,25 @@ use Webware\AsciidocPhp\Asciidoc;
  */
 final class Invoker
 {
+    /**
+     * Diagnostics sink.  Defaults to a writer for the process STDERR stream.
+     *
+     * @var Closure(string): void
+     */
+    private readonly Closure $stderr;
+
+    /**
+     * @param (Closure(string): void)|null $stderr Diagnostics sink, defaults to STDERR.
+     */
     public function __construct(
         private readonly Options $options,
         private readonly ?LoggerInterface $logger = null,
-    ) {}
+        ?Closure $stderr = null,
+    ) {
+        $this->stderr = $stderr ?? static function (string $message): void {
+            fwrite(STDERR, $message);
+        };
+    }
 
     /**
      * Run all conversions and return a POSIX exit code (0 = success, 1 = error).
@@ -163,7 +179,7 @@ final class Invoker
         if (null !== $this->logger) {
             $this->logger->warning("Failed: {$inputFile} — {$e->getMessage()}");
         } elseif (! $this->options->quiet) {
-            fwrite(STDERR, "asciidoc-php: Failed: {$inputFile} — {$e->getMessage()}\n");
+            ($this->stderr)("asciidoc-php: Failed: {$inputFile} - {$e->getMessage()}\n");
         }
     }
 

@@ -16,12 +16,6 @@ count = 3
 file = "src/Cli/Application.php"
 code = "ambiguous-function-call"
 message = "Ambiguous function call detected."
-count = 4
-
-[[issues]]
-file = "src/Cli/Application.php"
-code = "literal-named-argument"
-message = 'Literal argument `"asciidoc-php: No input files specified. Use -h for help.\n"` should be passed as a named argument for clarity.'
 count = 1
 
 [[issues]]
@@ -1066,7 +1060,7 @@ count = 26
 file = "test/unit/Cli/ApplicationTest.php"
 code = "assertion-style"
 message = "Inconsistent assertions style."
-count = 15
+count = 18
 
 [[issues]]
 file = "test/unit/Cli/ApplicationTest.php"

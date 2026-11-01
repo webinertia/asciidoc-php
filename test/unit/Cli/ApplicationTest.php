@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WebwareTest\AsciidocPhp\Cli;
 
+use Closure;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\Cli\Application;
@@ -11,6 +12,9 @@ use Webware\AsciidocPhp\Cli\Application;
 #[CoversClass(Application::class)]
 final class ApplicationTest extends TestCase
 {
+    /** @var list<string> */
+    private array $diagnostics = [];
+
     // ── Successful conversion ─────────────────────────────────────────────────
 
     public function testRunConvertsFileSuccessfully(): void
@@ -57,9 +61,13 @@ final class ApplicationTest extends TestCase
 
     public function testRunMissingInputFileReturnsOne(): void
     {
-        $app  = new Application(['script', '/no/such/file.adoc']);
+        $app  = new Application(['script', '/no/such/file.adoc'], $this->captureDiagnostics());
         $code = $app->run();
         self::assertSame(1, $code);
+        self::assertSame(
+            ["asciidoc-php: Failed: /no/such/file.adoc - File not found or unreadable: /no/such/file.adoc\n"],
+            $this->diagnostics,
+        );
     }
 
     // ── --no-header-footer ────────────────────────────────────────────────────
@@ -91,9 +99,13 @@ final class ApplicationTest extends TestCase
 
     public function testRunNoInputFilesReturnsOne(): void
     {
-        $app  = new Application(['script']);
+        $app  = new Application(['script'], $this->captureDiagnostics());
         $code = $app->run();
         self::assertSame(1, $code);
+        self::assertSame(
+            ["asciidoc-php: No input files specified. Use -h for help.\n"],
+            $this->diagnostics,
+        );
     }
 
     public function testRunShortHelpReturnsZero(): void
@@ -109,9 +121,13 @@ final class ApplicationTest extends TestCase
 
     public function testRunUnknownOptionReturnsOne(): void
     {
-        $app  = new Application(['script', '--no-such-option']);
+        $app  = new Application(['script', '--no-such-option'], $this->captureDiagnostics());
         $code = $app->run();
         self::assertSame(1, $code);
+        self::assertSame(
+            ["asciidoc-php: Unknown option: --no-such-option\n"],
+            $this->diagnostics,
+        );
     }
 
     public function testRunVersionOutputsVersionString(): void
@@ -133,5 +149,17 @@ final class ApplicationTest extends TestCase
         $code = $app->run();
         ob_end_clean();
         self::assertSame(0, $code);
+    }
+
+    /**
+     * @return Closure(string): void
+     */
+    private function captureDiagnostics(): Closure
+    {
+        $this->diagnostics = [];
+
+        return function (string $message): void {
+            $this->diagnostics[] = $message;
+        };
     }
 }
