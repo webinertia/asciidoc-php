@@ -7,6 +7,7 @@ namespace WebwareTest\AsciidocPhp\Node;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\ContentModel;
+use Webware\AsciidocPhp\Converter\Html5Converter;
 use Webware\AsciidocPhp\Document;
 use Webware\AsciidocPhp\Node\AbstractBlock;
 use Webware\AsciidocPhp\Node\Block;
@@ -50,6 +51,24 @@ final class AbstractBlockTest extends TestCase
 
         // NullConverter returns '' for each child; two children → ''
         self::assertSame('', $parent->content());
+    }
+
+    public function testContentConcatenatesEveryCompoundChild(): void
+    {
+        $this->doc->setConverter(new Html5Converter());
+
+        $parent = new Block($this->doc, null, 'sidebar', ContentModel::COMPOUND);
+        $first  = new Block($this->doc, $parent, 'paragraph');
+        $first->setLines(['one']);
+        $second = new Block($this->doc, $parent, 'paragraph');
+        $second->setLines(['two']);
+        $parent->append($first);
+        $parent->append($second);
+
+        $html = $parent->content();
+
+        self::assertStringContainsString('<p>one</p>', $html);
+        self::assertStringContainsString('<p>two</p>', $html);
     }
 
     // ── findBy ────────────────────────────────────────────────────────────────

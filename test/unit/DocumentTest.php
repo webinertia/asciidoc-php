@@ -105,6 +105,16 @@ final class DocumentTest extends TestCase
         self::assertFalse($doc->hasAttribute('no-such-key'));
     }
 
+    public function testLocaldatetimeIsUtcTimestamp(): void
+    {
+        $doc = new Document();
+
+        self::assertMatchesRegularExpression(
+            '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC$/',
+            (string) $doc->getAttribute('localdatetime'),
+        );
+    }
+
     public function testOptionsAttributes(): void
     {
         $doc = new Document(['attributes' => ['toc' => '']]);

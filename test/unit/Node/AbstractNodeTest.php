@@ -94,6 +94,13 @@ final class AbstractNodeTest extends TestCase
         self::assertSame($parent, $child->getParent());
     }
 
+    public function testGetRolesDropsEmptyTokens(): void
+    {
+        $block = new Block($this->doc, null, 'paragraph');
+        $block->setAttribute('role', 'foo  bar');
+        self::assertSame(['foo', 'bar'], $block->getRoles());
+    }
+
     // ── Roles ─────────────────────────────────────────────────────────────────
 
     public function testGetRolesEmpty(): void

@@ -39,6 +39,16 @@ final class ApplicationTest extends TestCase
         rmdir($dir);
     }
 
+    public function testRunHelpOutputEndsWithNewline(): void
+    {
+        $app = new Application(['script', '--help']);
+        ob_start();
+        $app->run();
+        $output = (string) ob_get_clean();
+
+        self::assertStringEndsWith("\n", $output);
+    }
+
     public function testRunHelpOutputsUsageLine(): void
     {
         $app = new Application(['script', '--help']);
@@ -128,6 +138,16 @@ final class ApplicationTest extends TestCase
             ["asciidoc-php: Unknown option: --no-such-option\n"],
             $this->diagnostics,
         );
+    }
+
+    public function testRunVersionOutputIsExact(): void
+    {
+        $app = new Application(['script', '--version']);
+        ob_start();
+        $app->run();
+        $output = (string) ob_get_clean();
+
+        self::assertSame("asciidoc-php 0.1.0\n", $output);
     }
 
     public function testRunVersionOutputsVersionString(): void

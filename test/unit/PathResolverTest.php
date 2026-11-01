@@ -161,6 +161,22 @@ final class PathResolverTest extends TestCase
         $this->assertSame("{$home}/docs/file.adoc", $resolved);
     }
 
+    public function testUnsafeModeNormalisesBackslashesInBaseDir(): void
+    {
+        $resolved = PathResolver::resolve('child.adoc', '\\base\\dir', SafeMode::UNSAFE);
+
+        $this->assertSame('/base/dir/child.adoc', $resolved);
+    }
+
+    // ── Separator and drive-letter handling ───────────────────────────────────
+
+    public function testUnsafeModeNormalisesBackslashesInTarget(): void
+    {
+        $resolved = PathResolver::resolve('\\root\\child.adoc', '/base', SafeMode::UNSAFE);
+
+        $this->assertSame('/root/child.adoc', $resolved);
+    }
+
     public function testUnsafeModeNullBaseDirRelativePathPassedThrough(): void
     {
         $resolved = PathResolver::resolve('relative/file.adoc', null, SafeMode::UNSAFE);
@@ -175,5 +191,19 @@ final class PathResolverTest extends TestCase
         $resolved = PathResolver::resolve('sub/file.adoc', '/base', SafeMode::UNSAFE);
 
         $this->assertSame('/base/sub/file.adoc', $resolved);
+    }
+
+    public function testUnsafeModeTreatsDriveLetterPathAsAbsolute(): void
+    {
+        $resolved = PathResolver::resolve('C:', '/base', SafeMode::UNSAFE);
+
+        $this->assertSame('/C:', $resolved);
+    }
+
+    public function testUnsafeModeTreatsSingleCharacterPathAsRelative(): void
+    {
+        $resolved = PathResolver::resolve('a', '/base', SafeMode::UNSAFE);
+
+        $this->assertSame('/base/a', $resolved);
     }
 }

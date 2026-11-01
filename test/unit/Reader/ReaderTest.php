@@ -35,6 +35,13 @@ final class ReaderTest extends TestCase
         $this->assertTrue($r->hasMoreLines());
     }
 
+    public function testConstructFromArrayStripsTrailingLineEndings(): void
+    {
+        $r = new Reader(["a\r\n", "b\r"], $this->cursor());
+
+        $this->assertSame(['a', 'b'], $r->getLines());
+    }
+
     public function testConstructFromEmptyArrayProducesNoLines(): void
     {
         $r = new Reader([], $this->cursor());
@@ -55,6 +62,17 @@ final class ReaderTest extends TestCase
     {
         $r = $this->reader("line1\nline2\nline3");
         $this->assertTrue($r->hasMoreLines());
+    }
+
+    // -------------------------------------------------------------------------
+    // Line ending normalisation and source tracking
+    // -------------------------------------------------------------------------
+
+    public function testConstructFromStringStripsCarriageReturns(): void
+    {
+        $r = $this->reader("a\r\nb\rc");
+
+        $this->assertSame(['a', 'b', 'c'], $r->getLines());
     }
 
     public function testCrLfNormalised(): void
@@ -94,6 +112,11 @@ final class ReaderTest extends TestCase
         $r = $this->reader("a\nb\nc");
         $r->readLine(); // consume 'a'
         $this->assertSame(['b', 'c'], $r->getLines());
+    }
+
+    public function testGetSourceJoinsRemainingLines(): void
+    {
+        $this->assertSame("a\nb", $this->reader("a\nb")->getSource());
     }
 
     public function testGetSourceJoinsRemainingLinesWithNewline(): void
@@ -154,10 +177,29 @@ final class ReaderTest extends TestCase
         $this->assertNull($r->peekLine());
     }
 
+    // -------------------------------------------------------------------------
+    // peekLines / peekLine buffer behaviour
+    // -------------------------------------------------------------------------
+
+    public function testPeekLinesDoesNotNormaliseByDefault(): void
+    {
+        $r = new Reader(['  a  '], $this->cursor());
+
+        $this->assertSame(['  a  '], $r->peekLines(1));
+    }
+
     public function testPeekLineSkipBlankReturnsNullWhenOnlyBlanks(): void
     {
         $r = $this->reader("\n\n");
         $this->assertNull($r->peekLine(skipBlank: true));
+    }
+
+    public function testPeekLineSkipBlankSkipsBlankAlreadyInLookaheadBuffer(): void
+    {
+        $r = $this->reader("\nb");
+
+        $this->assertSame('', $r->peekLine());
+        $this->assertSame('b', $r->peekLine(skipBlank: true));
     }
 
     public function testPeekLineSkipBlankSkipsLeadingBlanks(): void
@@ -228,6 +270,26 @@ final class ReaderTest extends TestCase
         $this->assertSame(['a', 'b'], $r->readLines(10));
     }
 
+    // -------------------------------------------------------------------------
+    // readLines / readLinesUntil defaults
+    // -------------------------------------------------------------------------
+
+    public function testReadLinesStopsAtEofWithoutNullEntries(): void
+    {
+        $r = $this->reader("a\nb");
+
+        $this->assertSame(['a', 'b'], $r->readLines(5));
+        $this->assertFalse($r->hasMoreLines());
+    }
+
+    public function testReadLineStripsCarriageReturnFromUnshiftedLine(): void
+    {
+        $r = $this->reader('a');
+        $r->unshiftLine("z\r\n");
+
+        $this->assertSame('z', $r->readLine());
+    }
+
     public function testReadLineStripsTrailingLineEnding(): void
     {
         $r = new Reader(["line1\r\n", "line2\r\n"], $this->cursor());
@@ -254,6 +316,27 @@ final class ReaderTest extends TestCase
             'chomp_last_line' => true,
         ]);
         $this->assertSame(['a', 'b'], $lines);
+    }
+
+    public function testReadLinesUntilDefaultsDoNotBreakOnBlank(): void
+    {
+        $r = $this->reader("a\n\nb");
+
+        $this->assertSame(['a', '', 'b'], $r->readLinesUntil());
+    }
+
+    public function testReadLinesUntilDefaultsKeepCommentLines(): void
+    {
+        $r = $this->reader("a\n// note\nb");
+
+        $this->assertSame(['a', '// note', 'b'], $r->readLinesUntil());
+    }
+
+    public function testReadLinesUntilDefaultsKeepTrailingBlankLines(): void
+    {
+        $r = $this->reader("a\n\n\n");
+
+        $this->assertSame(['a', '', ''], $r->readLinesUntil());
     }
 
     public function testReadLinesUntilEof(): void
