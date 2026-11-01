@@ -65,7 +65,11 @@
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "test-integration": "phpunit --colors=always --testsuite \"integration test\"",
         "mutation-test": "infection",
-        "test-all": "@test && @test-integration && @mutation-test",
+        "test-all": [
+            "@test",
+            "@test-integration",
+            "@mutation-test"
+        ],
         "upload-coverage": "coveralls -v",
         "render": "php bin/asciidoc-php -o test/results/full-document.html test/asset/integration/full-document.adoc",
         "render-embedded": "php bin/asciidoc-php -s -o test/results/full-document-embedded.html test/asset/integration/full-document.adoc",
