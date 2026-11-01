@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Node;
+namespace WebwareTest\AsciidocPhp\Node;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -14,11 +14,6 @@ final class SectionTest extends TestCase
 {
     private Document $doc;
 
-    protected function setUp(): void
-    {
-        $this->doc = new Document();
-    }
-
     public function testDefaultLevel1(): void
     {
         $sec = new Section($this->doc, null);
@@ -28,56 +23,6 @@ final class SectionTest extends TestCase
         self::assertSame('section', $sec->getContext());
     }
 
-    public function testLevel0IsSectionName(): void
-    {
-        $sec = new Section($this->doc, null, 0);
-        self::assertSame(0, $sec->getLevel());
-        self::assertSame('section', $sec->getSectname());
-    }
-
-    public function testLevel2(): void
-    {
-        $sec = new Section($this->doc, null, 2);
-        self::assertSame('sect2', $sec->getSectname());
-    }
-
-    public function testIndex(): void
-    {
-        $sec = new Section($this->doc, null, 1);
-        self::assertSame(0, $sec->getIndex());
-        $sec->setIndex(3);
-        self::assertSame(3, $sec->getIndex());
-    }
-
-    public function testSetSectname(): void
-    {
-        $sec = new Section($this->doc, null, 1);
-        $sec->setSectname('appendix');
-        self::assertSame('appendix', $sec->getSectname());
-    }
-
-    public function testNumbered(): void
-    {
-        $sec = new Section($this->doc, null, 1);
-        self::assertFalse($sec->isNumbered());
-        $sec->setNumbered(true);
-        self::assertTrue($sec->isNumbered());
-    }
-
-    public function testSpecial(): void
-    {
-        $sec = new Section($this->doc, null, 1);
-        self::assertFalse($sec->isSpecial());
-        $sec->setSpecial(true);
-        self::assertTrue($sec->isSpecial());
-    }
-
-    public function testGetNumberNullByDefault(): void
-    {
-        $sec = new Section($this->doc, null, 1);
-        self::assertNull($sec->getNumber());
-    }
-
     public function testGetNumberAfterSet(): void
     {
         $sec = new Section($this->doc, null, 1);
@@ -85,17 +30,10 @@ final class SectionTest extends TestCase
         self::assertSame(2, $sec->getNumber());
     }
 
-    public function testGetSectnumNullNumberReturnsEmpty(): void
+    public function testGetNumberNullByDefault(): void
     {
         $sec = new Section($this->doc, null, 1);
-        self::assertSame('', $sec->getSectnum());
-    }
-
-    public function testGetSectnumReturnsNumberAsString(): void
-    {
-        $sec = new Section($this->doc, null, 2);
-        $sec->setNumber(3);
-        self::assertSame('3', $sec->getSectnum());
+        self::assertNull($sec->getNumber());
     }
 
     public function testGetSectnumDropTitleLevel1ReturnsEmpty(): void
@@ -112,11 +50,73 @@ final class SectionTest extends TestCase
         self::assertSame('2', $sec->getSectnum('.', true));
     }
 
+    public function testGetSectnumNullNumberReturnsEmpty(): void
+    {
+        $sec = new Section($this->doc, null, 1);
+        self::assertSame('', $sec->getSectnum());
+    }
+
+    public function testGetSectnumReturnsNumberAsString(): void
+    {
+        $sec = new Section($this->doc, null, 2);
+        $sec->setNumber(3);
+        self::assertSame('3', $sec->getSectnum());
+    }
+
+    public function testIndex(): void
+    {
+        $sec = new Section($this->doc, null, 1);
+        self::assertSame(0, $sec->getIndex());
+        $sec->setIndex(3);
+        self::assertSame(3, $sec->getIndex());
+    }
+
+    public function testLevel0IsSectionName(): void
+    {
+        $sec = new Section($this->doc, null, 0);
+        self::assertSame(0, $sec->getLevel());
+        self::assertSame('section', $sec->getSectname());
+    }
+
+    public function testLevel2(): void
+    {
+        $sec = new Section($this->doc, null, 2);
+        self::assertSame('sect2', $sec->getSectname());
+    }
+
+    public function testNumbered(): void
+    {
+        $sec = new Section($this->doc, null, 1);
+        self::assertFalse($sec->isNumbered());
+        $sec->setNumbered(true);
+        self::assertTrue($sec->isNumbered());
+    }
+
+    public function testSetSectname(): void
+    {
+        $sec = new Section($this->doc, null, 1);
+        $sec->setSectname('appendix');
+        self::assertSame('appendix', $sec->getSectname());
+    }
+
+    public function testSpecial(): void
+    {
+        $sec = new Section($this->doc, null, 1);
+        self::assertFalse($sec->isSpecial());
+        $sec->setSpecial(true);
+        self::assertTrue($sec->isSpecial());
+    }
+
     public function testTitleSetAndGet(): void
     {
         $sec = new Section($this->doc, null, 1);
         self::assertNull($sec->getTitle());
         $sec->setTitle('Introduction');
         self::assertSame('Introduction', $sec->getTitle());
+    }
+
+    protected function setUp(): void
+    {
+        $this->doc = new Document();
     }
 }

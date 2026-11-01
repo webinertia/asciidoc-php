@@ -16,11 +16,13 @@ use Webware\AsciidocPhp\Node\AbstractNode;
  */
 final class NullConverter implements ConverterInterface
 {
-    public function convert(AbstractNode $node, string|null $transform = null, array $opts = []): string
+    #[\Override]
+    public function convert(AbstractNode $node, ?string $transform = null, array $opts = []): string
     {
         return '';
     }
 
+    #[\Override]
     public function handles(string $transform): bool
     {
         return true;

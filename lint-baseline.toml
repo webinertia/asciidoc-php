@@ -1,0 +1,4855 @@
+variant = "loose"
+
+[[issues]]
+file = "src/Asciidoc.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 6
+
+[[issues]]
+file = "src/Asciidoc.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 3
+
+[[issues]]
+file = "src/Cli/Application.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 1
+
+[[issues]]
+file = "src/Cli/Application.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "ambiguous-constant-access"
+message = "Ambiguous constant access detected."
+count = 4
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 12
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "kan-defect"
+message = "Class has a high kan defect score."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "literal-named-argument"
+message = '''Literal argument `'/\\'` should be passed as a named argument for clarity.'''
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "literal-named-argument"
+message = "Literal argument `0o755` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 3
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "no-else-clause"
+message = "Avoid `elseif` clauses."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "no-negated-ternary"
+message = "Negated ternary condition."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 14
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "excessive-parameter-list"
+message = "Parameter list is too long."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "halstead"
+message = "Method has a high halstead volume and effort"
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "literal-named-argument"
+message = "Literal argument `'!'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "literal-named-argument"
+message = "Literal argument `1` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "literal-named-argument"
+message = "Literal argument `2` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 1
+
+[[issues]]
+file = "src/Converter/AbstractConverter.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 3
+
+[[issues]]
+file = "src/Converter/AbstractConverter.php"
+code = "literal-named-argument"
+message = "Literal argument `''` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Converter/AbstractConverter.php"
+code = "literal-named-argument"
+message = "Literal argument `'_'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Converter/AbstractConverter.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "ambiguous-constant-access"
+message = "Ambiguous constant access detected."
+count = 36
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 41
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "halstead"
+message = "Method has a high halstead volume and effort"
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "kan-defect"
+message = "Class has a high kan defect score."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "literal-named-argument"
+message = "Literal argument `'/'` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "literal-named-argument"
+message = "Literal argument `'UTF-8'` should be passed as a named argument for clarity."
+count = 17
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "literal-named-argument"
+message = "Literal argument `false` should be passed as a named argument for clarity."
+count = 17
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "no-else-clause"
+message = "Avoid `elseif` clauses."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "no-negated-ternary"
+message = "Negated ternary condition."
+count = 18
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "too-many-methods"
+message = "Class has too many methods."
+count = 1
+
+[[issues]]
+file = "src/Document.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 17
+
+[[issues]]
+file = "src/Document.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Document.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Document.php"
+code = "no-boolean-flag-parameter"
+message = "Avoid boolean flag parameters."
+count = 1
+
+[[issues]]
+file = "src/Document.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 1
+
+[[issues]]
+file = "src/Document.php"
+code = "no-else-clause"
+message = "Avoid `elseif` clauses."
+count = 4
+
+[[issues]]
+file = "src/Document.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 7
+
+[[issues]]
+file = "src/Document.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 1
+
+[[issues]]
+file = "src/Document.php"
+code = "too-many-methods"
+message = "Class has too many methods."
+count = 1
+
+[[issues]]
+file = "src/DocumentInterface.php"
+code = "no-boolean-flag-parameter"
+message = "Avoid boolean flag parameters."
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 5
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "kan-defect"
+message = "Class has a high kan defect score."
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "no-array-accumulation-in-loop"
+message = "Array spread in reassignment inside a loop causes O(n²) array copying."
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 4
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "prefer-early-continue"
+message = "Consider using early continue pattern to reduce nesting."
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "too-many-methods"
+message = "Class has too many methods."
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractNode.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 8
+
+[[issues]]
+file = "src/Node/AbstractNode.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractNode.php"
+code = "too-many-methods"
+message = "Class has too many methods."
+count = 1
+
+[[issues]]
+file = "src/Node/Block.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 3
+
+[[issues]]
+file = "src/Node/Block.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 1
+
+[[issues]]
+file = "src/Node/Block.php"
+code = "no-negated-ternary"
+message = "Negated ternary condition."
+count = 3
+
+[[issues]]
+file = "src/Node/Inline.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 2
+
+[[issues]]
+file = "src/Node/Section.php"
+code = "no-boolean-flag-parameter"
+message = "Avoid boolean flag parameters."
+count = 1
+
+[[issues]]
+file = "src/Node/Section.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 1
+
+[[issues]]
+file = "src/Node/Table.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 1
+
+[[issues]]
+file = "src/Node/Table/Cell.php"
+code = "excessive-parameter-list"
+message = "Parameter list is too long."
+count = 1
+
+[[issues]]
+file = "src/NullConverter.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 2
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 14
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "kan-defect"
+message = "Class has a high kan defect score."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "literal-named-argument"
+message = '''Literal argument `'"\''` should be passed as a named argument for clarity.'''
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "literal-named-argument"
+message = "Literal argument `','` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 3
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "no-else-clause"
+message = "Avoid `elseif` clauses."
+count = 2
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 2
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "no-negated-ternary"
+message = "Negated ternary condition."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "ambiguous-constant-access"
+message = "Ambiguous constant access detected."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 112
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "halstead"
+message = "Method has a high halstead effort"
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "kan-defect"
+message = "Class has a high kan defect score."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `' '` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `'%'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `''` should be passed as a named argument for clarity."
+count = 3
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `'/'` should be passed as a named argument for clarity."
+count = 3
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `'_'` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `2` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `4` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 5
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 18
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "no-negated-ternary"
+message = "Negated ternary condition."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "prefer-early-continue"
+message = "Consider using early continue pattern to reduce nesting."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "string-style"
+message = "String concatenation can be replaced with interpolation."
+count = 4
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "too-many-methods"
+message = "Class has too many methods."
+count = 1
+
+[[issues]]
+file = "src/PathResolver.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 19
+
+[[issues]]
+file = "src/PathResolver.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/PathResolver.php"
+code = "literal-named-argument"
+message = "Literal argument `'/'` should be passed as a named argument for clarity."
+count = 6
+
+[[issues]]
+file = "src/PathResolver.php"
+code = "literal-named-argument"
+message = "Literal argument `1` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/PathResolver.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 2
+
+[[issues]]
+file = "src/PathResolver.php"
+code = "no-negated-ternary"
+message = "Negated ternary condition."
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 42
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "excessive-parameter-list"
+message = "Parameter list is too long."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "halstead"
+message = "Method has a high halstead difficulty"
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "kan-defect"
+message = "Class has a high kan defect score."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "literal-named-argument"
+message = 'Literal argument `"\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "literal-named-argument"
+message = '''Literal argument `'"\''` should be passed as a named argument for clarity.'''
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "literal-named-argument"
+message = "Literal argument `1` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "literal-named-argument"
+message = "Literal argument `2` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "no-array-accumulation-in-loop"
+message = "Array spread in reassignment inside a loop causes O(n²) array copying."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "no-boolean-flag-parameter"
+message = "Avoid boolean flag parameters."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 3
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "no-else-clause"
+message = "Avoid `elseif` clauses."
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 5
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "prefer-early-continue"
+message = "Consider using early continue pattern to reduce nesting."
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "tagged-todo"
+message = "TODO should be tagged with (@username) or (#issue)."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "too-many-methods"
+message = "Class has too many methods."
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 25
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "cyclomatic-complexity"
+message = "Class has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "halstead"
+message = "Method has a high halstead difficulty"
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "kan-defect"
+message = "Class has a high kan defect score."
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "literal-named-argument"
+message = 'Literal argument `"\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "literal-named-argument"
+message = 'Literal argument `"\r\n"` should be passed as a named argument for clarity.'
+count = 2
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "no-boolean-flag-parameter"
+message = "Avoid boolean flag parameters."
+count = 2
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 2
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "too-many-methods"
+message = "Class has too many methods."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "ambiguous-constant-access"
+message = "Ambiguous constant access detected."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 23
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "cyclomatic-complexity"
+message = "Trait has high complexity."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "halstead"
+message = "Method has a high halstead difficulty"
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'&#8216;$1&#8217;'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'&#8220;$1&#8221;'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'<code>$1</code>'` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'<em>$1</em>'` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'<mark>$1</mark>'` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'<strong>$1</strong>'` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'<sub>$1</sub>'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'<sup>$1</sup>'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `'UTF-8'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "literal-named-argument"
+message = "Literal argument `false` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "no-array-accumulation-in-loop"
+message = "Array spread in reassignment inside a loop causes O(n²) array copying."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "no-else-clause"
+message = "Avoid `else` clauses."
+count = 3
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "no-else-clause"
+message = "Avoid `elseif` clauses."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "string-style"
+message = "String concatenation can be replaced with interpolation."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "too-many-methods"
+message = "Trait has too many methods."
+count = 1
+
+[[issues]]
+file = "test/asset/Reader/DocumentStub.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 3
+
+[[issues]]
+file = "test/asset/Reader/DocumentStub.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "test/asset/Reader/DocumentStub.php"
+code = "no-boolean-flag-parameter"
+message = "Avoid boolean flag parameters."
+count = 1
+
+[[issues]]
+file = "test/asset/Reader/DocumentStub.php"
+code = "no-else-clause"
+message = "Avoid `elseif` clauses."
+count = 1
+
+[[issues]]
+file = "test/asset/Reader/DocumentStub.php"
+code = "no-isset"
+message = "Use of the `isset` construct."
+count = 2
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 49
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertBackendOption`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertEmbeddedOmitsDoctype`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileEmbedded`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileFullDocumentProducesHtml`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileRespectsExplicitBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileSetsBaseDirToFileDirectory`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileThrowsForNonExistentFile`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertNoteAdmonition`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertOrderedList`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertProducesTitleElement`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSectionProducesH2`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSimpleDocumentProducesHtml`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSourceListingBlock`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSpecialCharactersAreEscaped`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableProducesTableElement`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertThematicBreakProducesHr`."
+count = 1
+
+[[issues]]
+file = "test/integration/AsciidocConvertTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertUnorderedList`."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 15
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 6
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"= Parent\n\ninclude::child.adoc[]\n"` should be passed as a named argument for clarity.'
+count = 2
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"Included body.\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"Other body.\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "literal-named-argument"
+message = "Literal argument `0o777` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "no-shorthand-ternary"
+message = "Use of the shorthand ternary operator."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileDefaultsBaseDirToFileDirectory`."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileHonoursExplicitBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFileThrowsWhenFileMissing`."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertWithHeaderFooterIsAFullDocument`."
+count = 1
+
+[[issues]]
+file = "test/unit/AsciidocTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertWithoutHeaderFooterIsEmbedded`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 30
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 20
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"= Hello\n\nWorld.\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"Hello world.\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "literal-named-argument"
+message = "Literal argument `0o755` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 4
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunConvertsFileSuccessfully`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunHelpOutputEndsWithNewline`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunHelpOutputsUsageLine`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunHelpReturnsZero`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunMissingInputFileReturnsOne`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunNoHeaderFooterProducesEmbeddedOutput`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunNoInputFilesReturnsOne`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunShortHelpReturnsZero`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunUnknownOptionReturnsOne`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunVersionOutputIsExact`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunVersionOutputsVersionString`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ApplicationTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunVersionReturnsZero`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 17
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 27
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "excessive-parameter-list"
+message = "Parameter list is too long."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "literal-named-argument"
+message = "Literal argument `0o755` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 2
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "no-shorthand-ternary"
+message = "Use of the shorthand ternary operator."
+count = 3
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-early-continue"
+message = "Consider using early continue pattern to reduce nesting."
+count = 3
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeConcurrencyLimitRespected`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeConcurrentConvertsAllFiles`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeConcurrentPartialFailureIsolated`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeEmptyInputListReturnsZero`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeMissingFileReturnsOne`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeMultipleFilesAllConverted`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeNoHeaderFooterProducesEmbeddedHtml`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokePartialFailureReturnsOne`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeWritesHtmlNextToInput`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeWritesToDestinationDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/InvokerTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeWritesToExplicitOutputFile`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 63
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultsReturnsExpectedKeys`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAttributeLongForm`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAttributeUnsetBang`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAttributeWithValue`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAttributeWithoutValue`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBackendLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBackendShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBaseDirLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBaseDirShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseConcurrencyNonNumericThrows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseConcurrencyZero`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseConcurrency`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDestinationDirLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDestinationDirShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDoctypeLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDoctypeShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseEndOfOptionsSentinelTreatsDashFlagAsFile`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseEndOfOptionsSentinel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseLongHelp`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMissingValueForAttributeThrows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMissingValueForBackendThrows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMissingValueForOutFileThrows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMixedFlagsAndFiles`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMultipleAttributes`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMultipleInputFiles`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseNoArgsReturnsDefaults`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseNoHeaderFooterLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseNoHeaderFooterShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseOutFileLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseOutFileShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParsePositionalArgIsInputFile`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseQuietLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseQuietShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSafeModeIsCaseInsensitive`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSafeModeSafe`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSafeModeSecure`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSafeModeServer`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSafeModeUnknownThrows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSafeModeUnsafe`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShortHelp`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShortUnknownOptionThrows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseTimingsLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseTimingsShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseTrace`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseUnknownOptionThrows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseVerboseLong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseVerboseShort`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/OptionsTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseVersion`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ParseExceptionTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 3
+
+[[issues]]
+file = "test/unit/Cli/ParseExceptionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCanBeThrown`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ParseExceptionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCodeDefaultsToZero`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ParseExceptionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsRuntimeException`."
+count = 1
+
+[[issues]]
+file = "test/unit/Cli/ParseExceptionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testMessageIsPreserved`."
+count = 1
+
+[[issues]]
+file = "test/unit/ContentModelTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 2
+
+[[issues]]
+file = "test/unit/ContentModelTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 8
+
+[[issues]]
+file = "test/unit/ContentModelTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAllCasesExist`."
+count = 1
+
+[[issues]]
+file = "test/unit/ContentModelTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCasesAreDistinct`."
+count = 1
+
+[[issues]]
+file = "test/unit/ContentModelTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsPureEnum`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/AbstractConverterTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 9
+
+[[issues]]
+file = "test/unit/Converter/AbstractConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHandlesReturnsFalseForUnknownTransform`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/AbstractConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHandlesReturnsTrueForConvertMethod`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/AbstractConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHandlesReturnsTrueForInlineQuoted`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/AbstractConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHandlesReturnsTrueForKnownTransform`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/AbstractConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHandlesReturnsTrueForUnderscoredTransform`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/AbstractConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testResolveMethodNameViiaHandles`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 14
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 202
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = "Literal argument `'<dd>'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = """Literal argument `'<div class="paragraph">'` should be passed as a named argument for clarity."""
+count = 3
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = """Literal argument `'<div id="header">'` should be passed as a named argument for clarity."""
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = """Literal argument `'<div id="toc"'` should be passed as a named argument for clarity."""
+count = 2
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = "Literal argument `'<li>'` should be passed as a named argument for clarity."
+count = 3
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = """Literal argument `'<td class="tableblock'` should be passed as a named argument for clarity."""
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = """Literal argument `'<th class="tableblock'` should be passed as a named argument for clarity."""
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = "Literal argument `'<tr>'` should be passed as a named argument for clarity."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "literal-named-argument"
+message = """Literal argument `'class="sectionbody"'` should be passed as a named argument for clarity."""
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "no-boolean-flag-parameter"
+message = "Avoid boolean flag parameters."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertAdmonitionNoteContainsClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertAdmonitionTipContainsClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertAdmonitionWarningContainsClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertAdmonitionWithoutIconFontRendersTextLabel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertColistRendersColistDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDlistRendersTermAndDescription`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDlistTermKeepsExistingEntities`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentContainsBodyTag`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentContainsDoctypeDeclaration`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentContainsHtmlElement`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentContainsMetaCharset`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentContainsTitleElement`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentContentConcatenatesAllBlocks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentEmbedsDefaultStylesheet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentHeaderShowsAuthor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentHeaderShowsDocTitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentLoadsCustomWebFonts`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentLoadsDefaultWebFonts`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentTrimsTrailingSlashFromHighlighterDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithCustomStylesheetLinksIt`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithEmptyWebFontsHasNoFontLink`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithHighlightJsAliasIncludesAssets`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithHighlightJsCustomDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithHighlightJsCustomTheme`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithHighlightJsIncludesCdnAssets`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithIconFontCustomCdn`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithIconFontIncludesFontAwesome`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithIconFontRendersIElement`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithInlineTocHasNoSidebarClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithLinkcssLinksStylesheet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithNoembedHasNoStylesheet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithNonFontIconsHasNoIconStylesheet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithTocAttributeContainsTocDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithTocLeftDoesNotDuplicateToc`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithTocLeftHasSidebarBodyClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithTocLeftHasToc2Div`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithTocLeftPlacesSidebarBeforeHeader`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithTocPlacementLeftAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithTocRightHasTocRightBodyClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithoutHighlighterHasNoHighlighterAssets`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithoutHighlighterHasNoHljsScript`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithoutIconFontHasNoFontAwesome`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithoutTitleHasNoHeader`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDocumentWithoutTocHasNoTocDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertEmbeddedConcatenatesAllBlocks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertEmbeddedContainsContentWrapper`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertEmbeddedDoesNotContainDoctypeDeclaration`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertEscapesTitleAuthorRevdateAndFooterLabel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertExampleContainsDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertExampleWithTitleRendersCaption`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFloatingTitleKeepsExistingEntities`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFloatingTitleTransformRendersFloatHeading`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertFooterRendersEmptyTextWhenLabelUnset`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertHeaderKeepsTitleAndSidebarToc`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertHeaderKeepsTitleAuthorRevdateAndInlineToc`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertImageAltKeepsExistingEntities`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertImageContainsImgTag`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertImageWithLinkWrapsInAnchor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertImageWithWidthAndHeight`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertImageWrappedInImageblockDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertListingContainsPre`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertListingWithSourceLanguage`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertLiteralContainsLiteralblockDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertOlistContainsOl`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertOnlyTopLevelSectionHasSectionbody`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertOpenBlockRendersOpenblock`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertPageBreakOutputsPageBreakDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertParagraphContainsDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertParagraphWithRoleRendersRoleClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertParagraphWithTitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertParagraphWithoutRoleHasNoExtraClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertPassBlockIsNotWrappedInParagraph`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertPassOutputsRawContent`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertPreambleRendersPreambleDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertQuoteAttributionKeepsExistingEntities`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertQuoteContainsBlockquote`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertQuoteRendersAttributionAndCitetitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertQuoteWithAttributionOnlyOmitsCite`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertQuoteWithCitetitleOnlyRendersCite`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSection2ContainsH3Heading`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSectionConcatenatesAllChildren`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSectionContainsH2Heading`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSectionContainsSect1Div`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSectionDeepLevelClampsToH6`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSectionWithIdAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSidebarContainsDiv`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSidebarTocStopsAtSecondLevelByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSourceBlockWithLanguageHasCodeClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertSourceBlockWithoutLanguageHasNoCodeClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableColumnWidthsAreExact`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableContainsCells`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableContainsTableElement`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableHeaderOptionUsesTh`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableWithFullWidthUsesStretchClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableWithPartialWidthUsesStyleAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableWithStripesAddsStripeClass`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableWithTitleRendersCaption`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTableWithZeroWidthColumnsRendersZeroPercent`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertThematicBreakOutputsHr`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTocMacroRendersToc`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertTocStopsAtSecondLevelByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertUlistContainsUl`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertUlistThreeItems`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertUlistWithChecklistOptionAddsClasses`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertUnknownInlineReturnsSafeText`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertVerseRendersVerseblock`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDocumentTitleIsHtmlEscaped`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineAnchorLink`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineAnchorRef`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineFootnoteRendersSup`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineImageAltKeepsExistingEntities`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineImageRendersSpanWithEscapedAlt`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineKbdKeepsExistingEntities`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineKbdTrimsEachKey`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineKbd`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineLinkWithBlankWindowAddsTargetAndRel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineLinkWithSelfWindowAddsTargetOnly`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineQuotedEmphasis`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineQuotedMonospaced`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineQuotedStrongWithRoleWrapsInSpan`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineQuotedStrong`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineXrefResolvesSectionTitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineXrefToNodeWithoutTitleFallsBackToBracketedId`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testInlineXrefToUnknownIdFallsBackToBracketedId`."
+count = 1
+
+[[issues]]
+file = "test/unit/Converter/Html5ConverterTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnknownInlineSubstitutesInvalidUtf8AndKeepsEntities`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 39
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testBuiltinAttributesPresent`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDelegatesToConverter`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultConstruction`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDocumentIsOwnDocumentReference`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDocumentNodeName`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDocumentParentIsNull`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetAttributeReturnsDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetAuthorNullWhenNotSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetDocTitleNullWhenNotSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetDocTitleWhenSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasAttributeReturnsFalseForMissing`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLocaldatetimeIsUtcTimestamp`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testOptionsAttributes`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testOptionsBackend`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testOptionsBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testOptionsConverter`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testOptionsDoctype`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testOptionsSafe`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRegisterAndResolveId`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRegisterNodeWithoutIdIsIgnored`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testResolveIdReturnsNullForUnknown`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetAttributeLockedCannotBeOverridden`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetAttributeLockedCannotBeUnset`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetAttributeOverridable`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSourcemapDisabledByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSourcemapEnabled`."
+count = 1
+
+[[issues]]
+file = "test/unit/DocumentTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsetAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 35
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAppendAndGetBlocks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCaption`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentCompoundConvertsChildren`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentConcatenatesEveryCompoundChild`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFindByContext`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFindByIdRecursive`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFindByRole`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFindByStyle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetAndSetContentModel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSections`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasBlocks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasOption`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasSections`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLevel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPrepend`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSourceLocation`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testStyle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSubs`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractBlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testTitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 23
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDelegatesToConverter`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetAttributeDefaultWhenMissing`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetAttributes`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetContext`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetDocument`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetIdNullWhenMissing`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetIdReturnsStringAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetNodeName`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetParentNullWhenNoParent`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetParentReturnsParent`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetRolesDropsEmptyTokens`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetRolesEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetRolesMultiple`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasRole`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsBlockTrueForBlock`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testRemoveAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AbstractNodeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetAndGetAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 10
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAppendItemAlsoPopulatesBlocks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAppendItemAndGetItems`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContextAndNodeName`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasItemsFalseWhenEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasItemsTrueAfterAppend`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsOutlineFalseForColist`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsOutlineFalseForDlist`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsOutlineTrueForOlist`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/AsciiListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsOutlineTrueForUlist`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 13
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentCompoundConvertsChildren`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentEmptyModel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentRawModel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentSimpleAppliesNormalSubs`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentSimpleEmptyLinesReturnsEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentVerbatimAppliesVerbatimSubs`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testExplicitNodeNameOverridesContext`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSetLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSourceEmptyWhenNoLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSource`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/BlockTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testNodeNameFromContext`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 13
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConvertDelegatesToConverter`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDocumentReference`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetTargetNullByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetTargetWhenSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetText`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsBlockFalse`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsInlineTrue`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testNodeNameIsInlinePrefixedType`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParentIsNullForInline`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetTargetToNull`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetTarget`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/InlineTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetText`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 10
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetMarkerInfoEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetMarkerInfo`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetMarker`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetRawText`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetTextAppliesSpecialCharsSub`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsSimpleFalseWhenHasContinuationBlocks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsSimpleTrueWhenNoBlocks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testNodeNameAndContext`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/ListItemTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetText`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 22
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultLevel1`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetNumberAfterSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetNumberNullByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSectnumDropTitleLevel1ReturnsEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSectnumDropTitleLevel2NotDropped`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSectnumNullNumberReturnsEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSectnumReturnsNumberAsString`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIndex`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLevel0IsSectionName`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLevel2`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testNumbered`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetSectname`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSpecial`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SectionTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testTitleSetAndGet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/CellTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 13
+
+[[issues]]
+file = "test/unit/Node/Table/CellTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCustomValues`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/CellTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultValues`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/CellTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testMutableColspan`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/CellTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testMutableInnerDocument`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/CellTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testMutableText`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/ColumnTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 13
+
+[[issues]]
+file = "test/unit/Node/Table/ColumnTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testColnumberIsReadonly`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/ColumnTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCustomValues`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/ColumnTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultValues`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/ColumnTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testMutableHalign`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/ColumnTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testMutableWidth`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/RowTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 5
+
+[[issues]]
+file = "test/unit/Node/Table/RowTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAppendCellAndGetCells`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/RowTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAppendMultipleCellsMaintainsOrder`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/Table/RowTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testEmptyRowHasNoCells`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 18
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAppendColumnAndGetColumns`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testContentModelIsCompound`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCustomFormatAndSeparator`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultFormatAndSeparator`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetBodyRows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetColumnCount`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetHeadAndFootRows`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasFooterFalseByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasFooterTrueAfterFootRow`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasHeaderFalseByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasHeaderTrueAfterHeadRow`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testNodeNameAndContext`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/TableTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSetColumns`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 38
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testApplyToCombinesRolesWithExistingRole`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testApplyToDoesNotOverwriteExistingStyle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testApplyToEmptyParsedLeavesBlockAttrsUnchanged`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testApplyToMergesIdAndRole`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testApplyToSetsNamedAttributes`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testApplyToSetsStyleFromFirstPositional`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testApplyToStoresSecondPositionalIndex`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseEmptyStringReturnsEmptyArray`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMultipleNamed`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMultiplePositionals`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseNamedAndPositional`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseNamedAttributeWithCommaInQuotes`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseNamedAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseRoundTrip`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShorthandIdAndRole`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShorthandIdRoleAndOption`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShorthandId`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShorthandMultipleRoles`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShorthandOption`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShorthandSingleRole`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseShorthandWithTrailingPositional`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSinglePositional`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseThreePositionals`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseUnquotedNamedValue`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/AttributeListTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseWhitespaceOnlyReturnsEmptyArray`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 121
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAdmonitionParagraph`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAuthorInfoEmptyReturnsEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAuthorInfoFirstAndLastName`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAuthorInfoSingleName`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAuthorInfoWithEmail`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseAuthorInfoWithMiddleName`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockMetadataLineAnchorWithReftext`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockMetadataLineAnchor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockMetadataLineAttrList`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockMetadataLineBlockTitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockMetadataLineReturnsFalseForNonMeta`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockMetadataLineSingleLineComment`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockWithAttrListStyle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockWithIdAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseBlockWithTitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseColSpecMultiplierShorthand`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseColSpecPercentages`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseColSpecSimpleWidths`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseColSpecSingle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDescriptionList`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDocumentTitleAndAuthor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDocumentTitleAuthorAndRevision`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseDocumentTitleIsSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseEmptyDocumentReturnsDocument`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseExampleBlock`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseImageMacro`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseListingBlockLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseListingBlock`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseLiteralParagraph`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseMultipleParagraphsWithBlankLineSeparator`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseOneLevelOneSection`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseOrderedList`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParsePageBreak`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseParagraphLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParsePreambleBeforeFirstSection`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseRevisionInfoNoVersionPrefix`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseRevisionInfoNonRevisionLineReturnsEmpty`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseRevisionInfoVersionAndDate`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseRevisionInfoVersionDateAndRemark`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSectionTitleLevel0`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSectionTitleLevel1`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSectionTitleLevel2`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSectionTitleLevel4`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSectionTitleReturnsFalseForNonTitle`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSimpleTable`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseSingleParagraph`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseThematicBreak`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseTwoLevelOneSections`."
+count = 1
+
+[[issues]]
+file = "test/unit/Parser/ParserTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testParseUnorderedList`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 40
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 21
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "literal-named-argument"
+message = "Literal argument `''` should be passed as a named argument for clarity."
+count = 5
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "literal-named-argument"
+message = "Literal argument `0o700` should be passed as a named argument for clarity."
+count = 3
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "literal-named-argument"
+message = "Literal argument `true` should be passed as a named argument for clarity."
+count = 3
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSafeModeAllowsPathInsideBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSafeModeNullBaseDirSkipsContainmentCheck`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSafeModeRejectsPathOutsideBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSafeModeRejectsPathTraversal`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSecureModeAlwaysReturnsNull`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testServerModeAllowsPathInsideBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testServerModeRejectsPathOutsideBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeAbsolutePathPassedThrough`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeDoesNotExpandHomeInSafeMode`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeDotDotSegmentsNormalised`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeExpandsEnvVar`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeExpandsHomeDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeNormalisesBackslashesInBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeNormalisesBackslashesInTarget`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeNullBaseDirRelativePathPassedThrough`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeReturnsPathRelativeToBaseDir`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeTreatsDriveLetterPathAsAbsolute`."
+count = 1
+
+[[issues]]
+file = "test/unit/PathResolverTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsafeModeTreatsSingleCharacterPathAsRelative`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ConditionalContextTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 6
+
+[[issues]]
+file = "test/unit/Reader/ConditionalContextTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructorSetsProperties`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ConditionalContextTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructorWithSawElse`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ConditionalContextTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPropertiesAreMutable`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 18
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAdvanceByNIncrementsCorrectly`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAdvanceDoesNotMutateOriginal`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAdvancePreservesOtherProperties`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAdvanceReturnsNewCursorWithIncrementedLineno`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructorSetsAllProperties`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultLinenoIsOne`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testNullableFieldsAcceptNull`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testToStringWithNullPathUsesStringLiteral`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/CursorTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testToStringWithPath`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/IncludeContextTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 6
+
+[[issues]]
+file = "test/unit/Reader/IncludeContextTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructorSetsAllProperties`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/IncludeContextTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testDefaultMaxdepthIsSixtyFour`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/IncludeContextTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testEmptyLinesAccepted`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/IncludeContextTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsReadonly`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 27
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 70
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"inc line\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"included line 1\nincluded line 2\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"line1\nline2\nline3\nline4\nline5\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"preamble\n// tag::example[]\ntagged content\n// end::example[]\npostamble\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "literal-named-argument"
+message = 'Literal argument `"should not appear\n"` should be passed as a named argument for clarity.'
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAttributeEntryBooleanFlag`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAttributeEntryInsideSkippedBlockIsNotProcessed`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAttributeEntryIsConsumedAndSetOnDocument`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAttributeEntryLeadingBangUnsetsAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAttributeEntryTrailingBangUnsetsAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCommentBlockDelimiterIsNotConsumed`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCursorReflectsIncludedFile`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testElseFlipsConditionWhenFalse`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testElseFlipsConditionWhenTrue`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterDoesNotOverwriteExistingDocumentAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterEmptyBlockIsHandled`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterIgnoredWhenAttributeNotSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterIsStrippedWhenAttributeSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterKeysPromotedAsDocumentAttributes`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterQuotedStringsAreUnquoted`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterStoredInDocumentAttribute`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testFrontMatterWithNoClosingDelimiterIsNotStripped`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasMoreLinesIsFalseAfterAllConsumed`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefAndConditionFalseWhenOneMissing`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefAndConditionTrueWhenAllDefined`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefBlockIncludedWhenAttrDefined`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefBlockSkippedWhenAttrNotDefined`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefInlineBodyInjectedWhenTrue`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefInlineBodyNotInjectedWhenFalse`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefOrConditionFalseWhenNoneDefined`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfdefOrConditionTrueWhenOneIsSet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfndefBlockIncludedWhenAttrNotDefined`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIfndefBlockSkippedWhenAttrDefined`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIncludeInSecureModeIsSuppressed`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIncludeInjectsFileContent`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIncludeMissingFileIsSkippedGracefully`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIncludeWithLineRangeFilter`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIncludeWithTagFilter`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testMultipleAttributeEntriesProcessedInOrder`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLineDoesNotConsumeDirectives`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPlainContentPassesThrough`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSecondElseIsNoop`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSingleLineCommentIsConsumed`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/PreprocessorReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testTripleSlashIsTreatedAsComment`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 75
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAdvanceReturnsFalseAtEof`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testAdvanceReturnsTrueWhenLineConsumed`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructFromArrayStripsTrailingLineEndings`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructFromArray`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructFromEmptyArrayProducesNoLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructFromEmptyStringProducesNoLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructFromStringStripsCarriageReturns`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testConstructFromString`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCrLfNormalised`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetCursorReturnsCurrentCursor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetLinenoStartsAtOne`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetLinesDoesNotConsumeLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetLinesReturnsRemainingInOrder`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSourceJoinsRemainingLinesWithNewline`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testGetSourceJoinsRemainingLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasMoreLinesReturnsFalseAtEof`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testHasMoreLinesReturnsTrueWhenLinesRemain`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsNextLineEmptyReturnsFalseAtEof`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsNextLineEmptyReturnsFalseForNonBlank`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testIsNextLineEmptyReturnsTrueForBlank`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLineDoesNotConsumeTheLine`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLineReturnsNullAtEof`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLineSkipBlankReturnsNullWhenOnlyBlanks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLineSkipBlankSkipsBlankAlreadyInLookaheadBuffer`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLineSkipBlankSkipsLeadingBlanks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLinesDoesNotNormaliseByDefault`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLinesReturnsLinesWithoutConsuming`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testPeekLinesWithNormalise`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLineAdvancesCursor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLineConsumesLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLineReturnsNullAtEof`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLineStripsCarriageReturnFromUnshiftedLine`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLineStripsTrailingLineEnding`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesReturnsExactCount`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesStopsAtEofWithoutNullEntries`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesStopsAtEof`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilBreakOnBlank`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilChompLastLine`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilDefaultsDoNotBreakOnBlank`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilDefaultsKeepCommentLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilDefaultsKeepTrailingBlankLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilEof`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilPreserveLastLine`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilSkipLineComments`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testReadLinesUntilTerminator`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSkipBlankLinesAdvancesCursor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSkipBlankLinesConsumesLeadingBlanks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSkipBlankLinesReturnsZeroWhenNoBlanks`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSkipCommentLinesConsumesDoubleSlashLines`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testSkipCommentLinesStopsAtNonComment`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testTrailingNewlineDoesNotProduceExtraBlankLine`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnshiftLineInvalidatesLookaheadBuffer`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnshiftLinePushesLineToFront`."
+count = 1
+
+[[issues]]
+file = "test/unit/Reader/ReaderTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnshiftLinesRestoresOrder`."
+count = 1
+
+[[issues]]
+file = "test/unit/SafeModeTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 12
+
+[[issues]]
+file = "test/unit/SafeModeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testBackingValues`."
+count = 1
+
+[[issues]]
+file = "test/unit/SafeModeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testCasesExist`."
+count = 1
+
+[[issues]]
+file = "test/unit/SafeModeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testOrderReflectsPermissiveness`."
+count = 1
+
+[[issues]]
+file = "test/unit/SafeModeTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testTryFromReturnsNullForUnknownValue`."
+count = 1

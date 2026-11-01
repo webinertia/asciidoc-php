@@ -18,23 +18,48 @@ final class Options
      * @param array<string,string|bool> $attributes
      */
     public function __construct(
-        public readonly array   $inputFiles      = [],
-        public readonly string|null $outputFile  = null,
-        public readonly string|null $destinationDir = null,
-        public readonly string|null $baseDir     = null,
-        public readonly string  $backend         = 'html5',
-        public readonly string  $doctype         = 'article',
-        public readonly SafeMode $safeMode        = SafeMode::SAFE,
-        public readonly array   $attributes      = [],
-        public readonly bool    $noHeaderFooter  = false,
-        public readonly bool    $quiet           = false,
-        public readonly bool    $verbose         = false,
-        public readonly bool    $timings         = false,
-        public readonly bool    $trace           = false,
-        public readonly bool    $help            = false,
-        public readonly bool    $version         = false,
-        public readonly int     $concurrency     = 0,
+        public readonly array $inputFiles = [],
+        public readonly ?string $outputFile = null,
+        public readonly ?string $destinationDir = null,
+        public readonly ?string $baseDir = null,
+        public readonly string $backend = 'html5',
+        public readonly string $doctype = 'article',
+        public readonly SafeMode $safeMode = SafeMode::SAFE,
+        public readonly array $attributes = [],
+        public readonly bool $noHeaderFooter = false,
+        public readonly bool $quiet = false,
+        public readonly bool $verbose = false,
+        public readonly bool $timings = false,
+        public readonly bool $trace = false,
+        public readonly bool $help = false,
+        public readonly bool $version = false,
+        public readonly int $concurrency = 0,
     ) {}
+
+    /**
+     * @return array<string, mixed>
+     */
+    public static function defaults(): array
+    {
+        return [
+            'inputFiles'     => [],
+            'outputFile'     => null,
+            'destinationDir' => null,
+            'baseDir'        => null,
+            'backend'        => 'html5',
+            'doctype'        => 'article',
+            'safeMode'       => SafeMode::SAFE,
+            'attributes'     => [],
+            'noHeaderFooter' => false,
+            'quiet'          => false,
+            'verbose'        => false,
+            'timings'        => false,
+            'trace'          => false,
+            'help'           => false,
+            'version'        => false,
+            'concurrency'    => 0,
+        ];
+    }
 
     // ── Factory ───────────────────────────────────────────────────────────────
 
@@ -52,170 +77,119 @@ final class Options
         /** @var array<string, mixed> $opts */
         $opts = self::defaults();
 
-        while ($args !== []) {
+        while ([] !== $args) {
             $arg = array_shift($args);
 
             switch (true) {
                 // End-of-options sentinel.
-                case $arg === '--':
+                case '--' === $arg:
                     /** @var list<string> $existingFiles */
                     $existingFiles = $opts['inputFiles'];
                     array_push($existingFiles, ...$args);
                     $opts['inputFiles'] = $existingFiles;
-                    $args = [];
+                    $args               = [];
                     break;
 
-                // Boolean flags.
-                case $arg === '-h' || $arg === '--help':
+                    // Boolean flags.
+                case '-h' === $arg || '--help' === $arg:
                     $opts['help'] = true;
                     break;
 
-                case $arg === '--version':
+                case '--version' === $arg:
                     $opts['version'] = true;
                     break;
 
-                case $arg === '-s' || $arg === '--no-header-footer':
+                case '-s' === $arg || '--no-header-footer' === $arg:
                     $opts['noHeaderFooter'] = true;
                     break;
 
-                case $arg === '-q' || $arg === '--quiet':
+                case '-q' === $arg || '--quiet' === $arg:
                     $opts['quiet'] = true;
                     break;
 
-                case $arg === '-v' || $arg === '--verbose':
+                case '-v' === $arg || '--verbose' === $arg:
                     $opts['verbose'] = true;
                     break;
 
-                case $arg === '-t' || $arg === '--timings':
+                case '-t' === $arg || '--timings' === $arg:
                     $opts['timings'] = true;
                     break;
 
-                case $arg === '--trace':
+                case '--trace' === $arg:
                     $opts['trace'] = true;
                     break;
 
-                // Value flags.
-                case $arg === '-b' || $arg === '--backend':
+                    // Value flags.
+                case '-b' === $arg || '--backend' === $arg:
                     $opts['backend'] = self::requireValue($arg, $args);
                     break;
 
-                case $arg === '-d' || $arg === '--doctype':
+                case '-d' === $arg || '--doctype' === $arg:
                     $opts['doctype'] = self::requireValue($arg, $args);
                     break;
 
-                case $arg === '-o' || $arg === '--out-file':
+                case '-o' === $arg || '--out-file' === $arg:
                     $opts['outputFile'] = self::requireValue($arg, $args);
                     break;
 
-                case $arg === '-D' || $arg === '--destination-dir':
+                case '-D' === $arg || '--destination-dir' === $arg:
                     $opts['destinationDir'] = self::requireValue($arg, $args);
                     break;
 
-                case $arg === '-B' || $arg === '--base-dir':
+                case '-B' === $arg || '--base-dir' === $arg:
                     $opts['baseDir'] = self::requireValue($arg, $args);
                     break;
 
-                case $arg === '-S' || $arg === '--safe-mode':
-                    $mode = self::requireValue($arg, $args);
+                case '-S' === $arg || '--safe-mode' === $arg:
+                    $mode             = self::requireValue($arg, $args);
                     $opts['safeMode'] = self::parseSafeMode($mode);
                     break;
 
-                case $arg === '--concurrency':
+                case '--concurrency' === $arg:
                     $value = self::requireValue($arg, $args);
-                    if (!ctype_digit($value)) {
+                    if (! ctype_digit($value)) {
                         throw new ParseException("--concurrency requires a non-negative integer, got: {$value}");
                     }
                     $opts['concurrency'] = (int) $value;
                     break;
 
-                case $arg === '-a' || $arg === '--attribute':
+                case '-a' === $arg || '--attribute' === $arg:
                     $attrStr = self::requireValue($arg, $args);
                     self::applyAttribute($attrStr, $opts);
                     break;
 
-                // Unknown flag.
+                    // Unknown flag.
                 case str_starts_with($arg, '-'):
                     throw new ParseException("Unknown option: {$arg}");
 
-                // Positional = input file.
+                    // Positional = input file.
                 default:
                     /** @var list<string> $inputFiles */
-                    $inputFiles = $opts['inputFiles'];
-                    $inputFiles[] = $arg;
+                    $inputFiles         = $opts['inputFiles'];
+                    $inputFiles[]       = $arg;
                     $opts['inputFiles'] = $inputFiles;
                     break;
             }
         }
 
         return new self(
-            inputFiles:     $opts['inputFiles'],      // @phpstan-ignore-line
-            outputFile:     $opts['outputFile'],       // @phpstan-ignore-line
-            destinationDir: $opts['destinationDir'],   // @phpstan-ignore-line
-            baseDir:        $opts['baseDir'],          // @phpstan-ignore-line
-            backend:        $opts['backend'],          // @phpstan-ignore-line
-            doctype:        $opts['doctype'],          // @phpstan-ignore-line
-            safeMode:       $opts['safeMode'],         // @phpstan-ignore-line
-            attributes:     $opts['attributes'],       // @phpstan-ignore-line
-            noHeaderFooter: $opts['noHeaderFooter'],   // @phpstan-ignore-line
-            quiet:          $opts['quiet'],            // @phpstan-ignore-line
-            verbose:        $opts['verbose'],          // @phpstan-ignore-line
-            timings:        $opts['timings'],          // @phpstan-ignore-line
-            trace:          $opts['trace'],            // @phpstan-ignore-line
-            help:           $opts['help'],             // @phpstan-ignore-line
-            version:        $opts['version'],          // @phpstan-ignore-line
-            concurrency:    $opts['concurrency'],      // @phpstan-ignore-line
+            inputFiles    : $opts['inputFiles'], // @phpstan-ignore-line
+            outputFile    : $opts['outputFile'], // @phpstan-ignore-line
+            destinationDir: $opts['destinationDir'], // @phpstan-ignore-line
+            baseDir       : $opts['baseDir'], // @phpstan-ignore-line
+            backend       : $opts['backend'], // @phpstan-ignore-line
+            doctype       : $opts['doctype'], // @phpstan-ignore-line
+            safeMode      : $opts['safeMode'], // @phpstan-ignore-line
+            attributes    : $opts['attributes'], // @phpstan-ignore-line
+            noHeaderFooter: $opts['noHeaderFooter'], // @phpstan-ignore-line
+            quiet         : $opts['quiet'], // @phpstan-ignore-line
+            verbose       : $opts['verbose'], // @phpstan-ignore-line
+            timings       : $opts['timings'], // @phpstan-ignore-line
+            trace         : $opts['trace'], // @phpstan-ignore-line
+            help          : $opts['help'], // @phpstan-ignore-line
+            version       : $opts['version'], // @phpstan-ignore-line
+            concurrency   : $opts['concurrency'], // @phpstan-ignore-line
         );
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    public static function defaults(): array
-    {
-        return [
-            'inputFiles'      => [],
-            'outputFile'      => null,
-            'destinationDir'  => null,
-            'baseDir'         => null,
-            'backend'         => 'html5',
-            'doctype'         => 'article',
-            'safeMode'        => SafeMode::SAFE,
-            'attributes'      => [],
-            'noHeaderFooter'  => false,
-            'quiet'           => false,
-            'verbose'         => false,
-            'timings'         => false,
-            'trace'           => false,
-            'help'            => false,
-            'version'         => false,
-            'concurrency'     => 0,
-        ];
-    }
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
-
-    /**
-     * Pop and return the next argument as the value for $flag, or throw.
-     *
-     * @param list<string> $args  Modified in place.
-     */
-    private static function requireValue(string $flag, array &$args): string
-    {
-        if ($args === []) {
-            throw new ParseException("Option {$flag} requires a value.");
-        }
-        return (string) array_shift($args);
-    }
-
-    private static function parseSafeMode(string $mode): SafeMode
-    {
-        return match (strtolower($mode)) {
-            'unsafe' => SafeMode::UNSAFE,
-            'safe'   => SafeMode::SAFE,
-            'server' => SafeMode::SERVER,
-            'secure' => SafeMode::SECURE,
-            default  => throw new ParseException("Unknown safe mode: {$mode}"),
-        };
     }
 
     /**
@@ -230,8 +204,8 @@ final class Options
         if (str_ends_with($attrStr, '!')) {
             $name = rtrim($attrStr, '!');
             /** @var array<string, string|bool> $attrs */
-            $attrs = $opts['attributes'];
-            $attrs[$name] = false;
+            $attrs              = $opts['attributes'];
+            $attrs[$name]       = false;
             $opts['attributes'] = $attrs;
             return;
         }
@@ -244,8 +218,34 @@ final class Options
         }
 
         /** @var array<string, string|bool> $attrs */
-        $attrs = $opts['attributes'];
+        $attrs              = $opts['attributes'];
         $attrs[trim($name)] = trim($value);
         $opts['attributes'] = $attrs;
+    }
+
+    private static function parseSafeMode(string $mode): SafeMode
+    {
+        return match (strtolower($mode)) {
+            'unsafe' => SafeMode::UNSAFE,
+            'safe'   => SafeMode::SAFE,
+            'server' => SafeMode::SERVER,
+            'secure' => SafeMode::SECURE,
+            default  => throw new ParseException("Unknown safe mode: {$mode}"),
+        };
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    /**
+     * Pop and return the next argument as the value for $flag, or throw.
+     *
+     * @param list<string> $args  Modified in place.
+     */
+    private static function requireValue(string $flag, array &$args): string
+    {
+        if ([] === $args) {
+            throw new ParseException("Option {$flag} requires a value.");
+        }
+        return array_shift($args);
     }
 }

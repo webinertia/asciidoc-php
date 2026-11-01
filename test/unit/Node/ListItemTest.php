@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Node;
+namespace WebwareTest\AsciidocPhp\Node;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -17,10 +17,23 @@ final class ListItemTest extends TestCase
     private Document $doc;
     private AsciiList $list;
 
-    protected function setUp(): void
+    public function testGetMarker(): void
     {
-        $this->doc  = new Document();
-        $this->list = new AsciiList($this->doc, null, 'ulist');
+        $item = new ListItem($this->doc, $this->list, 'text', '**');
+        self::assertSame('**', $item->getMarker());
+    }
+
+    public function testGetMarkerInfo(): void
+    {
+        $info = ['type' => 'olist', 'number' => 1];
+        $item = new ListItem($this->doc, $this->list, 'text', '.', $info);
+        self::assertSame($info, $item->getMarkerInfo());
+    }
+
+    public function testGetMarkerInfoEmpty(): void
+    {
+        $item = new ListItem($this->doc, $this->list, 'text', '*');
+        self::assertSame([], $item->getMarkerInfo());
     }
 
     public function testGetRawText(): void
@@ -36,30 +49,11 @@ final class ListItemTest extends TestCase
         self::assertStringContainsString('&lt;', $item->getText());
     }
 
-    public function testSetText(): void
+    public function testIsSimpleFalseWhenHasContinuationBlocks(): void
     {
-        $item = new ListItem($this->doc, $this->list, 'Old', '*');
-        $item->setText('New');
-        self::assertSame('New', $item->getRawText());
-    }
-
-    public function testGetMarker(): void
-    {
-        $item = new ListItem($this->doc, $this->list, 'text', '**');
-        self::assertSame('**', $item->getMarker());
-    }
-
-    public function testGetMarkerInfoEmpty(): void
-    {
-        $item = new ListItem($this->doc, $this->list, 'text', '*');
-        self::assertSame([], $item->getMarkerInfo());
-    }
-
-    public function testGetMarkerInfo(): void
-    {
-        $info = ['type' => 'olist', 'number' => 1];
-        $item = new ListItem($this->doc, $this->list, 'text', '.', $info);
-        self::assertSame($info, $item->getMarkerInfo());
+        $item = new ListItem($this->doc, $this->list, 'Complex', '*');
+        $item->append(new Block($this->doc, $item, 'paragraph'));
+        self::assertFalse($item->isSimple());
     }
 
     public function testIsSimpleTrueWhenNoBlocks(): void
@@ -68,17 +62,23 @@ final class ListItemTest extends TestCase
         self::assertTrue($item->isSimple());
     }
 
-    public function testIsSimpleFalseWhenHasContinuationBlocks(): void
-    {
-        $item = new ListItem($this->doc, $this->list, 'Complex', '*');
-        $item->append(new Block($this->doc, $item, 'paragraph'));
-        self::assertFalse($item->isSimple());
-    }
-
     public function testNodeNameAndContext(): void
     {
         $item = new ListItem($this->doc, $this->list, 'X', '*');
         self::assertSame('list_item', $item->getNodeName());
         self::assertSame('list_item', $item->getContext());
+    }
+
+    public function testSetText(): void
+    {
+        $item = new ListItem($this->doc, $this->list, 'Old', '*');
+        $item->setText('New');
+        self::assertSame('New', $item->getRawText());
+    }
+
+    protected function setUp(): void
+    {
+        $this->doc  = new Document();
+        $this->list = new AsciiList($this->doc, null, 'ulist');
     }
 }

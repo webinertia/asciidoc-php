@@ -1,5 +1,12 @@
 # asciidoc-php
 
+[![PHP Version](https://img.shields.io/packagist/php-v/webware/asciidoc-php)](https://packagist.org/packages/webware/asciidoc-php)
+[![Latest Version](https://img.shields.io/packagist/v/webware/asciidoc-php)](https://packagist.org/packages/webware/asciidoc-php)
+[![License](https://img.shields.io/github/license/webinertia/asciidoc-php)](LICENSE)
+[![Required CI](https://github.com/webinertia/asciidoc-php/actions/workflows/required/webinertia/.github/.github/workflows/org-required-ci.yml/badge.svg)](https://github.com/webinertia/asciidoc-php/actions/workflows/required/webinertia/.github/.github/workflows/org-required-ci.yml)
+[![codecov](https://codecov.io/gh/webinertia/asciidoc-php/graph/badge.svg)](https://codecov.io/gh/webinertia/asciidoc-php)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fwebinertia%2Fasciidoc-php%2F0.1.x)](https://dashboard.stryker-mutator.io/reports/github.com/webinertia/asciidoc-php/0.1.x)
+
 `webware/asciidoc-php` is a PHP port of the Asciidoctor toolchain that converts
 AsciiDoc source files to HTML5. The package namespace is
 `Webware\AsciidocPhp`.

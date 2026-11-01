@@ -7,7 +7,6 @@ namespace Webware\AsciidocPhp;
 use Webware\AsciidocPhp\Converter\ConverterInterface;
 use Webware\AsciidocPhp\Node\AbstractBlock;
 use Webware\AsciidocPhp\Node\AbstractNode;
-use Webware\AsciidocPhp\Reader\Cursor;
 
 /**
  * The root AST node and orchestrator for a single AsciiDoc conversion.
@@ -56,7 +55,7 @@ class Document extends AbstractBlock implements DocumentInterface
 
     private string $doctype;
 
-    private string|null $baseDir;
+    private ?string $baseDir;
 
     private bool $sourcemap = false;
 
@@ -76,22 +75,22 @@ class Document extends AbstractBlock implements DocumentInterface
     {
         parent::__construct('document', 'document', $this, null);
 
-        $safe = $options['safe'] ?? SafeMode::SAFE;
+        $safe       = $options['safe'] ?? SafeMode::SAFE;
         $this->safe = $safe instanceof SafeMode ? $safe : SafeMode::SAFE;
 
-        $backend = $options['backend'] ?? 'html5';
+        $backend       = $options['backend'] ?? 'html5';
         $this->backend = is_string($backend) ? $backend : 'html5';
 
-        $doctype = $options['doctype'] ?? 'article';
+        $doctype       = $options['doctype'] ?? 'article';
         $this->doctype = is_string($doctype) ? $doctype : 'article';
 
-        $baseDir = $options['base_dir'] ?? null;
+        $baseDir       = $options['base_dir'] ?? null;
         $this->baseDir = is_string($baseDir) ? $baseDir : null;
 
         $this->sourcemap = (bool) ($options['sourcemap'] ?? false);
 
         // Converter must be injected; fall back to a NullConverter for tests.
-        $converter = $options['converter'] ?? null;
+        $converter       = $options['converter'] ?? null;
         $this->converter = $converter instanceof ConverterInterface ? $converter : new NullConverter();
 
         // Load built-in defaults.
@@ -101,7 +100,7 @@ class Document extends AbstractBlock implements DocumentInterface
         /** @var array<string, string|false> $initialAttrs */
         $initialAttrs = is_array($options['attributes'] ?? null) ? $options['attributes'] : [];
         foreach ($initialAttrs as $name => $value) {
-            if ($value === false) {
+            if (false === $value) {
                 $this->unsetAttribute($name);
             } else {
                 $this->setAttribute($name, $value);
@@ -109,47 +108,40 @@ class Document extends AbstractBlock implements DocumentInterface
         }
     }
 
-    // ── DocumentInterface ─────────────────────────────────────────────────────
+    // ── Conversion ───────────────────────────────────────────────────────────
 
-    public function setAttribute(string $name, mixed $value, bool $overridable = true): void
+    /**
+     * Convert the document to its output representation.
+     */
+    #[\Override]
+    public function convert(): string
     {
-        if (!$overridable) {
-            $this->lockedAttributes[] = $name;
-        } elseif (in_array($name, $this->lockedAttributes, true)) {
-            return;
-        }
-        $this->docAttributes[$name] = is_string($value) ? $value : '';
+        return $this->converter->convert($this);
     }
 
-    public function unsetAttribute(string $name): void
-    {
-        if (in_array($name, $this->lockedAttributes, true)) {
-            return;
-        }
-        $this->docAttributes[$name] = false;
-    }
-
-    public function hasAttribute(string $name): bool
-    {
-        return isset($this->docAttributes[$name])
-            && $this->docAttributes[$name] !== false;
-    }
-
+    #[\Override]
     public function getAttribute(string $name, mixed $default = null): mixed
     {
-        if (!array_key_exists($name, $this->docAttributes)) {
+        if (! array_key_exists($name, $this->docAttributes)) {
             return $default;
         }
         $value = $this->docAttributes[$name];
-        return $value === false ? $default : $value;
+        return false === $value ? $default : $value;
     }
 
-    public function getSafeMode(): SafeMode
+    public function getAuthor(): ?string
     {
-        return $this->safe;
+        $v = $this->getAttribute('author');
+        return is_string($v) ? $v : null;
     }
 
-    public function getBaseDir(): string|null
+    public function getBackend(): string
+    {
+        return $this->backend;
+    }
+
+    #[\Override]
+    public function getBaseDir(): ?string
     {
         return $this->baseDir;
     }
@@ -161,9 +153,45 @@ class Document extends AbstractBlock implements DocumentInterface
         return $this->converter;
     }
 
-    public function setConverter(ConverterInterface $converter): void
+    // ── Title / metadata helpers ──────────────────────────────────────────────
+
+    public function getDocTitle(): ?string
     {
-        $this->converter = $converter;
+        $v = $this->getAttribute('doctitle');
+        return is_string($v) ? $v : null;
+    }
+
+    public function getDoctype(): string
+    {
+        return $this->doctype;
+    }
+
+    public function getRevDate(): ?string
+    {
+        $v = $this->getAttribute('revdate');
+        return is_string($v) ? $v : null;
+    }
+
+    #[\Override]
+    public function getSafeMode(): SafeMode
+    {
+        return $this->safe;
+    }
+
+    #[\Override]
+    public function hasAttribute(string $name): bool
+    {
+        return (
+            isset($this->docAttributes[$name])
+                && false !== $this->docAttributes[$name]
+        );
+    }
+
+    // ── Misc ─────────────────────────────────────────────────────────────────
+
+    public function isSourcemapEnabled(): bool
+    {
+        return $this->sourcemap;
     }
 
     // ── Catalog ───────────────────────────────────────────────────────────────
@@ -176,20 +204,20 @@ class Document extends AbstractBlock implements DocumentInterface
      */
     public function register(string $type, mixed $data): void
     {
-        if ($type === 'ids' && $data instanceof AbstractNode) {
+        if ('ids' === $type && $data instanceof AbstractNode) {
             $id = $data->getId();
-            if ($id !== null) {
+            if (null !== $id) {
                 $this->catalog['ids'][$id] = $data;
             }
-        } elseif ($type === 'refs' && $data instanceof AbstractNode) {
+        } elseif ('refs' === $type && $data instanceof AbstractNode) {
             $id = $data->getId();
-            if ($id !== null) {
+            if (null !== $id) {
                 $this->catalog['refs'][$id] = $data;
             }
-        } elseif ($type === 'footnotes' && is_array($data)) {
+        } elseif ('footnotes' === $type && is_array($data)) {
             /** @var array<string, mixed> $data */
             $this->catalog['footnotes'][] = $data;
-        } elseif ($type === 'images' && is_string($data)) {
+        } elseif ('images' === $type && is_string($data)) {
             $this->catalog['images'][] = $data;
         }
     }
@@ -197,56 +225,36 @@ class Document extends AbstractBlock implements DocumentInterface
     /**
      * Resolve a reference ID to the node registered under it, or null.
      */
-    public function resolveId(string $refid): AbstractNode|null
+    public function resolveId(string $refid): ?AbstractNode
     {
         return $this->catalog['ids'][$refid] ?? null;
     }
 
-    // ── Title / metadata helpers ──────────────────────────────────────────────
+    // ── DocumentInterface ─────────────────────────────────────────────────────
 
-    public function getDocTitle(): string|null
+    #[\Override]
+    public function setAttribute(string $name, mixed $value, bool $overridable = true): void
     {
-        $v = $this->getAttribute('doctitle');
-        return is_string($v) ? $v : null;
+        if (! $overridable) {
+            $this->lockedAttributes[] = $name;
+        } elseif (in_array($name, $this->lockedAttributes, true)) {
+            return;
+        }
+        $this->docAttributes[$name] = is_string($value) ? $value : '';
     }
 
-    public function getAuthor(): string|null
+    public function setConverter(ConverterInterface $converter): void
     {
-        $v = $this->getAttribute('author');
-        return is_string($v) ? $v : null;
+        $this->converter = $converter;
     }
 
-    public function getRevDate(): string|null
+    #[\Override]
+    public function unsetAttribute(string $name): void
     {
-        $v = $this->getAttribute('revdate');
-        return is_string($v) ? $v : null;
-    }
-
-    // ── Conversion ───────────────────────────────────────────────────────────
-
-    /**
-     * Convert the document to its output representation.
-     */
-    public function convert(): string
-    {
-        return $this->converter->convert($this);
-    }
-
-    // ── Misc ─────────────────────────────────────────────────────────────────
-
-    public function isSourcemapEnabled(): bool
-    {
-        return $this->sourcemap;
-    }
-
-    public function getBackend(): string
-    {
-        return $this->backend;
-    }
-
-    public function getDoctype(): string
-    {
-        return $this->doctype;
+        if (in_array($name, $this->lockedAttributes, true)) {
+            return;
+        }
+        $this->docAttributes[$name] = false;
     }
 
     // ── Built-in attributes ───────────────────────────────────────────────────
@@ -255,7 +263,7 @@ class Document extends AbstractBlock implements DocumentInterface
     {
         $date     = date('Y-m-d');
         $time     = date('H:i:s') . ' UTC';
-        $datetime = $date . ' ' . $time;
+        $datetime = "{$date} {$time}";
 
         $defaults = [
             'asciidoc-version'    => '0.1.0',
@@ -293,9 +301,9 @@ class Document extends AbstractBlock implements DocumentInterface
     private function resolveBaseBackend(string $backend): string
     {
         return match (true) {
-            str_starts_with($backend, 'html') => 'html',
+            str_starts_with($backend, 'html')    => 'html',
             str_starts_with($backend, 'docbook') => 'docbook',
-            default => $backend,
+            default                              => $backend,
         };
     }
 }

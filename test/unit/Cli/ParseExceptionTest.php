@@ -2,25 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Cli;
+namespace WebwareTest\AsciidocPhp\Cli;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use Webware\AsciidocPhp\Cli\ParseException;
 
 #[CoversClass(ParseException::class)]
 final class ParseExceptionTest extends TestCase
 {
-    public function testIsRuntimeException(): void
+    public function testCanBeThrown(): void
     {
-        $e = new ParseException('oops');
-        self::assertInstanceOf(\RuntimeException::class, $e);
-    }
-
-    public function testMessageIsPreserved(): void
-    {
-        $e = new ParseException('bad option: --foo');
-        self::assertSame('bad option: --foo', $e->getMessage());
+        $this->expectException(ParseException::class);
+        $this->expectExceptionMessage('thrown');
+        throw new ParseException('thrown');
     }
 
     public function testCodeDefaultsToZero(): void
@@ -29,10 +25,15 @@ final class ParseExceptionTest extends TestCase
         self::assertSame(0, $e->getCode());
     }
 
-    public function testCanBeThrown(): void
+    public function testIsRuntimeException(): void
     {
-        $this->expectException(ParseException::class);
-        $this->expectExceptionMessage('thrown');
-        throw new ParseException('thrown');
+        $e = new ParseException('oops');
+        self::assertInstanceOf(RuntimeException::class, $e);
+    }
+
+    public function testMessageIsPreserved(): void
+    {
+        $e = new ParseException('bad option: --foo');
+        self::assertSame('bad option: --foo', $e->getMessage());
     }
 }

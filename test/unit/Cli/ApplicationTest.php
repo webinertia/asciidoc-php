@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Cli;
+namespace WebwareTest\AsciidocPhp\Cli;
 
+use Closure;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\Cli\Application;
@@ -11,82 +12,17 @@ use Webware\AsciidocPhp\Cli\Application;
 #[CoversClass(Application::class)]
 final class ApplicationTest extends TestCase
 {
-    // ── --help ────────────────────────────────────────────────────────────────
-
-    public function testRunHelpReturnsZero(): void
-    {
-        $app = new Application(['script', '--help']);
-        ob_start();
-        $code = $app->run();
-        ob_end_clean();
-        self::assertSame(0, $code);
-    }
-
-    public function testRunHelpOutputsUsageLine(): void
-    {
-        $app = new Application(['script', '--help']);
-        ob_start();
-        $app->run();
-        $output = ob_get_clean();
-        self::assertStringContainsString('Usage:', (string) $output);
-    }
-
-    public function testRunShortHelpReturnsZero(): void
-    {
-        $app = new Application(['script', '-h']);
-        ob_start();
-        $code = $app->run();
-        ob_end_clean();
-        self::assertSame(0, $code);
-    }
-
-    // ── --version ─────────────────────────────────────────────────────────────
-
-    public function testRunVersionReturnsZero(): void
-    {
-        $app = new Application(['script', '--version']);
-        ob_start();
-        $code = $app->run();
-        ob_end_clean();
-        self::assertSame(0, $code);
-    }
-
-    public function testRunVersionOutputsVersionString(): void
-    {
-        $app = new Application(['script', '--version']);
-        ob_start();
-        $app->run();
-        $output = ob_get_clean();
-        self::assertStringContainsString('0.1.0', (string) $output);
-        self::assertStringContainsString('asciidoc-php', (string) $output);
-    }
-
-    // ── No input files ────────────────────────────────────────────────────────
-
-    public function testRunNoInputFilesReturnsOne(): void
-    {
-        $app = new Application(['script']);
-        $code = $app->run();
-        self::assertSame(1, $code);
-    }
-
-    // ── Unknown option ────────────────────────────────────────────────────────
-
-    public function testRunUnknownOptionReturnsOne(): void
-    {
-        $app = new Application(['script', '--no-such-option']);
-        $code = $app->run();
-        self::assertSame(1, $code);
-    }
+    /** @var list<string> */
+    private array $diagnostics = [];
 
     // ── Successful conversion ─────────────────────────────────────────────────
 
     public function testRunConvertsFileSuccessfully(): void
     {
-        $dir   = sys_get_temp_dir() . '/asciidoc-app-test-' . uniqid('', true);
-        mkdir($dir, 0755, true);
-        $input  = $dir . '/input.adoc';
-        $output = $dir . '/input.html';
+        $dir = sys_get_temp_dir() . '/asciidoc-app-test-' . uniqid('', true);
+        mkdir($dir, 0o755, true);
+        $input  = "{$dir}/input.adoc";
+        $output = "{$dir}/input.html";
 
         file_put_contents($input, "= Hello\n\nWorld.\n");
 
@@ -103,21 +39,55 @@ final class ApplicationTest extends TestCase
         rmdir($dir);
     }
 
+    public function testRunHelpOutputEndsWithNewline(): void
+    {
+        $app = new Application(['script', '--help']);
+        ob_start();
+        $app->run();
+        $output = (string) ob_get_clean();
+
+        self::assertStringEndsWith("\n", $output);
+    }
+
+    public function testRunHelpOutputsUsageLine(): void
+    {
+        $app = new Application(['script', '--help']);
+        ob_start();
+        $app->run();
+        $output = ob_get_clean();
+        self::assertStringContainsString('Usage:', (string) $output);
+    }
+
+    // ── --help ────────────────────────────────────────────────────────────────
+
+    public function testRunHelpReturnsZero(): void
+    {
+        $app = new Application(['script', '--help']);
+        ob_start();
+        $code = $app->run();
+        ob_end_clean();
+        self::assertSame(0, $code);
+    }
+
     public function testRunMissingInputFileReturnsOne(): void
     {
-        $app  = new Application(['script', '/no/such/file.adoc']);
+        $app  = new Application(['script', '/no/such/file.adoc'], $this->captureDiagnostics());
         $code = $app->run();
         self::assertSame(1, $code);
+        self::assertSame(
+            ["asciidoc-php: Failed: /no/such/file.adoc - File not found or unreadable: /no/such/file.adoc\n"],
+            $this->diagnostics,
+        );
     }
 
     // ── --no-header-footer ────────────────────────────────────────────────────
 
     public function testRunNoHeaderFooterProducesEmbeddedOutput(): void
     {
-        $dir   = sys_get_temp_dir() . '/asciidoc-app-test-' . uniqid('', true);
-        mkdir($dir, 0755, true);
-        $input  = $dir . '/input.adoc';
-        $output = $dir . '/input.html';
+        $dir = sys_get_temp_dir() . '/asciidoc-app-test-' . uniqid('', true);
+        mkdir($dir, 0o755, true);
+        $input  = "{$dir}/input.adoc";
+        $output = "{$dir}/input.html";
 
         file_put_contents($input, "Hello world.\n");
 
@@ -133,5 +103,83 @@ final class ApplicationTest extends TestCase
         unlink($input);
         unlink($output);
         rmdir($dir);
+    }
+
+    // ── No input files ────────────────────────────────────────────────────────
+
+    public function testRunNoInputFilesReturnsOne(): void
+    {
+        $app  = new Application(['script'], $this->captureDiagnostics());
+        $code = $app->run();
+        self::assertSame(1, $code);
+        self::assertSame(
+            ["asciidoc-php: No input files specified. Use -h for help.\n"],
+            $this->diagnostics,
+        );
+    }
+
+    public function testRunShortHelpReturnsZero(): void
+    {
+        $app = new Application(['script', '-h']);
+        ob_start();
+        $code = $app->run();
+        ob_end_clean();
+        self::assertSame(0, $code);
+    }
+
+    // ── Unknown option ────────────────────────────────────────────────────────
+
+    public function testRunUnknownOptionReturnsOne(): void
+    {
+        $app  = new Application(['script', '--no-such-option'], $this->captureDiagnostics());
+        $code = $app->run();
+        self::assertSame(1, $code);
+        self::assertSame(
+            ["asciidoc-php: Unknown option: --no-such-option\n"],
+            $this->diagnostics,
+        );
+    }
+
+    public function testRunVersionOutputIsExact(): void
+    {
+        $app = new Application(['script', '--version']);
+        ob_start();
+        $app->run();
+        $output = (string) ob_get_clean();
+
+        self::assertSame("asciidoc-php 0.1.0\n", $output);
+    }
+
+    public function testRunVersionOutputsVersionString(): void
+    {
+        $app = new Application(['script', '--version']);
+        ob_start();
+        $app->run();
+        $output = ob_get_clean();
+        self::assertStringContainsString('0.1.0', (string) $output);
+        self::assertStringContainsString('asciidoc-php', (string) $output);
+    }
+
+    // ── --version ─────────────────────────────────────────────────────────────
+
+    public function testRunVersionReturnsZero(): void
+    {
+        $app = new Application(['script', '--version']);
+        ob_start();
+        $code = $app->run();
+        ob_end_clean();
+        self::assertSame(0, $code);
+    }
+
+    /**
+     * @return Closure(string): void
+     */
+    private function captureDiagnostics(): Closure
+    {
+        $this->diagnostics = [];
+
+        return function (string $message): void {
+            $this->diagnostics[] = $message;
+        };
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Substitutor;
 
-use Webware\AsciidocPhp\Node\Inline;
 use Webware\AsciidocPhp\Node\Section;
 
 /**
@@ -71,12 +70,12 @@ trait SubstitutorsTrait
      */
     public function applySubstitutions(string $text, array $subs): string
     {
-        if ($subs === [] || $text === '') {
+        if ([] === $subs || '' === $text) {
             return $text;
         }
 
         $this->passthroughs = [];
-        $text = $this->extractPassthroughs($text);
+        $text               = $this->extractPassthroughs($text);
 
         foreach ($subs as $sub) {
             $text = match ($sub) {
@@ -103,7 +102,7 @@ trait SubstitutorsTrait
      */
     public function applySubstitutionsList(array $lines, array $subs): array
     {
-        if ($subs === []) {
+        if ([] === $subs) {
             return $lines;
         }
 
@@ -111,153 +110,6 @@ trait SubstitutorsTrait
             fn(string $line): string => $this->applySubstitutions($line, $subs),
             $lines,
         );
-    }
-
-    // ── Individual passes (Tier 1 stubs — return text unchanged) ─────────────
-
-    protected function subSpecialChars(string $text): string
-    {
-        // Asciidoctor's specialcharacters substitution only encodes &, < and >.
-        // Double-quotes are left as-is (they are safe in HTML text content).
-        return htmlspecialchars($text, ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
-    }
-
-    protected function subQuotes(string $text): string
-    {
-        // Process unconstrained (double-marker) patterns first so they are
-        // not accidentally split by the single-marker constrained patterns.
-
-        // Typographic curved quotes (unconstrained).
-        $text = (string) preg_replace(Rx::DOUBLE_CURVED_QUOTE, '&#8220;$1&#8221;', $text);
-        $text = (string) preg_replace(Rx::SINGLE_CURVED_QUOTE, '&#8216;$1&#8217;', $text);
-
-        // Unconstrained inline marks.
-        $text = (string) preg_replace(Rx::STRONG_UNCONSTRAINED,   '<strong>$1</strong>', $text);
-        $text = (string) preg_replace(Rx::EMPHASIS_UNCONSTRAINED,  '<em>$1</em>',         $text);
-        $text = (string) preg_replace(Rx::MONO_UNCONSTRAINED,      '<code>$1</code>',     $text);
-        $text = (string) preg_replace(Rx::MARK_UNCONSTRAINED,      '<mark>$1</mark>',     $text);
-
-        // Constrained inline marks (require word boundaries).
-        $text = (string) preg_replace(Rx::STRONG_CONSTRAINED,   '<strong>$1</strong>', $text);
-        $text = (string) preg_replace(Rx::EMPHASIS_CONSTRAINED,  '<em>$1</em>',         $text);
-        $text = (string) preg_replace(Rx::MONO_CONSTRAINED,      '<code>$1</code>',     $text);
-        $text = (string) preg_replace(Rx::MARK_CONSTRAINED,      '<mark>$1</mark>',     $text);
-
-        // Superscript and subscript (always unconstrained by design).
-        $text = (string) preg_replace(Rx::SUPERSCRIPT, '<sup>$1</sup>', $text);
-        $text = (string) preg_replace(Rx::SUBSCRIPT,   '<sub>$1</sub>', $text);
-
-        return $text;
-    }
-
-    /** @param array<string, mixed> $opts */
-    protected function subAttributes(string $text, array $opts = []): string
-    {
-        // Tier 2: expand {attribute-name} references via Document::getAttribute().
-        return $text;
-    }
-
-    protected function subReplacements(string $text): string
-    {
-        // Tier 2: typographic replacements.
-        return $text;
-    }
-
-    protected function subMacros(string $text): string
-    {
-        // Xref shorthand: <<id>> or <<id, label>>
-        // By the time this runs, specialcharacters has been applied, so both
-        // `<<` → `&lt;&lt;` and `>>` → `&gt;&gt;`.
-        $text = (string) preg_replace_callback(
-            '/&lt;&lt;([\w.-]+)(?:,\s*([^&>]+?))?&gt;&gt;/u',
-            function (array $m): string {
-                $refid = $m[1];
-                $label = trim($m[2] ?? '');
-                if ($label === '') {
-                    $node = $this->document->resolveId($refid);
-                    if ($node instanceof Section) {
-                        $label = (string) $node->getTitle();
-                    } elseif ($node !== null) {
-                        $reftext = $node->getAttribute('reftext');
-                        $label   = is_string($reftext) ? $reftext : $refid;
-                    } else {
-                        $label = $refid;
-                    }
-                }
-                return '<a href="#' . $refid . '">' . $label . '</a>';
-            },
-            $text,
-        );
-
-        // Xref macro: xref:id[label]
-        $text = (string) preg_replace_callback(
-            Rx::XREF_MACRO,
-            function (array $m): string {
-                $refid = $m[1];
-                $label = trim($m[2]);
-                if ($label === '') {
-                    $node = $this->document->resolveId($refid);
-                    if ($node instanceof Section) {
-                        $label = (string) $node->getTitle();
-                    } elseif ($node !== null) {
-                        $reftext = $node->getAttribute('reftext');
-                        $label   = is_string($reftext) ? $reftext : $refid;
-                    } else {
-                        $label = $refid;
-                    }
-                }
-                return '<a href="#' . $refid . '">' . $label . '</a>';
-            },
-            $text,
-        );
-
-        return $text;
-    }
-
-    protected function subPostReplacements(string $text): string
-    {
-        // Tier 2: ' +' at end of line → <br>.
-        return $text;
-    }
-
-    protected function subCallouts(string $text): string
-    {
-        // Tier 2: strip/register <N> callout markers in verbatim blocks.
-        return $text;
-    }
-
-    // ── Passthrough management ────────────────────────────────────────────────
-
-    protected function extractPassthroughs(string $text): string
-    {
-        // Tier 2: full extraction of +++…+++, $$…$$, +…+, pass:[…].
-        return $text;
-    }
-
-    protected function restorePassthroughs(string $text): string
-    {
-        if ($this->passthroughs === []) {
-            return $text;
-        }
-        // Tier 2: replace \x02N\x03 placeholders.
-        return $text;
-    }
-
-    // ── Utilities ─────────────────────────────────────────────────────────────
-
-    /**
-     * Expand any named group references (e.g. 'normal') to their constituent
-     * substitution names and return the deduplicated list.
-     *
-     * @param list<string>|string $subs
-     * @return list<string>
-     */
-    protected function normalizeSubsList(array|string $subs): array
-    {
-        if (is_string($subs)) {
-            $subs = [$subs];
-        }
-        return $this->expandSubsList($subs);
     }
 
     /**
@@ -286,5 +138,148 @@ trait SubstitutorsTrait
 
         // Deduplicate while preserving order.
         return array_values(array_unique($result));
+    }
+
+    // ── Passthrough management ────────────────────────────────────────────────
+
+    protected function extractPassthroughs(string $text): string
+    {
+        // Tier 2: full extraction of +++…+++, $$…$$, +…+, pass:[…].
+        return $text;
+    }
+
+    // ── Utilities ─────────────────────────────────────────────────────────────
+
+    /**
+     * Expand any named group references (e.g. 'normal') to their constituent
+     * substitution names and return the deduplicated list.
+     *
+     * @param list<string>|string $subs
+     * @return list<string>
+     */
+    protected function normalizeSubsList(array|string $subs): array
+    {
+        if (is_string($subs)) {
+            $subs = [$subs];
+        }
+        return $this->expandSubsList($subs);
+    }
+
+    protected function restorePassthroughs(string $text): string
+    {
+        if ([] === $this->passthroughs) {
+            return $text;
+        }
+        // Tier 2: replace \x02N\x03 placeholders.
+        return $text;
+    }
+
+    /** @param array<string, mixed> $opts */
+    protected function subAttributes(string $text, array $opts = []): string
+    {
+        // Tier 2: expand {attribute-name} references via Document::getAttribute().
+        return $text;
+    }
+
+    protected function subCallouts(string $text): string
+    {
+        // Tier 2: strip/register <N> callout markers in verbatim blocks.
+        return $text;
+    }
+
+    protected function subMacros(string $text): string
+    {
+        // Xref shorthand: <<id>> or <<id, label>>
+        // By the time this runs, specialcharacters has been applied, so both
+        // `<<` → `&lt;&lt;` and `>>` → `&gt;&gt;`.
+        $text = (string) preg_replace_callback(
+            '/&lt;&lt;([\w.-]+)(?:,\s*([^&>]+?))?&gt;&gt;/u',
+            function (array $m): string {
+                $refid = $m[1];
+                $label = trim($m[2] ?? '');
+                if ('' === $label) {
+                    $node = $this->document->resolveId($refid);
+                    if ($node instanceof Section) {
+                        $label = (string) $node->getTitle();
+                    } elseif (null !== $node) {
+                        $reftext = $node->getAttribute('reftext');
+                        $label   = is_string($reftext) ? $reftext : $refid;
+                    } else {
+                        $label = $refid;
+                    }
+                }
+                return '<a href="#' . $refid . '">' . $label . '</a>';
+            },
+            $text,
+        );
+
+        // Xref macro: xref:id[label]
+        return (string) preg_replace_callback(
+            Rx::XREF_MACRO,
+            function (array $m): string {
+                $refid = $m[1];
+                $label = trim($m[2]);
+                if ('' === $label) {
+                    $node = $this->document->resolveId($refid);
+                    if ($node instanceof Section) {
+                        $label = (string) $node->getTitle();
+                    } elseif (null !== $node) {
+                        $reftext = $node->getAttribute('reftext');
+                        $label   = is_string($reftext) ? $reftext : $refid;
+                    } else {
+                        $label = $refid;
+                    }
+                }
+                return '<a href="#' . $refid . '">' . $label . '</a>';
+            },
+            $text,
+        );
+    }
+
+    protected function subPostReplacements(string $text): string
+    {
+        // Tier 2: ' +' at end of line → <br>.
+        return $text;
+    }
+
+    protected function subQuotes(string $text): string
+    {
+        // Process unconstrained (double-marker) patterns first so they are
+        // not accidentally split by the single-marker constrained patterns.
+
+        // Typographic curved quotes (unconstrained).
+        $text = (string) preg_replace(Rx::DOUBLE_CURVED_QUOTE, '&#8220;$1&#8221;', $text);
+        $text = (string) preg_replace(Rx::SINGLE_CURVED_QUOTE, '&#8216;$1&#8217;', $text);
+
+        // Unconstrained inline marks.
+        $text = (string) preg_replace(Rx::STRONG_UNCONSTRAINED, '<strong>$1</strong>', $text);
+        $text = (string) preg_replace(Rx::EMPHASIS_UNCONSTRAINED, '<em>$1</em>', $text);
+        $text = (string) preg_replace(Rx::MONO_UNCONSTRAINED, '<code>$1</code>', $text);
+        $text = (string) preg_replace(Rx::MARK_UNCONSTRAINED, '<mark>$1</mark>', $text);
+
+        // Constrained inline marks (require word boundaries).
+        $text = (string) preg_replace(Rx::STRONG_CONSTRAINED, '<strong>$1</strong>', $text);
+        $text = (string) preg_replace(Rx::EMPHASIS_CONSTRAINED, '<em>$1</em>', $text);
+        $text = (string) preg_replace(Rx::MONO_CONSTRAINED, '<code>$1</code>', $text);
+        $text = (string) preg_replace(Rx::MARK_CONSTRAINED, '<mark>$1</mark>', $text);
+
+        // Superscript and subscript (always unconstrained by design).
+        $text = (string) preg_replace(Rx::SUPERSCRIPT, '<sup>$1</sup>', $text);
+        return (string) preg_replace(Rx::SUBSCRIPT, '<sub>$1</sub>', $text);
+    }
+
+    protected function subReplacements(string $text): string
+    {
+        // Tier 2: typographic replacements.
+        return $text;
+    }
+
+    // ── Individual passes (Tier 1 stubs — return text unchanged) ─────────────
+
+    protected function subSpecialChars(string $text): string
+    {
+        // Asciidoctor's specialcharacters substitution only encodes &, < and >.
+        // Double-quotes are left as-is (they are safe in HTML text content).
+        return htmlspecialchars($text, ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
     }
 }

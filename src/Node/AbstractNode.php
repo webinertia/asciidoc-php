@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Node;
 
-use Webware\AsciidocPhp\ContentModel;
-use Webware\AsciidocPhp\Converter\ConverterInterface;
 use Webware\AsciidocPhp\Document;
-use Webware\AsciidocPhp\Reader\Cursor;
 use Webware\AsciidocPhp\Substitutor\SubstitutorsTrait;
 
 /**
@@ -39,14 +36,33 @@ abstract class AbstractNode
         protected string $nodeName,
         protected string $context,
         protected Document $document,
-        protected AbstractBlock|null $parent,
+        protected ?AbstractBlock $parent,
     ) {}
 
-    // ── Identity ──────────────────────────────────────────────────────────────
+    // ── Conversion ───────────────────────────────────────────────────────────
 
-    public function getNodeName(): string
+    public function convert(): string
     {
-        return $this->nodeName;
+        return $this->document->getConverter()->convert($this);
+    }
+
+    // ── Node attributes ───────────────────────────────────────────────────────
+
+    public function getAttribute(string $name, mixed $default = null): mixed
+    {
+        return array_key_exists($name, $this->attributes)
+            ? $this->attributes[$name]
+            : $default;
+    }
+
+    /**
+     * Return all node attributes.
+     *
+     * @return array<string, mixed>
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
     }
 
     public function getContext(): string
@@ -61,53 +77,24 @@ abstract class AbstractNode
         return $this->document;
     }
 
-    public function getParent(): AbstractBlock|null
+    // ── ID ────────────────────────────────────────────────────────────────────
+
+    public function getId(): ?string
+    {
+        $id = $this->getAttribute('id');
+        return is_string($id) ? $id : null;
+    }
+
+    // ── Identity ──────────────────────────────────────────────────────────────
+
+    public function getNodeName(): string
+    {
+        return $this->nodeName;
+    }
+
+    public function getParent(): ?AbstractBlock
     {
         return $this->parent;
-    }
-
-    public function isInline(): bool
-    {
-        return false;
-    }
-
-    public function isBlock(): bool
-    {
-        return true;
-    }
-
-    // ── Node attributes ───────────────────────────────────────────────────────
-
-    public function getAttribute(string $name, mixed $default = null): mixed
-    {
-        return array_key_exists($name, $this->attributes)
-            ? $this->attributes[$name]
-            : $default;
-    }
-
-    public function setAttribute(string $name, mixed $value): void
-    {
-        $this->attributes[$name] = $value;
-    }
-
-    public function hasAttribute(string $name): bool
-    {
-        return array_key_exists($name, $this->attributes);
-    }
-
-    public function removeAttribute(string $name): void
-    {
-        unset($this->attributes[$name]);
-    }
-
-    /**
-     * Return all node attributes.
-     *
-     * @return array<string, mixed>
-     */
-    public function getAttributes(): array
-    {
-        return $this->attributes;
     }
 
     // ── Roles ─────────────────────────────────────────────────────────────────
@@ -120,11 +107,16 @@ abstract class AbstractNode
     public function getRoles(): array
     {
         $role = $this->getAttribute('role', '');
-        if (!is_string($role) || $role === '') {
+        if (! is_string($role) || '' === $role) {
             return [];
         }
         /** @var list<string> */
         return array_values(array_filter(explode(' ', $role)));
+    }
+
+    public function hasAttribute(string $name): bool
+    {
+        return array_key_exists($name, $this->attributes);
     }
 
     public function hasRole(string $role): bool
@@ -132,18 +124,23 @@ abstract class AbstractNode
         return in_array($role, $this->getRoles(), true);
     }
 
-    // ── Conversion ───────────────────────────────────────────────────────────
-
-    public function convert(): string
+    public function isBlock(): bool
     {
-        return $this->document->getConverter()->convert($this);
+        return true;
     }
 
-    // ── ID ────────────────────────────────────────────────────────────────────
-
-    public function getId(): string|null
+    public function isInline(): bool
     {
-        $id = $this->getAttribute('id');
-        return is_string($id) ? $id : null;
+        return false;
+    }
+
+    public function removeAttribute(string $name): void
+    {
+        unset($this->attributes[$name]);
+    }
+
+    public function setAttribute(string $name, mixed $value): void
+    {
+        $this->attributes[$name] = $value;
     }
 }

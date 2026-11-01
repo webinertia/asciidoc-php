@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Node\Table;
+namespace WebwareTest\AsciidocPhp\Node\Table;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -15,9 +15,14 @@ final class CellTest extends TestCase
 {
     private Column $col;
 
-    protected function setUp(): void
+    public function testCustomValues(): void
     {
-        $this->col = new Column(1);
+        $inner = new Document();
+        $cell  = new Cell($this->col, 'Content', 'header', 2, 3, $inner);
+        self::assertSame('header', $cell->style);
+        self::assertSame(2, $cell->colspan);
+        self::assertSame(3, $cell->rowspan);
+        self::assertSame($inner, $cell->innerDocument);
     }
 
     public function testDefaultValues(): void
@@ -31,35 +36,30 @@ final class CellTest extends TestCase
         self::assertNull($cell->innerDocument);
     }
 
-    public function testCustomValues(): void
-    {
-        $inner = new Document();
-        $cell  = new Cell($this->col, 'Content', 'header', 2, 3, $inner);
-        self::assertSame('header', $cell->style);
-        self::assertSame(2, $cell->colspan);
-        self::assertSame(3, $cell->rowspan);
-        self::assertSame($inner, $cell->innerDocument);
-    }
-
-    public function testMutableText(): void
-    {
-        $cell = new Cell($this->col, 'Original');
-        $cell->text = 'Updated';
-        self::assertSame('Updated', $cell->text);
-    }
-
     public function testMutableColspan(): void
     {
-        $cell = new Cell($this->col, 'x');
+        $cell          = new Cell($this->col, 'x');
         $cell->colspan = 3;
         self::assertSame(3, $cell->colspan);
     }
 
     public function testMutableInnerDocument(): void
     {
-        $cell  = new Cell($this->col, 'x');
-        $inner = new Document();
+        $cell                = new Cell($this->col, 'x');
+        $inner               = new Document();
         $cell->innerDocument = $inner;
         self::assertSame($inner, $cell->innerDocument);
+    }
+
+    public function testMutableText(): void
+    {
+        $cell       = new Cell($this->col, 'Original');
+        $cell->text = 'Updated';
+        self::assertSame('Updated', $cell->text);
+    }
+
+    protected function setUp(): void
+    {
+        $this->col = new Column(1);
     }
 }

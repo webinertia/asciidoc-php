@@ -1,0 +1,889 @@
+variant = "loose"
+
+[[issues]]
+file = "src/Asciidoc.php"
+code = "mixed-operand"
+message = "Casting `mixed` to `bool`."
+count = 2
+
+[[issues]]
+file = "src/Cli/Application.php"
+code = "missing-constant-type"
+message = "Class constant `HELP` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Cli/Application.php"
+code = "missing-constant-type"
+message = "Class constant `VERSION` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "impossible-assignment"
+message = "Invalid assignment: the right-hand side has type `never` and cannot produce a value."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "missing-return-type"
+message = "Function `arrow function` is missing a return type hint."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "non-existent-class"
+message = 'Class `Async\TaskGroup` not found.'
+count = 2
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "non-existent-class-like"
+message = 'Class, interface, enum, or trait `Async\TaskGroup` not found.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "non-existent-use-import"
+message = 'Imported class, interface, trait, or enum `Async\TaskGroup` does not exist.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
+code = "unhandled-thrown-type"
+message = 'Potentially unhandled exception `RuntimeException` in `Webware\AsciidocPhp\Cli\Invoker::convertFile`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #1 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `list<string>`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #10 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `bool`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #11 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `bool`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #12 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `bool`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #13 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `bool`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #14 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `bool`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #15 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `bool`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #16 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `int`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #2 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `null|string`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #3 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `null|string`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #4 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `null|string`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #5 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `string`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #6 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `string`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #7 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `enum(Webware\AsciidocPhp\SafeMode)`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #8 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `array<string, bool|string>`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #9 of `Webware\AsciidocPhp\Cli\Options::__construct`: expected `bool`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `trim` is possibly `null`, but parameter type `string` does not accept it."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array index accessed on `non-empty-list<string>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('attributes')` accessed on `array<string, mixed>`."
+count = 3
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('backend')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('baseDir')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('concurrency')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('destinationDir')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('doctype')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('help')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('inputFiles')` accessed on `array<string, mixed>`."
+count = 3
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('noHeaderFooter')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('outputFile')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('quiet')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('safeMode')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('timings')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('trace')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('verbose')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('version')` accessed on `array<string, mixed>`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "redundant-docblock-type"
+message = "Redundant docblock type for variable `$opts`."
+count = 1
+
+[[issues]]
+file = "src/Cli/Options.php"
+code = "unhandled-thrown-type"
+message = 'Potentially unhandled exception `Webware\AsciidocPhp\Cli\ParseException` in `Webware\AsciidocPhp\Cli\Options::requireValue`.'
+count = 1
+
+[[issues]]
+file = "src/Converter/AbstractConverter.php"
+code = "missing-api-or-internal"
+message = 'Abstract class `Webware\AsciidocPhp\Converter\AbstractConverter` is missing an `@api` or `@internal` annotation.'
+count = 1
+
+[[issues]]
+file = "src/Converter/ConverterInterface.php"
+code = "missing-api-or-internal"
+message = 'Interface `Webware\AsciidocPhp\Converter\ConverterInterface` is missing an `@api` or `@internal` annotation.'
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "missing-constant-type"
+message = "Class constant `ADMONITION_LABELS` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "missing-constant-type"
+message = "Class constant `DEFAULT_STYLESHEET` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "missing-constant-type"
+message = "Class constant `FONT_AWESOME_CDN` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "missing-constant-type"
+message = "Class constant `HIGHLIGHTJS_CDN` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "missing-constant-type"
+message = "Class constant `QUOTE_TAGS` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "missing-parameter-type"
+message = "Parameter `$c` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "missing-return-type"
+message = "Function `arrow function` is missing a return type hint."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 5
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "unused-parameter"
+message = "Parameter `$block` is never used."
+count = 2
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
+code = "unused-parameter"
+message = "Parameter `$lang` is never used."
+count = 1
+
+[[issues]]
+file = "src/Document.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Document` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Document.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 5
+
+[[issues]]
+file = "src/Document.php"
+code = "mixed-assignment"
+message = "Assigning `nonnull` type to a variable may lead to unexpected behavior."
+count = 3
+
+[[issues]]
+file = "src/Document.php"
+code = "mixed-operand"
+message = "Casting `mixed` to `bool`."
+count = 1
+
+[[issues]]
+file = "src/DocumentInterface.php"
+code = "missing-api-or-internal"
+message = 'Interface `Webware\AsciidocPhp\DocumentInterface` is missing an `@api` or `@internal` annotation.'
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractBlock.php"
+code = "missing-api-or-internal"
+message = 'Abstract class `Webware\AsciidocPhp\Node\AbstractBlock` is missing an `@api` or `@internal` annotation.'
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractNode.php"
+code = "missing-api-or-internal"
+message = 'Abstract class `Webware\AsciidocPhp\Node\AbstractNode` is missing an `@api` or `@internal` annotation.'
+count = 1
+
+[[issues]]
+file = "src/Node/AbstractNode.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 2
+
+[[issues]]
+file = "src/Node/AsciiList.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\AsciiList` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/Block.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\Block` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/Inline.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\Inline` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/ListItem.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\ListItem` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/Section.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\Section` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/Section.php"
+code = "unused-parameter"
+message = "Parameter `$delimiter` is never used."
+count = 1
+
+[[issues]]
+file = "src/Node/Table.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\Table` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/Table/Cell.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\Table\Cell` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/Table/Column.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\Table\Column` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Node/Table/Row.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Node\Table\Row` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "match-not-exhaustive"
+message = "Non-exhaustive `match` expression: subject of type `string` is not fully handled."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `trim` is possibly `null`, but parameter type `string` does not accept it."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "possibly-null-array-index"
+message = "Possibly using `null` as an array index to access element."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(2)` accessed on `array<array-key, string>`."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "possibly-undefined-variable"
+message = "Variable `$m` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is evaluated and right operand is always truthy."
+count = 2
+
+[[issues]]
+file = "src/Parser/AttributeList.php"
+code = "unhandled-thrown-type"
+message = 'Potentially unhandled exception `UnhandledMatchError` in `Webware\AsciidocPhp\Parser\AttributeList::parseShorthand`.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "invalid-return-statement"
+message = '''Invalid return type for function `Webware\AsciidocPhp\Parser\Parser::parseAuthorInfo`: expected `array<string, string>`, but found `array{'author': string, 'authorinitials': string, 'email'?: non-empty-string|null, 'firstname': non-empty-string, 'lastname': string, 'middlename': string}`.'''
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "invalid-return-statement"
+message = '''Invalid return type for function `Webware\AsciidocPhp\Parser\Parser::parseRevisionInfo`: expected `array<string, string>`, but found `array{'revdate'?: non-empty-string, 'revnumber'?: null|string, 'revremark'?: non-empty-string}`.'''
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "invalid-return-statement"
+message = '''Invalid return type for function `Webware\AsciidocPhp\Parser\Parser::parseSectionTitle`: expected `array{'level': int, 'title': string}|false`, but found `array{'level': int<-1, max>, 'title': null|string}`.'''
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "missing-constant-type"
+message = "Class constant `DELIMITED_BLOCKS` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-invalid-argument"
+message = "Possible argument type mismatch for argument #2 of `str_repeat`: expected `non-negative-int`, but possibly received `int`."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `str_replace` is possibly `null`, but parameter type `array<array-key, string>|string` does not accept it."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `strlen` is possibly `null`, but parameter type `string` does not accept it."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `trim` is possibly `null`, but parameter type `string` does not accept it."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\Node\Table\Cell::__construct` is possibly `null`, but parameter type `Webware\AsciidocPhp\Node\Table\Column` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\Parser\AttributeList::parse` is possibly `null`, but parameter type `string` does not accept it.'
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\Parser\Parser::resolveStyledContext` is possibly `null`, but parameter type `string` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = "Argument #2 of function `preg_match` is possibly `null`, but parameter type `string` does not accept it."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = 'Argument #3 of method `Webware\AsciidocPhp\Node\Block::__construct` is possibly `null`, but parameter type `string` does not accept it.'
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = 'Argument #3 of method `Webware\AsciidocPhp\Parser\Parser::resolveStyledContext` is possibly `null`, but parameter type `enum(Webware\AsciidocPhp\ContentModel)` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = 'Argument #4 of method `Webware\AsciidocPhp\Node\Block::__construct` is possibly `null`, but parameter type `enum(Webware\AsciidocPhp\ContentModel)` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-argument"
+message = 'Argument #4 of method `Webware\AsciidocPhp\Parser\Parser::parseAdmonitionParagraph` is possibly `null`, but parameter type `string` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-null-destructuring-source"
+message = 'Destructuring a possibly null value of type `array{0: string, 1: enum(Webware\AsciidocPhp\ContentModel)}|null`.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = 'Possibly undefined array index accessed on `list<Webware\AsciidocPhp\Node\Table\Column>`.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array index accessed on `non-empty-list<string>`."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(0)` accessed on `array<array-key, string>`."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
+count = 11
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<int|string, string>`."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(2)` accessed on `array<array-key, string>`."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(2)` accessed on `array<int|string, string>`."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(3)` accessed on `array<int|string, string>`."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "possibly-undefined-string-array-index"
+message = 'Possibly undefined array key `string` accessed on `array<string, array{0: string, 1: enum(Webware\AsciidocPhp\ContentModel)}>`.'
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "redundant-null-coalesce"
+message = "Redundant null coalesce: left-hand side can never be `null` or undefined."
+count = 2
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "reference-to-undefined-variable"
+message = "Reference created from a previously undefined variable `$m`."
+count = 8
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "unused-parameter"
+message = "Parameter `$document` is never used."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "unused-parameter"
+message = "Parameter `$opts` is never used."
+count = 1
+
+[[issues]]
+file = "src/Parser/Parser.php"
+code = "unused-parameter"
+message = "Parameter `$parent` is never used."
+count = 1
+
+[[issues]]
+file = "src/PathResolver.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
+count = 1
+
+[[issues]]
+file = "src/Reader/ConditionalContext.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Reader\ConditionalContext` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Reader/Cursor.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Reader\Cursor` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Reader/IncludeContext.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Reader\IncludeContext` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "class-must-be-final"
+message = 'Class `Webware\AsciidocPhp\Reader\PreprocessorReader` should be declared `final`.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-invalid-argument"
+message = 'Possible argument type mismatch for argument #1 of `Webware\AsciidocPhp\Reader\PreprocessorReader::handleAttributeEntry`: expected `list<string>`, but possibly received `array<array-key, string>`.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `trim` is possibly `null`, but parameter type `string` does not accept it."
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\DocumentInterface::hasAttribute` is possibly `null`, but parameter type `string` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\DocumentInterface::setAttribute` is possibly `null`, but parameter type `string` does not accept it.'
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\DocumentInterface::unsetAttribute` is possibly `null`, but parameter type `string` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\Reader\PreprocessorReader::handleIfdef` is possibly `null`, but parameter type `string` does not accept it.'
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Webware\AsciidocPhp\Reader\PreprocessorReader::handleInclude` is possibly `null`, but parameter type `string` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = 'Argument #2 of method `Webware\AsciidocPhp\Reader\PreprocessorReader::handleIfdef` is possibly `null`, but parameter type `string` does not accept it.'
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-null-argument"
+message = 'Argument #2 of method `Webware\AsciidocPhp\Reader\PreprocessorReader::handleInclude` is possibly `null`, but parameter type `string` does not accept it.'
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array index accessed on `list<string>`."
+count = 3
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array index accessed on `non-empty-list<string>`."
+count = 2
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
+count = 4
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(2)` accessed on `array<array-key, string>`."
+count = 4
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "possibly-undefined-variable"
+message = "Variable `$m` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "src/Reader/PreprocessorReader.php"
+code = "reference-to-undefined-variable"
+message = "Reference created from a previously undefined variable `$m`."
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "overly-wide-return-type"
+message = "Declared return type `null|string` for `processline` has unused branches: `null`."
+count = 1
+
+[[issues]]
+file = "src/Reader/Reader.php"
+code = "unused-parameter"
+message = "Parameter `$options` is never used."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "missing-api-or-internal"
+message = 'Trait `Webware\AsciidocPhp\Substitutor\SubstitutorsTrait` is missing an `@api` or `@internal` annotation.'
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 4
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "mixed-method-access"
+message = "Attempting to call method `getAttribute()` on a non-object type (`nonnull`)."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "mixed-method-access"
+message = "Attempting to call method `resolveId()` on a non-object type (`mixed`)."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "non-existent-property"
+message = 'Property `$document` does not exist on trait `Webware\AsciidocPhp\Substitutor\SubstitutorsTrait`.'
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `trim` is possibly `null`, but parameter type `string` does not accept it."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "possibly-null-operand"
+message = "Possibly null middle operand used in string concatenation (type `null|string`)."
+count = 4
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
+count = 2
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(2)` accessed on `array<array-key, string>`."
+count = 1
+
+[[issues]]
+file = "src/Substitutor/SubstitutorsTrait.php"
+code = "unused-parameter"
+message = "Parameter `$opts` is never used."
+count = 1

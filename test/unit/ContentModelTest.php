@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test;
+namespace WebwareTest\AsciidocPhp;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -14,10 +14,10 @@ final class ContentModelTest extends TestCase
     public function testAllCasesExist(): void
     {
         $this->assertSame(ContentModel::COMPOUND, ContentModel::COMPOUND);
-        $this->assertSame(ContentModel::SIMPLE,   ContentModel::SIMPLE);
+        $this->assertSame(ContentModel::SIMPLE, ContentModel::SIMPLE);
         $this->assertSame(ContentModel::VERBATIM, ContentModel::VERBATIM);
-        $this->assertSame(ContentModel::RAW,      ContentModel::RAW);
-        $this->assertSame(ContentModel::EMPTY,    ContentModel::EMPTY);
+        $this->assertSame(ContentModel::RAW, ContentModel::RAW);
+        $this->assertSame(ContentModel::EMPTY, ContentModel::EMPTY);
     }
 
     public function testCasesAreDistinct(): void

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Node;
+namespace WebwareTest\AsciidocPhp\Node;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -14,41 +14,17 @@ final class InlineTest extends TestCase
 {
     private Document $doc;
 
-    protected function setUp(): void
+    public function testConvertDelegatesToConverter(): void
     {
-        $this->doc = new Document();
+        $inline = new Inline($this->doc, 'quoted', 'text');
+        // NullConverter returns ''
+        self::assertSame('', $inline->convert());
     }
 
-    public function testIsInlineTrue(): void
+    public function testDocumentReference(): void
     {
-        $inline = new Inline($this->doc, 'quoted', 'bold text');
-        self::assertTrue($inline->isInline());
-    }
-
-    public function testIsBlockFalse(): void
-    {
-        $inline = new Inline($this->doc, 'quoted', 'bold text');
-        self::assertFalse($inline->isBlock());
-    }
-
-    public function testNodeNameIsInlinePrefixedType(): void
-    {
-        $inline = new Inline($this->doc, 'link', 'click here', 'https://example.com');
-        self::assertSame('inline_link', $inline->getNodeName());
-        self::assertSame('link', $inline->getContext());
-    }
-
-    public function testGetText(): void
-    {
-        $inline = new Inline($this->doc, 'quoted', 'hello');
-        self::assertSame('hello', $inline->getText());
-    }
-
-    public function testSetText(): void
-    {
-        $inline = new Inline($this->doc, 'quoted', 'hello');
-        $inline->setText('world');
-        self::assertSame('world', $inline->getText());
+        $inline = new Inline($this->doc, 'quoted', 'text');
+        self::assertSame($this->doc, $inline->getDocument());
     }
 
     public function testGetTargetNullByDefault(): void
@@ -61,6 +37,37 @@ final class InlineTest extends TestCase
     {
         $inline = new Inline($this->doc, 'link', 'click', 'https://example.com');
         self::assertSame('https://example.com', $inline->getTarget());
+    }
+
+    public function testGetText(): void
+    {
+        $inline = new Inline($this->doc, 'quoted', 'hello');
+        self::assertSame('hello', $inline->getText());
+    }
+
+    public function testIsBlockFalse(): void
+    {
+        $inline = new Inline($this->doc, 'quoted', 'bold text');
+        self::assertFalse($inline->isBlock());
+    }
+
+    public function testIsInlineTrue(): void
+    {
+        $inline = new Inline($this->doc, 'quoted', 'bold text');
+        self::assertTrue($inline->isInline());
+    }
+
+    public function testNodeNameIsInlinePrefixedType(): void
+    {
+        $inline = new Inline($this->doc, 'link', 'click here', 'https://example.com');
+        self::assertSame('inline_link', $inline->getNodeName());
+        self::assertSame('link', $inline->getContext());
+    }
+
+    public function testParentIsNullForInline(): void
+    {
+        $inline = new Inline($this->doc, 'quoted', 'text');
+        self::assertNull($inline->getParent());
     }
 
     public function testSetTarget(): void
@@ -77,22 +84,15 @@ final class InlineTest extends TestCase
         self::assertNull($inline->getTarget());
     }
 
-    public function testConvertDelegatesToConverter(): void
+    public function testSetText(): void
     {
-        $inline = new Inline($this->doc, 'quoted', 'text');
-        // NullConverter returns ''
-        self::assertSame('', $inline->convert());
+        $inline = new Inline($this->doc, 'quoted', 'hello');
+        $inline->setText('world');
+        self::assertSame('world', $inline->getText());
     }
 
-    public function testDocumentReference(): void
+    protected function setUp(): void
     {
-        $inline = new Inline($this->doc, 'quoted', 'text');
-        self::assertSame($this->doc, $inline->getDocument());
-    }
-
-    public function testParentIsNullForInline(): void
-    {
-        $inline = new Inline($this->doc, 'quoted', 'text');
-        self::assertNull($inline->getParent());
+        $this->doc = new Document();
     }
 }

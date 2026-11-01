@@ -24,41 +24,18 @@ class Block extends AbstractBlock
 
     public function __construct(
         Document $document,
-        AbstractBlock|null $parent,
+        ?AbstractBlock $parent,
         string $context,
         ContentModel $contentModel = ContentModel::SIMPLE,
         string $nodeName = '',
     ) {
         parent::__construct(
-            $nodeName !== '' ? $nodeName : $context,
+            '' !== $nodeName ? $nodeName : $context,
             $context,
             $document,
             $parent,
             $contentModel,
         );
-    }
-
-    // ── Lines ─────────────────────────────────────────────────────────────────
-
-    /**
-     * @return list<string>
-     */
-    public function getLines(): array
-    {
-        return $this->lines;
-    }
-
-    /**
-     * @param list<string> $lines
-     */
-    public function setLines(array $lines): void
-    {
-        $this->lines = $lines;
-    }
-
-    public function getSource(): string
-    {
-        return implode("\n", $this->lines);
     }
 
     // ── Content ───────────────────────────────────────────────────────────────
@@ -72,21 +49,45 @@ class Block extends AbstractBlock
      * - RAW:      join lines with newline, no subs
      * - EMPTY:    empty string
      */
+    #[\Override]
     public function content(): string
     {
         return match ($this->contentModel) {
             ContentModel::COMPOUND => parent::content(),
-            ContentModel::SIMPLE   => $this->processLines($this->subs !== [] ? $this->subs : self::NORMAL_SUBS),
-            ContentModel::VERBATIM => $this->processLines($this->subs !== [] ? $this->subs : self::VERBATIM_SUBS),
+            ContentModel::SIMPLE   => $this->processLines([] !== $this->subs ? $this->subs : self::NORMAL_SUBS),
+            ContentModel::VERBATIM => $this->processLines([] !== $this->subs ? $this->subs : self::VERBATIM_SUBS),
             ContentModel::RAW      => implode("\n", $this->lines),
             ContentModel::EMPTY    => '',
         };
     }
 
+    // ── Lines ─────────────────────────────────────────────────────────────────
+
+    /**
+     * @return list<string>
+     */
+    public function getLines(): array
+    {
+        return $this->lines;
+    }
+
+    public function getSource(): string
+    {
+        return implode("\n", $this->lines);
+    }
+
+    /**
+     * @param list<string> $lines
+     */
+    public function setLines(array $lines): void
+    {
+        $this->lines = $lines;
+    }
+
     /** @param list<string> $subs */
     private function processLines(array $subs): string
     {
-        if ($this->lines === []) {
+        if ([] === $this->lines) {
             return '';
         }
         return implode("\n", $this->applySubstitutionsList($this->lines, $subs));

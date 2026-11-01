@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\TestAsset\Reader;
+namespace WebwareTestAsset\AsciidocPhp\Reader;
 
 use Webware\AsciidocPhp\DocumentInterface;
 use Webware\AsciidocPhp\SafeMode;
@@ -21,12 +21,44 @@ final class DocumentStub implements DocumentInterface
 
     public function __construct(
         private SafeMode $safeMode = SafeMode::UNSAFE,
-        private string|null $baseDir = null,
+        private ?string $baseDir = null,
     ) {}
+
+    public function getAttribute(string $name, mixed $default = null): mixed
+    {
+        if (! isset($this->attributes[$name])) {
+            return $default;
+        }
+        $value = $this->attributes[$name];
+        return false === $value ? $default : $value;
+    }
+
+    public function getBaseDir(): ?string
+    {
+        return $this->baseDir;
+    }
+
+    // ── Test helpers ──────────────────────────────────────────────────────────
+
+    /** Assert a specific attribute value in tests. */
+    public function getRawAttribute(string $name): string|false|null
+    {
+        return $this->attributes[$name] ?? null;
+    }
+
+    public function getSafeMode(): SafeMode
+    {
+        return $this->safeMode;
+    }
+
+    public function hasAttribute(string $name): bool
+    {
+        return isset($this->attributes[$name]) && false !== $this->attributes[$name];
+    }
 
     public function setAttribute(string $name, mixed $value, bool $overridable = true): void
     {
-        if (!$overridable) {
+        if (! $overridable) {
             $this->lockedAttributes[] = $name;
         } elseif (in_array($name, $this->lockedAttributes, true)) {
             return;
@@ -40,37 +72,5 @@ final class DocumentStub implements DocumentInterface
             return;
         }
         $this->attributes[$name] = false;
-    }
-
-    public function hasAttribute(string $name): bool
-    {
-        return isset($this->attributes[$name]) && $this->attributes[$name] !== false;
-    }
-
-    public function getAttribute(string $name, mixed $default = null): mixed
-    {
-        if (!isset($this->attributes[$name])) {
-            return $default;
-        }
-        $value = $this->attributes[$name];
-        return $value === false ? $default : $value;
-    }
-
-    public function getSafeMode(): SafeMode
-    {
-        return $this->safeMode;
-    }
-
-    public function getBaseDir(): string|null
-    {
-        return $this->baseDir;
-    }
-
-    // ── Test helpers ──────────────────────────────────────────────────────────
-
-    /** Assert a specific attribute value in tests. */
-    public function getRawAttribute(string $name): string|false|null
-    {
-        return $this->attributes[$name] ?? null;
     }
 }

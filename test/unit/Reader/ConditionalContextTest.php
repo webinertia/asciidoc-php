@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Reader;
+namespace WebwareTest\AsciidocPhp\Reader;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,10 @@ final class ConditionalContextTest extends TestCase
 
     public function testConstructorWithSawElse(): void
     {
-        $ctx = new ConditionalContext(satisfying: false, sawElse: true);
+        $ctx = new ConditionalContext(
+            satisfying: false,
+            sawElse   : true,
+        );
 
         $this->assertFalse($ctx->satisfying);
         $this->assertTrue($ctx->sawElse);

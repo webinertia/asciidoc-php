@@ -35,59 +35,6 @@ final class AttributeList
     private function __construct() {}
 
     /**
-     * Parse the inner content of an attribute list bracket and return the
-     * resulting attribute map.
-     *
-     * @return array<int|string, string>
-     */
-    public static function parse(string $str): array
-    {
-        $str = trim($str);
-
-        if ($str === '') {
-            return [];
-        }
-
-        /** @var array<int|string, string> $attrs */
-        $attrs          = [];
-        $positionalIdx  = 0;
-
-        // ── Step 1: Shorthand prefix (#id, .role, %option) ────────────────────
-        if (strlen($str) > 0 && ($str[0] === '#' || $str[0] === '.' || $str[0] === '%')) {
-            [$attrs, $positionalIdx, $str] = self::parseShorthand($str, $attrs, $positionalIdx);
-        }
-
-        if ($str === '') {
-            return $attrs;
-        }
-
-        // ── Step 2: Tokenise on comma (respecting quoted strings) ─────────────
-        $tokens = self::tokenise($str);
-
-        // ── Step 3: Classify each token ───────────────────────────────────────
-        foreach ($tokens as $token) {
-            $token = trim($token);
-            if ($token === '') {
-                $positionalIdx++;
-                continue;
-            }
-
-            // Named: key=value  or  key="value"
-            if (preg_match('/^([a-zA-Z_][a-zA-Z0-9_-]*)=(.*)$/', $token, $m) === 1) {
-                $key   = $m[1];
-                $value = trim($m[2], '"\'');
-                $attrs[$key] = $value;
-            } else {
-                // Positional
-                $attrs[$positionalIdx] = $token;
-                $positionalIdx++;
-            }
-        }
-
-        return $attrs;
-    }
-
-    /**
      * Merge a parsed attribute map into an existing block attributes array.
      *
      * - Positional index 0  → 'style' (if not already set)
@@ -103,7 +50,7 @@ final class AttributeList
     {
         foreach ($parsed as $key => $value) {
             if (is_int($key)) {
-                if ($key === 0 && !isset($blockAttrs['style'])) {
+                if (0 === $key && ! isset($blockAttrs['style'])) {
                     $blockAttrs['style'] = $value;
                 }
                 // Other positional indices are stored as-is for block-specific use
@@ -112,6 +59,59 @@ final class AttributeList
                 $blockAttrs[$key] = $value;
             }
         }
+    }
+
+    /**
+     * Parse the inner content of an attribute list bracket and return the
+     * resulting attribute map.
+     *
+     * @return array<int|string, string>
+     */
+    public static function parse(string $str): array
+    {
+        $str = trim($str);
+
+        if ('' === $str) {
+            return [];
+        }
+
+        /** @var array<int|string, string> $attrs */
+        $attrs         = [];
+        $positionalIdx = 0;
+
+        // ── Step 1: Shorthand prefix (#id, .role, %option) ────────────────────
+        if (strlen($str) > 0 && ('#' === $str[0] || '.' === $str[0] || '%' === $str[0])) {
+            [$attrs, $positionalIdx, $str] = self::parseShorthand($str, $attrs, $positionalIdx);
+        }
+
+        if ('' === $str) {
+            return $attrs;
+        }
+
+        // ── Step 2: Tokenise on comma (respecting quoted strings) ─────────────
+        $tokens = self::tokenise($str);
+
+        // ── Step 3: Classify each token ───────────────────────────────────────
+        foreach ($tokens as $token) {
+            $token = trim($token);
+            if ('' === $token) {
+                $positionalIdx++;
+                continue;
+            }
+
+            // Named: key=value  or  key="value"
+            if (preg_match('/^([a-zA-Z_][a-zA-Z0-9_-]*)=(.*)$/', $token, $m) === 1) {
+                $key         = $m[1];
+                $value       = trim($m[2], '"\'');
+                $attrs[$key] = $value;
+            } else {
+                // Positional
+                $attrs[$positionalIdx] = $token;
+                $positionalIdx++;
+            }
+        }
+
+        return $attrs;
     }
 
     // ── Private helpers ───────────────────────────────────────────────────────
@@ -128,36 +128,42 @@ final class AttributeList
      */
     private static function parseShorthand(string $str, array $attrs, int $positionalIdx): array
     {
-        $roles   = [];
-        $pos     = 0;
-        $len     = strlen($str);
+        $roles = [];
+        $pos   = 0;
+        $len   = strlen($str);
 
-        while ($pos < $len && ($str[$pos] === '#' || $str[$pos] === '.' || $str[$pos] === '%')) {
+        while ($pos < $len && ('#' === $str[$pos] || '.' === $str[$pos] || '%' === $str[$pos])) {
             $sigil = $str[$pos];
             $pos++;
             $start = $pos;
 
             // Collect token characters: stop at # . % , or end
-            while ($pos < $len && $str[$pos] !== '#' && $str[$pos] !== '.' && $str[$pos] !== '%' && $str[$pos] !== ',') {
+            while (
+                $pos < $len
+                && '#' !== $str[$pos]
+                && '.' !== $str[$pos]
+                && '%' !== $str[$pos]
+                && ',' !== $str[$pos]
+            ) {
                 $pos++;
             }
 
             $token = substr($str, $start, $pos - $start);
 
-            if ($token === '') {
+            if ('' === $token) {
                 continue;
             }
 
             match ($sigil) {
-                '#' => $attrs['id']                    = $token,
-                '.' => $roles[]                        = $token,
-                '%' => $attrs[$token . '-option']      = '',
+                '#' => $attrs['id'] = $token,
+                '.' => $roles[] = $token,
+                '%' => $attrs["{$token}-option"] = '',
             };
         }
 
-        if ($roles !== []) {
+        if ([] !== $roles) {
             $existingRole = isset($attrs['role']) && is_string($attrs['role']) ? $attrs['role'] : '';
-            $combined     = $existingRole !== ''
+            $combined     = '' !== $existingRole
                 ? $existingRole . ' ' . implode(' ', $roles)
                 : implode(' ', $roles);
             $attrs['role'] = $combined;
@@ -184,15 +190,15 @@ final class AttributeList
         for ($i = 0; $i < $len; $i++) {
             $ch = $str[$i];
 
-            if ($ch === '"' && !$inQuote) {
-                $inQuote  = true;
+            if ('"' === $ch && ! $inQuote) {
+                $inQuote = true;
                 $current .= $ch;
-            } elseif ($ch === '"' && $inQuote) {
-                $inQuote  = false;
+            } elseif ('"' === $ch && $inQuote) {
+                $inQuote = false;
                 $current .= $ch;
-            } elseif ($ch === ',' && !$inQuote) {
-                $tokens[]  = $current;
-                $current   = '';
+            } elseif (',' === $ch && ! $inQuote) {
+                $tokens[] = $current;
+                $current  = '';
             } else {
                 $current .= $ch;
             }

@@ -73,8 +73,36 @@ these five differences are expected:
 ## Running Tests
 
 ```bash
-composer check-all                          # full suite: CS + PHPStan + unit + integration
+composer test                               # unit only
 vendor/bin/phpunit --testsuite "unit test"  # unit only
 vendor/bin/phpunit --testsuite "integration test"  # integration only
 vendor/bin/phpunit --filter testSomething   # single test
 ```
+
+## Mago Gates
+
+The four gates are invoked directly. Mago is a standalone binary, not a PHP
+tool, so no composer script wraps it and none should be added:
+
+```bash
+mago format --check   # formatting gate
+mago lint             # linter, baselined
+mago analyze          # analyzer, baselined
+mago guard            # boundary rules, never baselined
+```
+
+Baselines are generated with the direct command as well, never hand-written:
+
+```bash
+mago lint --generate-baseline --baseline lint-baseline.toml
+mago analyze --generate-baseline --baseline analysis-baseline.toml
+```
+
+`--remove-outdated-baseline-entries` is a separate operation, not a companion to
+generation: mago rejects it alongside `--generate-baseline`. Use it on a normal
+run to prune entries that no longer match an issue without absorbing new ones.
+Regeneration already produces exactly the current issue set.
+
+Baseline entries are keyed by file path, so regenerate after any file move or
+namespace change. A regenerated baseline that comes back byte-identical means
+the change altered no finding.

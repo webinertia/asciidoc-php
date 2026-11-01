@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Webware\AsciidocPhp\Test\Converter;
+namespace WebwareTest\AsciidocPhp\Converter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -14,9 +14,20 @@ final class AbstractConverterTest extends TestCase
 {
     private Html5Converter $converter;
 
-    protected function setUp(): void
+    public function testHandlesReturnsFalseForUnknownTransform(): void
     {
-        $this->converter = new Html5Converter();
+        self::assertFalse($this->converter->handles('totally_unknown_transform'));
+    }
+
+    public function testHandlesReturnsTrueForConvertMethod(): void
+    {
+        // handles('') resolves to 'convert' which does exist on Html5Converter.
+        self::assertTrue($this->converter->handles(''));
+    }
+
+    public function testHandlesReturnsTrueForInlineQuoted(): void
+    {
+        self::assertTrue($this->converter->handles('inline_quoted'));
     }
 
     public function testHandlesReturnsTrueForKnownTransform(): void
@@ -27,22 +38,6 @@ final class AbstractConverterTest extends TestCase
     public function testHandlesReturnsTrueForUnderscoredTransform(): void
     {
         self::assertTrue($this->converter->handles('thematic_break'));
-    }
-
-    public function testHandlesReturnsTrueForInlineQuoted(): void
-    {
-        self::assertTrue($this->converter->handles('inline_quoted'));
-    }
-
-    public function testHandlesReturnsFalseForUnknownTransform(): void
-    {
-        self::assertFalse($this->converter->handles('totally_unknown_transform'));
-    }
-
-    public function testHandlesReturnsTrueForConvertMethod(): void
-    {
-        // handles('') resolves to 'convert' which does exist on Html5Converter.
-        self::assertTrue($this->converter->handles(''));
     }
 
     public function testResolveMethodNameViiaHandles(): void
@@ -57,5 +52,10 @@ final class AbstractConverterTest extends TestCase
         // but handles() only checks methods – Section has no convertSection private
         // method *publicly accessible*, so it returns false.
         self::assertFalse($this->converter->handles('unknown_xyz'));
+    }
+
+    protected function setUp(): void
+    {
+        $this->converter = new Html5Converter();
     }
 }

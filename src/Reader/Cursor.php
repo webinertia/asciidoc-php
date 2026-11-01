@@ -7,9 +7,9 @@ namespace Webware\AsciidocPhp\Reader;
 readonly class Cursor
 {
     public function __construct(
-        public string|null $file,
-        public string|null $dir,
-        public string|null $path,
+        public ?string $file,
+        public ?string $dir,
+        public ?string $path,
         public int $lineno = 1,
     ) {}
 
