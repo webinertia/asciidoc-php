@@ -27,6 +27,6 @@ class Row
 
     public function hasCells(): bool
     {
-        return $this->cells !== [];
+        return [] !== $this->cells;
     }
 }

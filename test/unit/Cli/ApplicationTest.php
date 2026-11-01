@@ -84,9 +84,9 @@ final class ApplicationTest extends TestCase
     public function testRunConvertsFileSuccessfully(): void
     {
         $dir   = sys_get_temp_dir() . '/asciidoc-app-test-' . uniqid('', true);
-        mkdir($dir, 0755, true);
-        $input  = $dir . '/input.adoc';
-        $output = $dir . '/input.html';
+        mkdir($dir, 0o755, true);
+        $input  = "{$dir}/input.adoc";
+        $output = "{$dir}/input.html";
 
         file_put_contents($input, "= Hello\n\nWorld.\n");
 
@@ -115,9 +115,9 @@ final class ApplicationTest extends TestCase
     public function testRunNoHeaderFooterProducesEmbeddedOutput(): void
     {
         $dir   = sys_get_temp_dir() . '/asciidoc-app-test-' . uniqid('', true);
-        mkdir($dir, 0755, true);
-        $input  = $dir . '/input.adoc';
-        $output = $dir . '/input.html';
+        mkdir($dir, 0o755, true);
+        $input  = "{$dir}/input.adoc";
+        $output = "{$dir}/input.html";
 
         file_put_contents($input, "Hello world.\n");
 

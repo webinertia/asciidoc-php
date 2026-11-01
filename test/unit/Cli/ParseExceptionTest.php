@@ -7,6 +7,7 @@ namespace Webware\AsciidocPhp\Test\Cli;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\Cli\ParseException;
+use RuntimeException;
 
 #[CoversClass(ParseException::class)]
 final class ParseExceptionTest extends TestCase
@@ -14,7 +15,7 @@ final class ParseExceptionTest extends TestCase
     public function testIsRuntimeException(): void
     {
         $e = new ParseException('oops');
-        self::assertInstanceOf(\RuntimeException::class, $e);
+        self::assertInstanceOf(RuntimeException::class, $e);
     }
 
     public function testMessageIsPreserved(): void

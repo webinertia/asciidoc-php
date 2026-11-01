@@ -11,7 +11,7 @@ use Webware\AsciidocPhp\Document;
 use Webware\AsciidocPhp\Node\Table;
 use Webware\AsciidocPhp\Node\Table\Column;
 use Webware\AsciidocPhp\Node\Table\Row;
-use Webware\AsciidocPhp\Node\Table\Cell;
+
 
 #[CoversClass(Table::class)]
 final class TableTest extends TestCase

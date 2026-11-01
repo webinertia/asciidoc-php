@@ -44,7 +44,7 @@ final class DocumentStub implements DocumentInterface
 
     public function hasAttribute(string $name): bool
     {
-        return isset($this->attributes[$name]) && $this->attributes[$name] !== false;
+        return isset($this->attributes[$name]) && false !== $this->attributes[$name];
     }
 
     public function getAttribute(string $name, mixed $default = null): mixed
@@ -53,7 +53,7 @@ final class DocumentStub implements DocumentInterface
             return $default;
         }
         $value = $this->attributes[$name];
-        return $value === false ? $default : $value;
+        return false === $value ? $default : $value;
     }
 
     public function getSafeMode(): SafeMode

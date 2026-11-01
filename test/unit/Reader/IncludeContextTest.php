@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\Reader\Cursor;
 use Webware\AsciidocPhp\Reader\IncludeContext;
+use Error;
 
 #[CoversClass(IncludeContext::class)]
 final class IncludeContextTest extends TestCase
@@ -53,7 +54,7 @@ final class IncludeContextTest extends TestCase
     {
         $ctx = new IncludeContext(['a'], $this->makeCursor(), 1);
 
-        $this->expectException(\Error::class);
+        $this->expectException(Error::class);
         // @phpstan-ignore-next-line
         $ctx->depth = 99;
     }

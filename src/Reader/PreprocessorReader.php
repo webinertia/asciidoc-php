@@ -7,6 +7,7 @@ namespace Webware\AsciidocPhp\Reader;
 use Webware\AsciidocPhp\DocumentInterface;
 use Webware\AsciidocPhp\PathResolver;
 use Webware\AsciidocPhp\SafeMode;
+use SplStack;
 
 /**
  * Extends Reader to add AsciiDoc preprocessing:
@@ -53,10 +54,10 @@ class PreprocessorReader extends Reader
     // ── State ─────────────────────────────────────────────────────────────────
 
     /** @var \SplStack<IncludeContext> */
-    private \SplStack $includeStack;
+    private SplStack $includeStack;
 
     /** @var \SplStack<ConditionalContext> */
-    private \SplStack $conditionalStack;
+    private SplStack $conditionalStack;
 
     /** Running total of resolved includes (hard safety limit). */
     private int $includes = 0;
@@ -80,11 +81,11 @@ class PreprocessorReader extends Reader
         parent::__construct($data, $cursor);
 
         /** @var \SplStack<IncludeContext> $includeStack */
-        $includeStack           = new \SplStack();
+        $includeStack           = new SplStack();
         $this->includeStack     = $includeStack;
 
         /** @var \SplStack<ConditionalContext> $conditionalStack */
-        $conditionalStack       = new \SplStack();
+        $conditionalStack       = new SplStack();
         $this->conditionalStack = $conditionalStack;
 
         // When :skip-front-matter: is set, strip leading YAML front matter
@@ -116,7 +117,7 @@ class PreprocessorReader extends Reader
     {
         // The lines array is stored in reverse order — last element is first line.
         $first = end($this->lines);
-        if ($first !== '---') {
+        if ('---' !== $first) {
             return;
         }
 
@@ -128,14 +129,14 @@ class PreprocessorReader extends Reader
         while (true) {
             $line = array_pop($this->lines);
 
-            if ($line === null) {
+            if (null === $line) {
                 // EOF before closing delimiter — restore lines and bail out.
                 array_push($this->lines, ...$yamlLines);
                 $this->lines[] = '---';
                 return;
             }
 
-            if ($line === '---') {
+            if ('---' === $line) {
                 // Closing delimiter found — done.
                 break;
             }
@@ -156,8 +157,8 @@ class PreprocessorReader extends Reader
                 // Strip optional surrounding quotes from simple scalar strings.
                 if (
                     strlen($value) >= 2 &&
-                    (($value[0] === '"' && $value[-1] === '"') ||
-                     ($value[0] === "'" && $value[-1] === "'"))
+                    (('"' === $value[0] && '"' === $value[-1]) ||
+                     ("'" === $value[0] && "'" === $value[-1]))
                 ) {
                     $value = substr($value, 1, -1);
                 }
@@ -175,6 +176,7 @@ class PreprocessorReader extends Reader
      * Intercept each raw source line. Returns the (possibly same) line to
      * pass it to the parser, or null to silently consume it.
      */
+    #[\Override]
     protected function processLine(string $line): string|null
     {
         // In verbatim mode (inside a delimited listing/literal block) all
@@ -238,6 +240,7 @@ class PreprocessorReader extends Reader
      * When the current line stack is empty, check if we can pop an include
      * context and continue reading from the parent source.
      */
+    #[\Override]
     protected function onEof(): bool
     {
         if ($this->includeStack->isEmpty()) {
@@ -259,7 +262,7 @@ class PreprocessorReader extends Reader
         $trailingBang = $m[3];               // '!' or ''
         $value        = trim($m[4] ?? '');
 
-        if ($leadingBang === '!' || $trailingBang === '!') {
+        if ('!' === $leadingBang || '!' === $trailingBang) {
             $this->document->unsetAttribute($name);
         } else {
             // TODO (Tier 2): resolve inline attribute references in $value
@@ -285,7 +288,7 @@ class PreprocessorReader extends Reader
             $satisfying = !$satisfying;
         }
 
-        if ($body !== '') {
+        if ('' !== $body) {
             // Inline form: inject body as next line when satisfying.
             if ($satisfying) {
                 $this->unshiftLine($body);
@@ -358,7 +361,7 @@ class PreprocessorReader extends Reader
         $baseDir  = $this->document->getBaseDir();
 
         $resolved = PathResolver::resolve($target, $baseDir, $safeMode);
-        if ($resolved === null) {
+        if (null === $resolved) {
             return; // security: suppressed
         }
 
@@ -375,7 +378,7 @@ class PreprocessorReader extends Reader
         }
 
         $raw = @file_get_contents($resolved);
-        if ($raw === false) {
+        if (false === $raw) {
             return; // file not readable
         }
 
@@ -452,14 +455,14 @@ class PreprocessorReader extends Reader
      */
     private function parseIncludeAttrs(string $raw): array
     {
-        if ($raw === '') {
+        if ('' === $raw) {
             return [];
         }
 
         $attrs = [];
         foreach (explode(',', $raw) as $part) {
             $part = trim($part);
-            if ($part === '') {
+            if ('' === $part) {
                 continue;
             }
             if (str_contains($part, '=')) {
@@ -530,7 +533,7 @@ class PreprocessorReader extends Reader
 
         foreach (explode(';', $spec) as $part) {
             $part = trim($part);
-            if ($part === '') {
+            if ('' === $part) {
                 continue;
             }
             if (str_contains($part, '..')) {

@@ -56,13 +56,14 @@ final class Html5Converter extends AbstractConverter
 
     // ── ConverterInterface ────────────────────────────────────────────────────
 
+    #[\Override]
     public function convert(AbstractNode $node, string|null $transform = null, array $opts = []): string
     {
         $t = $transform ?? $node->getNodeName();
 
         // Document (full or embedded)
         if ($node instanceof Document) {
-            return $t === 'embedded'
+            return 'embedded' === $t
                 ? $this->convertEmbedded($node)
                 : $this->convertDocument($node);
         }
@@ -188,14 +189,14 @@ HTML;
 
         // Default: embed the stylesheet inline (matches Asciidoctor's default behaviour).
         $customSheet = $this->sa($doc, 'stylesheet', '');
-        if ($customSheet !== '') {
+        if ('' !== $customSheet) {
             // User specified a stylesheet name but not :linkcss: — link it.
             return $this->renderLinkedStylesheet($doc);
         }
 
         // Embed the bundled Asciidoctor default CSS inline.
         $css = @file_get_contents(self::DEFAULT_STYLESHEET);
-        if ($css === false) {
+        if (false === $css) {
             return '';
         }
 
@@ -206,7 +207,7 @@ HTML;
     {
         $stylesDir  = $this->sa($doc, 'stylesdir', '');
         $stylesheet = $this->sa($doc, 'stylesheet', 'asciidoctor.css');
-        $href       = $stylesDir !== '' ? "{$stylesDir}/{$stylesheet}" : $stylesheet;
+        $href       = '' !== $stylesDir ? "{$stylesDir}/{$stylesheet}" : $stylesheet;
         return "<link rel=\"stylesheet\" href=\"{$href}\">\n";
     }
 
@@ -227,7 +228,7 @@ HTML;
         }
         // Custom font list or the Asciidoctor default (Open Sans + Noto Serif + Droid Sans Mono).
         $fonts = $this->sa($doc, 'webfonts', 'Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700');
-        $href  = 'https://fonts.googleapis.com/css?family=' . $fonts;
+        $href  = "https://fonts.googleapis.com/css?family={$fonts}";
         return "<link rel=\"stylesheet\" href=\"{$href}\">\n";
     }
 
@@ -272,10 +273,10 @@ JS;
 
         $bodyClass = $doctype;
         $sideToc   = '';
-        if ($tocPlace === 'left') {
+        if ('left' === $tocPlace) {
             $bodyClass .= ' toc2 toc-left';
             $sideToc    = $this->renderSidebarToc($doc);
-        } elseif ($tocPlace === 'right') {
+        } elseif ('right' === $tocPlace) {
             $bodyClass .= ' toc2 toc-right';
             $sideToc    = $this->renderSidebarToc($doc);
         }
@@ -306,10 +307,10 @@ JS;
         $tocValue  = $this->sa($doc, 'toc', '');
         $placement = $this->sa($doc, 'toc-placement', '');
 
-        if ($tocValue === 'left'  || $placement === 'left') {
+        if ('left' === $tocValue  || 'left' === $placement) {
             return 'left';
         }
-        if ($tocValue === 'right' || $placement === 'right') {
+        if ('right' === $tocValue || 'right' === $placement) {
             return 'right';
         }
 
@@ -322,7 +323,7 @@ JS;
         $tocTitle = $this->sa($doc, 'toc-title', 'Table of Contents');
         $sections = $doc->getSections();
 
-        if ($sections === []) {
+        if ([] === $sections) {
             return '';
         }
 
@@ -336,25 +337,25 @@ JS;
         $parts = '';
 
         $docTitle = $doc->getDocTitle();
-        if ($docTitle !== null) {
+        if (null !== $docTitle) {
             $safe   = htmlspecialchars($docTitle, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
             $parts .= "<h1>{$safe}</h1>\n";
         }
 
         $author = $doc->getAuthor();
-        if ($author !== null) {
+        if (null !== $author) {
             $safe   = htmlspecialchars($author, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
             $parts .= "<div class=\"details\"><span class=\"author\">{$safe}</span></div>\n";
         }
 
         $revdate = $doc->getRevDate();
-        if ($revdate !== null) {
+        if (null !== $revdate) {
             $safe    = htmlspecialchars($revdate, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
             $parts  .= "<div class=\"details\"><span class=\"revdate\">{$safe}</span></div>\n";
         }
 
         // Sidebar TOC is injected inside #header (matches Asciidoctor structure).
-        if ($sideToc !== '') {
+        if ('' !== $sideToc) {
             $parts .= $sideToc;
         }
 
@@ -364,7 +365,7 @@ JS;
             $parts    .= $this->generateToc($doc, $tocLevels);
         }
 
-        if ($parts === '') {
+        if ('' === $parts) {
             return '';
         }
 
@@ -385,10 +386,10 @@ JS;
         $inner = '';
 
         $lastUpdateLabel = $doc->getAttribute('last-update-label', null);
-        if ($lastUpdateLabel !== null) {
+        if (null !== $lastUpdateLabel) {
             $date  = $this->sa($doc, 'revdate', $this->sa($doc, 'localdatetime', ''));
             $label = is_string($lastUpdateLabel) ? $lastUpdateLabel : '';
-            $inner .= htmlspecialchars($label . ' ' . $date, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+            $inner .= htmlspecialchars("{$label} {$date}", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
         }
 
         return "<div id=\"footer\">\n<div id=\"footer-text\">\n{$inner}\n</div>\n</div>\n";
@@ -420,10 +421,10 @@ JS;
 
         // Prepend section number when :sectnums: is active.
         if ($section->isNumbered()) {
-            $title = $section->getSectnum() . '. ' . $title;
+            $title = "{$section->getSectnum()}. {$title}";
         }
 
-        $idAttr = $id !== null ? " id=\"{$id}\"" : '';
+        $idAttr = null !== $id ? " id=\"{$id}\"" : '';
 
         $childHtml = '';
         foreach ($section->getBlocks() as $block) {
@@ -432,7 +433,7 @@ JS;
 
         // Only level-1 sections (sect1) get a <div class="sectionbody"> wrapper.
         // Deeper sections embed child content directly.
-        if ($level === 1) {
+        if (1 === $level) {
             return <<<HTML
 <div class="sect{$sectNum}">
 <h{$hLevel}{$idAttr}>{$title}</h{$hLevel}>
@@ -480,7 +481,7 @@ HTML;
         $isSource = $block->getStyle() === 'source';
         $lang     = $this->sa($block, 'language', '');
 
-        $codeClass = ($isSource && $lang !== '')
+        $codeClass = ($isSource && '' !== $lang)
             ? " class=\"language-{$lang} hljs\" data-lang=\"{$lang}\""
             : '';
 
@@ -515,7 +516,7 @@ HTML;
         $doc      = $block->getDocument();
         $iconMode = $doc->getAttribute('icons', null);
 
-        $iconCell = $iconMode === 'font'
+        $iconCell = 'font' === $iconMode
             ? "<td class=\"icon\">\n<i class=\"fa icon-{$cssClass}\" title=\"{$caption}\"></i>\n</td>\n"
             : "<td class=\"icon\">\n<div class=\"title\">{$caption}</div>\n</td>\n";
 
@@ -561,11 +562,11 @@ HTML;
         $citetitle   = $this->sa($block, 'citetitle', '');
 
         $cite = '';
-        if ($attribution !== '' || $citetitle !== '') {
-            $attribHtml = $attribution !== ''
+        if ('' !== $attribution || '' !== $citetitle) {
+            $attribHtml = '' !== $attribution
                 ? '&#8212; ' . htmlspecialchars($attribution, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false)
                 : '';
-            $citeHtml = $citetitle !== ''
+            $citeHtml = '' !== $citetitle
                 ? '<br><cite>' . htmlspecialchars($citetitle, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '</cite>'
                 : '';
             $cite = "<div class=\"attribution\">\n{$attribHtml}{$citeHtml}\n</div>\n";
@@ -591,11 +592,11 @@ HTML;
         $citetitle   = $this->sa($block, 'citetitle', '');
 
         $cite = '';
-        if ($attribution !== '' || $citetitle !== '') {
-            $attribHtml = $attribution !== ''
+        if ('' !== $attribution || '' !== $citetitle) {
+            $attribHtml = '' !== $attribution
                 ? '&#8212; ' . htmlspecialchars($attribution, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false)
                 : '';
-            $citeHtml = $citetitle !== ''
+            $citeHtml = '' !== $citetitle
                 ? '<br><cite>' . htmlspecialchars($citetitle, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '</cite>'
                 : '';
             $cite = "<div class=\"attribution\">\n{$attribHtml}{$citeHtml}\n</div>\n";
@@ -631,7 +632,7 @@ HTML;
     private function convertPass(Block $block): string
     {
         // Raw passthrough block — content is emitted verbatim.
-        return $block->content() . "\n";
+        return "{$block->content()}\n";
     }
 
     // ── Open ──────────────────────────────────────────────────────────────────
@@ -661,7 +662,7 @@ HTML;
         $hLevel = min($level + 1, 6);
         $id     = $block->getId();
         $title  = htmlspecialchars((string) $block->getTitle(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
-        $idAttr = $id !== null ? " id=\"{$id}\"" : '';
+        $idAttr = null !== $id ? " id=\"{$id}\"" : '';
 
         return "<h{$hLevel} class=\"float\"{$idAttr}>{$title}</h{$hLevel}>\n";
     }
@@ -697,7 +698,7 @@ HTML;
         $start = $this->ia($list, 'start', 1);
         $type  = $this->sa($list, 'list-style-type', 'arabic');
 
-        $startAttr = $start !== 1 ? " start=\"{$start}\"" : '';
+        $startAttr = 1 !== $start ? " start=\"{$start}\"" : '';
         $divClass  = "olist {$type}{$idRole}";
 
         $items = '';
@@ -730,7 +731,7 @@ HTML;
             $pairs .= "<dt class=\"hdlist1\">{$term}</dt>\n";
 
             $desc = $item->getText();
-            if ($desc !== '') {
+            if ('' !== $desc) {
                 $continuations = '';
                 foreach ($item->getBlocks() as $child) {
                     $continuations .= $child->convert();
@@ -775,11 +776,11 @@ HTML;
         $idRole  = $this->renderIdAndRole($table);
         $caption = $this->renderCaption($table, $this->sa($table->getDocument(), 'table-caption', 'Table'));
 
-        $stripeClass = $stripes !== '' ? " stripes-{$stripes}" : '';
+        $stripeClass = '' !== $stripes ? " stripes-{$stripes}" : '';
         // Asciidoctor uses the 'stretch' class for 100%-wide tables instead of an
         // inline style attribute.
-        $widthClass  = $width === 100 ? ' stretch' : '';
-        $widthStyle  = $width !== 100 ? " style=\"width:{$width}%\"" : '';
+        $widthClass  = 100 === $width ? ' stretch' : '';
+        $widthStyle  = 100 !== $width ? " style=\"width:{$width}%\"" : '';
         $tableClass  = "tableblock frame-{$frame} grid-{$grid}{$stripeClass}{$widthClass}{$idRole}";
 
         // Colgroup
@@ -787,12 +788,12 @@ HTML;
         $colCount  = count($columns);
         $colgroup  = '';
         if ($colCount > 0) {
-            $totalWidth = array_sum(array_map(fn($c) => $c->width, $columns));
-            if ($totalWidth === 0) {
+            $totalWidth = array_sum(array_map(static fn($c) => $c->width, $columns));
+            if (0 === $totalWidth) {
                 $totalWidth = $colCount;
             }
             foreach ($columns as $col) {
-                $pct      = $totalWidth > 0 ? floor(($col->width / $totalWidth) * 1000000) / 10000 : 0.0;
+                $pct      = $totalWidth > 0 ? floor(($col->width / $totalWidth) * 1_000_000) / 10_000 : 0.0;
                 $colgroup .= "<col style=\"width: {$pct}%;\">\n";
             }
         }
@@ -869,7 +870,7 @@ HTML;
         $altDefault = pathinfo($target, PATHINFO_FILENAME);
         // Positional attribute 0 is the alt text for image macros.
         $altFromPos = $this->sa($block, '0', '');
-        $altDefault = $altFromPos !== '' ? $altFromPos : $altDefault;
+        $altDefault = '' !== $altFromPos ? $altFromPos : $altDefault;
         $alt        = htmlspecialchars(
             $this->sa($block, 'alt', $altDefault),
             ENT_QUOTES | ENT_SUBSTITUTE,
@@ -883,12 +884,12 @@ HTML;
         $idRole  = $this->renderIdAndRole($block);
         $title   = $this->renderTitle($block);
 
-        $widthAttr  = $width !== '' ? " width=\"{$width}\"" : '';
-        $heightAttr = $height !== '' ? " height=\"{$height}\"" : '';
+        $widthAttr  = '' !== $width ? " width=\"{$width}\"" : '';
+        $heightAttr = '' !== $height ? " height=\"{$height}\"" : '';
 
         $img = "<img src=\"{$target}\" alt=\"{$alt}\"{$widthAttr}{$heightAttr}>";
 
-        if ($link !== '') {
+        if ('' !== $link) {
             $img = "<a class=\"image\" href=\"{$link}\">{$img}</a>";
         }
 
@@ -916,7 +917,7 @@ HTML;
         $tocTitle = $this->sa($doc, 'toc-title', 'Table of Contents');
         $sections = $doc->getSections();
 
-        if ($sections === []) {
+        if ([] === $sections) {
             return '';
         }
 
@@ -937,16 +938,16 @@ HTML;
             $title    = $section->applySubstitutions($rawTitle, self::TITLE_SUBS);
 
             if ($section->isNumbered()) {
-                $title = $section->getSectnum() . '. ' . $title;
+                $title = "{$section->getSectnum()}. {$title}";
             }
 
-            $href  = $id !== '' ? " href=\"#{$id}\"" : '';
+            $href  = '' !== $id ? " href=\"#{$id}\"" : '';
             $html .= "<li><a{$href}>{$title}</a>";
 
             if ($level < $maxLevel) {
                 $children = $section->getSections();
-                if ($children !== []) {
-                    $html .= "\n" . $this->renderTocLevel($children, $level + 1, $maxLevel);
+                if ([] !== $children) {
+                    $html .= "\n{$this->renderTocLevel($children, $level + 1, $maxLevel)}";
                 }
             }
 
@@ -978,7 +979,7 @@ HTML;
         $type = $this->sa($inline, 'type', $inline->getContext());
         $tags  = self::QUOTE_TAGS[$type] ?? null;
 
-        if ($tags === null) {
+        if (null === $tags) {
             return $inline->getText();
         }
 
@@ -986,7 +987,7 @@ HTML;
         $text = $inline->getText();
         $role = $this->sa($inline, 'role', '');
 
-        if ($role !== '') {
+        if ('' !== $role) {
             return "<span class=\"{$role}\">{$open}{$text}{$close}</span>";
         }
 
@@ -1011,13 +1012,13 @@ HTML;
 
     private function renderXref(Inline $inline, string $refid, string $text): string
     {
-        if ($text === '') {
+        if ('' === $text) {
             $doc     = $inline->getDocument();
             $refNode = $doc->resolveId($refid);
             if ($refNode instanceof AbstractBlock) {
                 $text = (string) $refNode->getTitle();
             }
-            if ($text === '') {
+            if ('' === $text) {
                 $text = "[{$refid}]";
             }
         }
@@ -1027,9 +1028,9 @@ HTML;
     private function renderLink(Inline $inline, string $target, string $text): string
     {
         $window     = $this->sa($inline, 'window', '');
-        $targetAttr = $window !== '' ? " target=\"{$window}\"" : '';
-        $relAttr    = $window === '_blank' ? ' rel="noopener"' : '';
-        $label = $text !== '' ? $text : $target;
+        $targetAttr = '' !== $window ? " target=\"{$window}\"" : '';
+        $relAttr    = '_blank' === $window ? ' rel="noopener"' : '';
+        $label = '' !== $text ? $text : $target;
         return "<a href=\"{$target}\"{$targetAttr}{$relAttr}>{$label}</a>";
     }
 
@@ -1061,7 +1062,7 @@ HTML;
     {
         $keys  = array_map('trim', explode('+', $inline->getText()));
         $html  = implode('+', array_map(
-            fn(string $k): string => '<kbd>' . htmlspecialchars($k, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '</kbd>',
+            static fn(string $k): string => '<kbd>' . htmlspecialchars($k, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '</kbd>',
             $keys,
         ));
         return "<kbd class=\"keyseq\">{$html}</kbd>";
@@ -1080,12 +1081,12 @@ HTML;
         $id   = $block->getId();
         $role = $block->getAttribute('role', null);
 
-        if ($role !== null && is_string($role) && $role !== '') {
+        if (null !== $role && is_string($role) && '' !== $role) {
             $parts[] = $role;
         }
 
-        $idAttr  = $id !== null ? " id=\"{$id}\"" : '';
-        $classes = $parts !== [] ? (' ' . implode(' ', $parts)) : '';
+        $idAttr  = null !== $id ? " id=\"{$id}\"" : '';
+        $classes = [] !== $parts ? (' ' . implode(' ', $parts)) : '';
 
         // We embed the id attribute differently — it belongs in the outer div tag.
         // Return a combined string that can be appended after the base class.
@@ -1099,7 +1100,7 @@ HTML;
     private function renderTitle(AbstractBlock $block): string
     {
         $title = $block->getTitle();
-        if ($title === null || $title === '') {
+        if (null === $title || '' === $title) {
             return '';
         }
         $safe = htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
@@ -1113,7 +1114,7 @@ HTML;
     private function renderCaption(AbstractBlock $block, string $captionPrefix): string
     {
         $title = $block->getTitle();
-        if ($title === null || $title === '') {
+        if (null === $title || '' === $title) {
             return '';
         }
 

@@ -103,12 +103,12 @@ class Table extends AbstractBlock
 
     public function hasHeader(): bool
     {
-        return $this->headRows !== [];
+        return [] !== $this->headRows;
     }
 
     public function hasFooter(): bool
     {
-        return $this->footRows !== [];
+        return [] !== $this->footRows;
     }
 
     // ── Format ────────────────────────────────────────────────────────────────

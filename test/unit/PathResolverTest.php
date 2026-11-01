@@ -54,13 +54,13 @@ final class PathResolverTest extends TestCase
     public function testUnsafeModeExpandsHomeDir(): void
     {
         $home = getenv('HOME');
-        if ($home === false || $home === '') {
+        if (false === $home || '' === $home) {
             $this->markTestSkipped('HOME env var not set');
         }
 
         $resolved = PathResolver::resolve('~/docs/file.adoc', null, SafeMode::UNSAFE);
 
-        $this->assertSame($home . '/docs/file.adoc', $resolved);
+        $this->assertSame("{$home}/docs/file.adoc", $resolved);
     }
 
     public function testUnsafeModeExpandsEnvVar(): void
@@ -80,7 +80,7 @@ final class PathResolverTest extends TestCase
         $resolved = PathResolver::resolve('~/file.adoc', null, SafeMode::SAFE);
 
         // Either null (if realpath fails) or the literal ~ path — never the expanded home
-        if ($resolved !== null) {
+        if (null !== $resolved) {
             $home = getenv('HOME');
             $this->assertStringNotContainsString((string) $home, $resolved);
         }
@@ -105,7 +105,7 @@ final class PathResolverTest extends TestCase
     public function testSafeModeRejectsPathOutsideBaseDir(): void
     {
         $baseDir = sys_get_temp_dir() . '/pr_base_' . uniqid();
-        mkdir($baseDir, 0700, true);
+        mkdir($baseDir, 0o700, true);
         $outsideFile = sys_get_temp_dir() . '/pr_outside_' . uniqid() . '.adoc';
         file_put_contents($outsideFile, '');
 
@@ -121,18 +121,18 @@ final class PathResolverTest extends TestCase
     public function testSafeModeRejectsPathTraversal(): void
     {
         $baseDir = sys_get_temp_dir() . '/pr_traversal_' . uniqid();
-        mkdir($baseDir . '/sub', 0700, true);
+        mkdir("{$baseDir}/sub", 0o700, true);
         $outsideFile = sys_get_temp_dir() . '/pr_victim_' . uniqid() . '.adoc';
         file_put_contents($outsideFile, '');
 
         try {
             // Attempt ../victim.adoc from sub/ — should be rejected
             $target   = '../' . basename($outsideFile);
-            $resolved = PathResolver::resolve($target, $baseDir . '/sub', SafeMode::SAFE);
+            $resolved = PathResolver::resolve($target, "{$baseDir}/sub", SafeMode::SAFE);
             $this->assertNull($resolved);
         } finally {
             unlink($outsideFile);
-            rmdir($baseDir . '/sub');
+            rmdir("{$baseDir}/sub");
             rmdir($baseDir);
         }
     }
@@ -154,7 +154,7 @@ final class PathResolverTest extends TestCase
     public function testServerModeRejectsPathOutsideBaseDir(): void
     {
         $baseDir = sys_get_temp_dir() . '/pr_srv_base_' . uniqid();
-        mkdir($baseDir, 0700, true);
+        mkdir($baseDir, 0o700, true);
         $outsideFile = sys_get_temp_dir() . '/pr_srv_outside_' . uniqid() . '.adoc';
         file_put_contents($outsideFile, '');
 

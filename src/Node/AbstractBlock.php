@@ -83,7 +83,7 @@ abstract class AbstractBlock extends AbstractNode
 
     public function hasBlocks(): bool
     {
-        return $this->blocks !== [];
+        return [] !== $this->blocks;
     }
 
     // ── Content model ─────────────────────────────────────────────────────────
@@ -205,7 +205,7 @@ abstract class AbstractBlock extends AbstractNode
      */
     public function content(): string
     {
-        if ($this->contentModel === ContentModel::COMPOUND) {
+        if (ContentModel::COMPOUND === $this->contentModel) {
             $html = '';
             foreach ($this->blocks as $block) {
                 $html .= $block->convert();
@@ -278,6 +278,6 @@ abstract class AbstractBlock extends AbstractNode
      */
     public function hasOption(string $name): bool
     {
-        return $this->hasAttribute($name . '-option');
+        return $this->hasAttribute("{$name}-option");
     }
 }

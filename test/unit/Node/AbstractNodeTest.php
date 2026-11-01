@@ -10,7 +10,7 @@ use Webware\AsciidocPhp\ContentModel;
 use Webware\AsciidocPhp\Document;
 use Webware\AsciidocPhp\Node\AbstractNode;
 use Webware\AsciidocPhp\Node\Block;
-use Webware\AsciidocPhp\Node\Section;
+
 
 /**
  * Tests for AbstractNode — exercised through the concrete Block class,

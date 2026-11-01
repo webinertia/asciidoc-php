@@ -50,6 +50,12 @@ count = 1
 
 [[issues]]
 file = "src/Cli/Invoker.php"
+code = "non-existent-use-import"
+message = 'Imported class, interface, trait, or enum `Async\TaskGroup` does not exist.'
+count = 1
+
+[[issues]]
+file = "src/Cli/Invoker.php"
 code = "unhandled-thrown-type"
 message = 'Potentially unhandled exception `RuntimeException` in `Webware\AsciidocPhp\Cli\Invoker::convertFile`.'
 count = 1
@@ -260,12 +266,6 @@ count = 1
 
 [[issues]]
 file = "src/Cli/Options.php"
-code = "redundant-cast"
-message = "Redundant cast to `(string)`: the expression already has this type."
-count = 1
-
-[[issues]]
-file = "src/Cli/Options.php"
 code = "redundant-docblock-type"
 message = "Redundant docblock type for variable `$opts`."
 count = 1
@@ -280,12 +280,6 @@ count = 1
 file = "src/Converter/AbstractConverter.php"
 code = "missing-api-or-internal"
 message = 'Abstract class `Webware\AsciidocPhp\Converter\AbstractConverter` is missing an `@api` or `@internal` annotation.'
-count = 1
-
-[[issues]]
-file = "src/Converter/AbstractConverter.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Converter\AbstractConverter::handles`.'
 count = 1
 
 [[issues]]
@@ -326,12 +320,6 @@ count = 1
 
 [[issues]]
 file = "src/Converter/Html5Converter.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Converter\Html5Converter::convert`.'
-count = 1
-
-[[issues]]
-file = "src/Converter/Html5Converter.php"
 code = "missing-parameter-type"
 message = "Parameter `$c` is missing a type hint."
 count = 1
@@ -364,48 +352,6 @@ count = 1
 file = "src/Document.php"
 code = "class-must-be-final"
 message = 'Class `Webware\AsciidocPhp\Document` should be declared `final`.'
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Document::convert`.'
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Document::getAttribute`.'
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Document::getBaseDir`.'
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Document::getSafeMode`.'
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Document::hasAttribute`.'
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Document::setAttribute`.'
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Document::unsetAttribute`.'
 count = 1
 
 [[issues]]
@@ -463,27 +409,9 @@ message = 'Class `Webware\AsciidocPhp\Node\Block` should be declared `final`.'
 count = 1
 
 [[issues]]
-file = "src/Node/Block.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Node\Block::content`.'
-count = 1
-
-[[issues]]
 file = "src/Node/Inline.php"
 code = "class-must-be-final"
 message = 'Class `Webware\AsciidocPhp\Node\Inline` should be declared `final`.'
-count = 1
-
-[[issues]]
-file = "src/Node/Inline.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Node\Inline::isBlock`.'
-count = 1
-
-[[issues]]
-file = "src/Node/Inline.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Node\Inline::isInline`.'
 count = 1
 
 [[issues]]
@@ -496,12 +424,6 @@ count = 1
 file = "src/Node/Section.php"
 code = "class-must-be-final"
 message = 'Class `Webware\AsciidocPhp\Node\Section` should be declared `final`.'
-count = 1
-
-[[issues]]
-file = "src/Node/Section.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Node\Section::getTitle`.'
 count = 1
 
 [[issues]]
@@ -532,18 +454,6 @@ count = 1
 file = "src/Node/Table/Row.php"
 code = "class-must-be-final"
 message = 'Class `Webware\AsciidocPhp\Node\Table\Row` should be declared `final`.'
-count = 1
-
-[[issues]]
-file = "src/NullConverter.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\NullConverter::convert`.'
-count = 1
-
-[[issues]]
-file = "src/NullConverter.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\NullConverter::handles`.'
 count = 1
 
 [[issues]]
@@ -758,12 +668,6 @@ count = 1
 
 [[issues]]
 file = "src/Parser/Parser.php"
-code = "redundant-cast"
-message = "Redundant cast to `(string)`: the expression already has this type."
-count = 1
-
-[[issues]]
-file = "src/Parser/Parser.php"
 code = "redundant-null-coalesce"
 message = "Redundant null coalesce: left-hand side can never be `null` or undefined."
 count = 2
@@ -820,18 +724,6 @@ count = 1
 file = "src/Reader/PreprocessorReader.php"
 code = "class-must-be-final"
 message = 'Class `Webware\AsciidocPhp\Reader\PreprocessorReader` should be declared `final`.'
-count = 1
-
-[[issues]]
-file = "src/Reader/PreprocessorReader.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Reader\PreprocessorReader::onEof`.'
-count = 1
-
-[[issues]]
-file = "src/Reader/PreprocessorReader.php"
-code = "missing-override-attribute"
-message = 'Missing `#[Override]` attribute on overriding method `Webware\AsciidocPhp\Reader\PreprocessorReader::processLine`.'
 count = 1
 
 [[issues]]

@@ -49,7 +49,7 @@ class AsciiList extends AbstractBlock
 
     public function hasItems(): bool
     {
-        return $this->items !== [];
+        return [] !== $this->items;
     }
 
     // ── List type helpers ─────────────────────────────────────────────────────
@@ -59,6 +59,6 @@ class AsciiList extends AbstractBlock
      */
     public function isOutline(): bool
     {
-        return $this->context === 'ulist' || $this->context === 'olist';
+        return 'ulist' === $this->context || 'olist' === $this->context;
     }
 }

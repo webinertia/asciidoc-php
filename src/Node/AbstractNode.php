@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Node;
 
-use Webware\AsciidocPhp\ContentModel;
-use Webware\AsciidocPhp\Converter\ConverterInterface;
+
+
 use Webware\AsciidocPhp\Document;
-use Webware\AsciidocPhp\Reader\Cursor;
+
 use Webware\AsciidocPhp\Substitutor\SubstitutorsTrait;
 
 /**
@@ -120,7 +120,7 @@ abstract class AbstractNode
     public function getRoles(): array
     {
         $role = $this->getAttribute('role', '');
-        if (!is_string($role) || $role === '') {
+        if (!is_string($role) || '' === $role) {
             return [];
         }
         /** @var list<string> */

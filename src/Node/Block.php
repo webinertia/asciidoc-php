@@ -30,7 +30,7 @@ class Block extends AbstractBlock
         string $nodeName = '',
     ) {
         parent::__construct(
-            $nodeName !== '' ? $nodeName : $context,
+            '' !== $nodeName ? $nodeName : $context,
             $context,
             $document,
             $parent,
@@ -72,12 +72,13 @@ class Block extends AbstractBlock
      * - RAW:      join lines with newline, no subs
      * - EMPTY:    empty string
      */
+    #[\Override]
     public function content(): string
     {
         return match ($this->contentModel) {
             ContentModel::COMPOUND => parent::content(),
-            ContentModel::SIMPLE   => $this->processLines($this->subs !== [] ? $this->subs : self::NORMAL_SUBS),
-            ContentModel::VERBATIM => $this->processLines($this->subs !== [] ? $this->subs : self::VERBATIM_SUBS),
+            ContentModel::SIMPLE   => $this->processLines([] !== $this->subs ? $this->subs : self::NORMAL_SUBS),
+            ContentModel::VERBATIM => $this->processLines([] !== $this->subs ? $this->subs : self::VERBATIM_SUBS),
             ContentModel::RAW      => implode("\n", $this->lines),
             ContentModel::EMPTY    => '',
         };
@@ -86,7 +87,7 @@ class Block extends AbstractBlock
     /** @param list<string> $subs */
     private function processLines(array $subs): string
     {
-        if ($this->lines === []) {
+        if ([] === $this->lines) {
             return '';
         }
         return implode("\n", $this->applySubstitutionsList($this->lines, $subs));

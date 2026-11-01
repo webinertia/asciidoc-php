@@ -8,6 +8,7 @@ use Webware\AsciidocPhp\Converter\Html5Converter;
 use Webware\AsciidocPhp\Parser\Parser;
 use Webware\AsciidocPhp\Reader\Cursor;
 use Webware\AsciidocPhp\Reader\PreprocessorReader;
+use RuntimeException;
 
 /**
  * High-level façade for AsciiDoc conversion.
@@ -54,13 +55,13 @@ final class Asciidoc
     public static function convertFile(string $path, array $opts = []): string
     {
         $realPath = realpath($path);
-        if ($realPath === false || !is_file($realPath)) {
-            throw new \RuntimeException("File not found or unreadable: {$path}");
+        if (false === $realPath || !is_file($realPath)) {
+            throw new RuntimeException("File not found or unreadable: {$path}");
         }
 
         $source = file_get_contents($realPath);
-        if ($source === false) {
-            throw new \RuntimeException("Failed to read file: {$realPath}");
+        if (false === $source) {
+            throw new RuntimeException("Failed to read file: {$realPath}");
         }
 
         // Default base_dir to the directory of the file.

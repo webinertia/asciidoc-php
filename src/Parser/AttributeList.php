@@ -44,7 +44,7 @@ final class AttributeList
     {
         $str = trim($str);
 
-        if ($str === '') {
+        if ('' === $str) {
             return [];
         }
 
@@ -53,11 +53,11 @@ final class AttributeList
         $positionalIdx  = 0;
 
         // ── Step 1: Shorthand prefix (#id, .role, %option) ────────────────────
-        if (strlen($str) > 0 && ($str[0] === '#' || $str[0] === '.' || $str[0] === '%')) {
+        if (strlen($str) > 0 && ('#' === $str[0] || '.' === $str[0] || '%' === $str[0])) {
             [$attrs, $positionalIdx, $str] = self::parseShorthand($str, $attrs, $positionalIdx);
         }
 
-        if ($str === '') {
+        if ('' === $str) {
             return $attrs;
         }
 
@@ -67,7 +67,7 @@ final class AttributeList
         // ── Step 3: Classify each token ───────────────────────────────────────
         foreach ($tokens as $token) {
             $token = trim($token);
-            if ($token === '') {
+            if ('' === $token) {
                 $positionalIdx++;
                 continue;
             }
@@ -103,7 +103,7 @@ final class AttributeList
     {
         foreach ($parsed as $key => $value) {
             if (is_int($key)) {
-                if ($key === 0 && !isset($blockAttrs['style'])) {
+                if (0 === $key && !isset($blockAttrs['style'])) {
                     $blockAttrs['style'] = $value;
                 }
                 // Other positional indices are stored as-is for block-specific use
@@ -132,32 +132,32 @@ final class AttributeList
         $pos     = 0;
         $len     = strlen($str);
 
-        while ($pos < $len && ($str[$pos] === '#' || $str[$pos] === '.' || $str[$pos] === '%')) {
+        while ($pos < $len && ('#' === $str[$pos] || '.' === $str[$pos] || '%' === $str[$pos])) {
             $sigil = $str[$pos];
             $pos++;
             $start = $pos;
 
             // Collect token characters: stop at # . % , or end
-            while ($pos < $len && $str[$pos] !== '#' && $str[$pos] !== '.' && $str[$pos] !== '%' && $str[$pos] !== ',') {
+            while ($pos < $len && '#' !== $str[$pos] && '.' !== $str[$pos] && '%' !== $str[$pos] && ',' !== $str[$pos]) {
                 $pos++;
             }
 
             $token = substr($str, $start, $pos - $start);
 
-            if ($token === '') {
+            if ('' === $token) {
                 continue;
             }
 
             match ($sigil) {
                 '#' => $attrs['id']                    = $token,
                 '.' => $roles[]                        = $token,
-                '%' => $attrs[$token . '-option']      = '',
+                '%' => $attrs["{$token}-option"]      = '',
             };
         }
 
-        if ($roles !== []) {
+        if ([] !== $roles) {
             $existingRole = isset($attrs['role']) && is_string($attrs['role']) ? $attrs['role'] : '';
-            $combined     = $existingRole !== ''
+            $combined     = '' !== $existingRole
                 ? $existingRole . ' ' . implode(' ', $roles)
                 : implode(' ', $roles);
             $attrs['role'] = $combined;
@@ -184,13 +184,13 @@ final class AttributeList
         for ($i = 0; $i < $len; $i++) {
             $ch = $str[$i];
 
-            if ($ch === '"' && !$inQuote) {
+            if ('"' === $ch && !$inQuote) {
                 $inQuote  = true;
                 $current .= $ch;
-            } elseif ($ch === '"' && $inQuote) {
+            } elseif ('"' === $ch && $inQuote) {
                 $inQuote  = false;
                 $current .= $ch;
-            } elseif ($ch === ',' && !$inQuote) {
+            } elseif (',' === $ch && !$inQuote) {
                 $tokens[]  = $current;
                 $current   = '';
             } else {

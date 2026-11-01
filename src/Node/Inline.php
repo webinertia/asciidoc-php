@@ -24,7 +24,7 @@ class Inline extends AbstractNode
         private string $text,
         private string|null $target = null,
     ) {
-        parent::__construct('inline_' . $type, $type, $document, null);
+        parent::__construct("inline_{$type}", $type, $document, null);
     }
 
     // ── Accessors ─────────────────────────────────────────────────────────────
@@ -51,11 +51,13 @@ class Inline extends AbstractNode
 
     // ── AbstractNode overrides ────────────────────────────────────────────────
 
+    #[\Override]
     public function isInline(): bool
     {
         return true;
     }
 
+    #[\Override]
     public function isBlock(): bool
     {
         return false;

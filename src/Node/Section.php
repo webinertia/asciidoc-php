@@ -37,7 +37,7 @@ class Section extends AbstractBlock
         AbstractBlock|null $parent,
         int $level = 1,
     ) {
-        $sectname = $level === 0 ? 'section' : 'sect' . $level;
+        $sectname = 0 === $level ? 'section' : "sect{$level}";
 
         parent::__construct('section', 'section', $document, $parent, ContentModel::COMPOUND);
 
@@ -105,11 +105,11 @@ class Section extends AbstractBlock
      */
     public function getSectnum(string $delimiter = '.', bool $dropTitle = false): string
     {
-        if ($this->number === null) {
+        if (null === $this->number) {
             return '';
         }
 
-        if ($dropTitle && $this->level === 1) {
+        if ($dropTitle && 1 === $this->level) {
             return '';
         }
 
@@ -119,6 +119,7 @@ class Section extends AbstractBlock
     /**
      * Return the section title string (never null for a well-formed section).
      */
+    #[\Override]
     public function getTitle(): string|null
     {
         return $this->title;

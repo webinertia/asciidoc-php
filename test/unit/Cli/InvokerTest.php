@@ -20,26 +20,26 @@ final class InvokerTest extends TestCase
     protected function setUp(): void
     {
         $this->tmpDir = sys_get_temp_dir() . '/asciidoc-invoker-' . uniqid('', true);
-        mkdir($this->tmpDir, 0755, true);
+        mkdir($this->tmpDir, 0o755, true);
     }
 
     protected function tearDown(): void
     {
         // Remove any files created during the test.
-        $files = glob($this->tmpDir . '/*') ?: [];
+        $files = glob("{$this->tmpDir}/*") ?: [];
         foreach ($files as $f) {
             if (is_file($f)) {
                 unlink($f);
             }
         }
         // Remove sub-directories (destination-dir tests).
-        $subdirs = glob($this->tmpDir . '/*/*') ?: [];
+        $subdirs = glob("{$this->tmpDir}/*/*") ?: [];
         foreach ($subdirs as $f) {
             if (is_file($f)) {
                 unlink($f);
             }
         }
-        $subdirDirs = glob($this->tmpDir . '/*') ?: [];
+        $subdirDirs = glob("{$this->tmpDir}/*") ?: [];
         foreach ($subdirDirs as $d) {
             if (is_dir($d)) {
                 rmdir($d);
@@ -52,7 +52,7 @@ final class InvokerTest extends TestCase
 
     private function writeAdoc(string $name, string $contents = "= Hello\n\nWorld.\n"): string
     {
-        $path = $this->tmpDir . '/' . $name;
+        $path = "{$this->tmpDir}/{$name}";
         file_put_contents($path, $contents);
         return $path;
     }
@@ -118,7 +118,7 @@ final class InvokerTest extends TestCase
 
         $code = $invoker->invoke();
 
-        $expected = $this->tmpDir . '/guide.html';
+        $expected = "{$this->tmpDir}/guide.html";
         self::assertSame(0, $code);
         self::assertFileExists($expected);
         self::assertStringContainsString('Hello', (string) file_get_contents($expected));
@@ -129,7 +129,7 @@ final class InvokerTest extends TestCase
     public function testInvokeWritesToExplicitOutputFile(): void
     {
         $input  = $this->writeAdoc('doc.adoc');
-        $output = $this->tmpDir . '/custom.html';
+        $output = "{$this->tmpDir}/custom.html";
 
         $opts    = $this->makeOptions(inputFiles: [$input], outputFile: $output);
         $invoker = new Invoker($opts);
@@ -145,7 +145,7 @@ final class InvokerTest extends TestCase
     public function testInvokeWritesToDestinationDir(): void
     {
         $input  = $this->writeAdoc('page.adoc');
-        $destDir = $this->tmpDir . '/html';
+        $destDir = "{$this->tmpDir}/html";
 
         $opts    = $this->makeOptions(inputFiles: [$input], destinationDir: $destDir);
         $invoker = new Invoker($opts);
@@ -153,7 +153,7 @@ final class InvokerTest extends TestCase
         $code = $invoker->invoke();
 
         self::assertSame(0, $code);
-        self::assertFileExists($destDir . '/page.html');
+        self::assertFileExists("{$destDir}/page.html");
     }
 
     // ── invoke() — no-header-footer ───────────────────────────────────────────
@@ -161,7 +161,7 @@ final class InvokerTest extends TestCase
     public function testInvokeNoHeaderFooterProducesEmbeddedHtml(): void
     {
         $input  = $this->writeAdoc('frag.adoc', "Hello.\n");
-        $output = $this->tmpDir . '/frag.html';
+        $output = "{$this->tmpDir}/frag.html";
 
         $opts    = $this->makeOptions(inputFiles: [$input], outputFile: $output, noHeaderFooter: true);
         $invoker = new Invoker($opts);
@@ -186,8 +186,8 @@ final class InvokerTest extends TestCase
         $code = $invoker->invoke();
 
         self::assertSame(0, $code);
-        self::assertFileExists($this->tmpDir . '/a.html');
-        self::assertFileExists($this->tmpDir . '/b.html');
+        self::assertFileExists("{$this->tmpDir}/a.html");
+        self::assertFileExists("{$this->tmpDir}/b.html");
     }
 
     // ── invoke() — error handling ─────────────────────────────────────────────
@@ -206,7 +206,7 @@ final class InvokerTest extends TestCase
         $invoker = new Invoker($opts);
         self::assertSame(1, $invoker->invoke());
         // The good file should still have been converted.
-        self::assertFileExists($this->tmpDir . '/good.html');
+        self::assertFileExists("{$this->tmpDir}/good.html");
     }
 
     // ── invoke() — async / TrueAsync TaskGroup ────────────────────────────────
@@ -230,9 +230,9 @@ final class InvokerTest extends TestCase
         $code = $invoker->invoke();
 
         self::assertSame(0, $code);
-        self::assertFileExists($this->tmpDir . '/ca.html');
-        self::assertFileExists($this->tmpDir . '/cb.html');
-        self::assertFileExists($this->tmpDir . '/cc.html');
+        self::assertFileExists("{$this->tmpDir}/ca.html");
+        self::assertFileExists("{$this->tmpDir}/cb.html");
+        self::assertFileExists("{$this->tmpDir}/cc.html");
     }
 
     /**
@@ -253,8 +253,8 @@ final class InvokerTest extends TestCase
         $code = $invoker->invoke();
 
         self::assertSame(1, $code);
-        self::assertFileExists($this->tmpDir . '/cg1.html');
-        self::assertFileExists($this->tmpDir . '/cg2.html');
+        self::assertFileExists("{$this->tmpDir}/cg1.html");
+        self::assertFileExists("{$this->tmpDir}/cg2.html");
     }
 
     /**
@@ -274,8 +274,8 @@ final class InvokerTest extends TestCase
         $code = $invoker->invoke();
 
         self::assertSame(0, $code);
-        self::assertFileExists($this->tmpDir . '/la.html');
-        self::assertFileExists($this->tmpDir . '/lb.html');
-        self::assertFileExists($this->tmpDir . '/lc.html');
+        self::assertFileExists("{$this->tmpDir}/la.html");
+        self::assertFileExists("{$this->tmpDir}/lb.html");
+        self::assertFileExists("{$this->tmpDir}/lc.html");
     }
 }

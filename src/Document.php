@@ -7,7 +7,7 @@ namespace Webware\AsciidocPhp;
 use Webware\AsciidocPhp\Converter\ConverterInterface;
 use Webware\AsciidocPhp\Node\AbstractBlock;
 use Webware\AsciidocPhp\Node\AbstractNode;
-use Webware\AsciidocPhp\Reader\Cursor;
+
 
 /**
  * The root AST node and orchestrator for a single AsciiDoc conversion.
@@ -101,7 +101,7 @@ class Document extends AbstractBlock implements DocumentInterface
         /** @var array<string, string|false> $initialAttrs */
         $initialAttrs = is_array($options['attributes'] ?? null) ? $options['attributes'] : [];
         foreach ($initialAttrs as $name => $value) {
-            if ($value === false) {
+            if (false === $value) {
                 $this->unsetAttribute($name);
             } else {
                 $this->setAttribute($name, $value);
@@ -111,6 +111,7 @@ class Document extends AbstractBlock implements DocumentInterface
 
     // ── DocumentInterface ─────────────────────────────────────────────────────
 
+    #[\Override]
     public function setAttribute(string $name, mixed $value, bool $overridable = true): void
     {
         if (!$overridable) {
@@ -121,6 +122,7 @@ class Document extends AbstractBlock implements DocumentInterface
         $this->docAttributes[$name] = is_string($value) ? $value : '';
     }
 
+    #[\Override]
     public function unsetAttribute(string $name): void
     {
         if (in_array($name, $this->lockedAttributes, true)) {
@@ -129,26 +131,30 @@ class Document extends AbstractBlock implements DocumentInterface
         $this->docAttributes[$name] = false;
     }
 
+    #[\Override]
     public function hasAttribute(string $name): bool
     {
         return isset($this->docAttributes[$name])
-            && $this->docAttributes[$name] !== false;
+            && false !== $this->docAttributes[$name];
     }
 
+    #[\Override]
     public function getAttribute(string $name, mixed $default = null): mixed
     {
         if (!array_key_exists($name, $this->docAttributes)) {
             return $default;
         }
         $value = $this->docAttributes[$name];
-        return $value === false ? $default : $value;
+        return false === $value ? $default : $value;
     }
 
+    #[\Override]
     public function getSafeMode(): SafeMode
     {
         return $this->safe;
     }
 
+    #[\Override]
     public function getBaseDir(): string|null
     {
         return $this->baseDir;
@@ -176,20 +182,20 @@ class Document extends AbstractBlock implements DocumentInterface
      */
     public function register(string $type, mixed $data): void
     {
-        if ($type === 'ids' && $data instanceof AbstractNode) {
+        if ('ids' === $type && $data instanceof AbstractNode) {
             $id = $data->getId();
-            if ($id !== null) {
+            if (null !== $id) {
                 $this->catalog['ids'][$id] = $data;
             }
-        } elseif ($type === 'refs' && $data instanceof AbstractNode) {
+        } elseif ('refs' === $type && $data instanceof AbstractNode) {
             $id = $data->getId();
-            if ($id !== null) {
+            if (null !== $id) {
                 $this->catalog['refs'][$id] = $data;
             }
-        } elseif ($type === 'footnotes' && is_array($data)) {
+        } elseif ('footnotes' === $type && is_array($data)) {
             /** @var array<string, mixed> $data */
             $this->catalog['footnotes'][] = $data;
-        } elseif ($type === 'images' && is_string($data)) {
+        } elseif ('images' === $type && is_string($data)) {
             $this->catalog['images'][] = $data;
         }
     }
@@ -227,6 +233,7 @@ class Document extends AbstractBlock implements DocumentInterface
     /**
      * Convert the document to its output representation.
      */
+    #[\Override]
     public function convert(): string
     {
         return $this->converter->convert($this);
@@ -255,7 +262,7 @@ class Document extends AbstractBlock implements DocumentInterface
     {
         $date     = date('Y-m-d');
         $time     = date('H:i:s') . ' UTC';
-        $datetime = $date . ' ' . $time;
+        $datetime = "{$date} {$time}";
 
         $defaults = [
             'asciidoc-version'    => '0.1.0',

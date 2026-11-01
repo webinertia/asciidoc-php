@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Substitutor;
 
-use Webware\AsciidocPhp\Node\Inline;
+
 use Webware\AsciidocPhp\Node\Section;
 
 /**
@@ -71,7 +71,7 @@ trait SubstitutorsTrait
      */
     public function applySubstitutions(string $text, array $subs): string
     {
-        if ($subs === [] || $text === '') {
+        if ([] === $subs || '' === $text) {
             return $text;
         }
 
@@ -103,7 +103,7 @@ trait SubstitutorsTrait
      */
     public function applySubstitutionsList(array $lines, array $subs): array
     {
-        if ($subs === []) {
+        if ([] === $subs) {
             return $lines;
         }
 
@@ -145,9 +145,7 @@ trait SubstitutorsTrait
 
         // Superscript and subscript (always unconstrained by design).
         $text = (string) preg_replace(Rx::SUPERSCRIPT, '<sup>$1</sup>', $text);
-        $text = (string) preg_replace(Rx::SUBSCRIPT,   '<sub>$1</sub>', $text);
-
-        return $text;
+        return (string) preg_replace(Rx::SUBSCRIPT,   '<sub>$1</sub>', $text);
     }
 
     /** @param array<string, mixed> $opts */
@@ -173,11 +171,11 @@ trait SubstitutorsTrait
             function (array $m): string {
                 $refid = $m[1];
                 $label = trim($m[2] ?? '');
-                if ($label === '') {
+                if ('' === $label) {
                     $node = $this->document->resolveId($refid);
                     if ($node instanceof Section) {
                         $label = (string) $node->getTitle();
-                    } elseif ($node !== null) {
+                    } elseif (null !== $node) {
                         $reftext = $node->getAttribute('reftext');
                         $label   = is_string($reftext) ? $reftext : $refid;
                     } else {
@@ -190,16 +188,16 @@ trait SubstitutorsTrait
         );
 
         // Xref macro: xref:id[label]
-        $text = (string) preg_replace_callback(
+        return (string) preg_replace_callback(
             Rx::XREF_MACRO,
             function (array $m): string {
                 $refid = $m[1];
                 $label = trim($m[2]);
-                if ($label === '') {
+                if ('' === $label) {
                     $node = $this->document->resolveId($refid);
                     if ($node instanceof Section) {
                         $label = (string) $node->getTitle();
-                    } elseif ($node !== null) {
+                    } elseif (null !== $node) {
                         $reftext = $node->getAttribute('reftext');
                         $label   = is_string($reftext) ? $reftext : $refid;
                     } else {
@@ -210,8 +208,6 @@ trait SubstitutorsTrait
             },
             $text,
         );
-
-        return $text;
     }
 
     protected function subPostReplacements(string $text): string
@@ -236,7 +232,7 @@ trait SubstitutorsTrait
 
     protected function restorePassthroughs(string $text): string
     {
-        if ($this->passthroughs === []) {
+        if ([] === $this->passthroughs) {
             return $text;
         }
         // Tier 2: replace \x02N\x03 placeholders.

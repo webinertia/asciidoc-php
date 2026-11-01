@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\Document;
 use Webware\AsciidocPhp\NullConverter;
 use Webware\AsciidocPhp\SafeMode;
+use Webware\AsciidocPhp\Node\Block;
 
 #[CoversClass(Document::class)]
 final class DocumentTest extends TestCase
@@ -135,7 +136,7 @@ final class DocumentTest extends TestCase
     public function testRegisterAndResolveId(): void
     {
         $doc   = new Document();
-        $block = new \Webware\AsciidocPhp\Node\Block($doc, null, 'paragraph');
+        $block = new Block($doc, null, 'paragraph');
         $block->setAttribute('id', 'intro');
         $doc->register('ids', $block);
         self::assertSame($block, $doc->resolveId('intro'));
@@ -150,7 +151,7 @@ final class DocumentTest extends TestCase
     public function testRegisterNodeWithoutIdIsIgnored(): void
     {
         $doc   = new Document();
-        $block = new \Webware\AsciidocPhp\Node\Block($doc, null, 'paragraph');
+        $block = new Block($doc, null, 'paragraph');
         // No 'id' attribute set — register should silently skip
         $doc->register('ids', $block);
         self::assertNull($doc->resolveId(''));

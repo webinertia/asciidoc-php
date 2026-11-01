@@ -7,6 +7,7 @@ namespace Webware\AsciidocPhp\IntegrationTest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\Asciidoc;
+use RuntimeException;
 
 #[CoversClass(Asciidoc::class)]
 final class AsciidocConvertTest extends TestCase
@@ -186,7 +187,7 @@ final class AsciidocConvertTest extends TestCase
 
     public function testConvertFileThrowsForNonExistentFile(): void
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('File not found');
         Asciidoc::convertFile('/no/such/file.adoc');
     }

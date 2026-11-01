@@ -26,7 +26,7 @@ class Reader
     public function __construct(string|array $data, Cursor $cursor)
     {
         if (is_string($data)) {
-            if ($data === '') {
+            if ('' === $data) {
                 $data = [];
             } else {
                 $data = explode("\n", str_replace(["\r\n", "\r"], "\n", $data));
@@ -55,10 +55,10 @@ class Reader
         while (true) {
             if ($this->lookaheadBuffer > 0) {
                 $line = end($this->lines);
-                if ($line === false) {
+                if (false === $line) {
                     return null;
                 }
-                if ($skipBlank && $line === '') {
+                if ($skipBlank && '' === $line) {
                     array_pop($this->lines);
                     $this->lookaheadBuffer--;
                     continue;
@@ -67,7 +67,7 @@ class Reader
             }
 
             $line = array_pop($this->lines);
-            if ($line === null) {
+            if (null === $line) {
                 // Give subclasses (PreprocessorReader) a chance to restore
                 // state after an included file is exhausted.
                 if ($this->onEof()) {
@@ -77,7 +77,7 @@ class Reader
             }
 
             $processed = $this->processLine($line);
-            if ($processed === null) {
+            if (null === $processed) {
                 // Directive consumed — try next line
                 continue;
             }
@@ -85,7 +85,7 @@ class Reader
             $this->lines[] = $processed;
             $this->lookaheadBuffer++;
 
-            if ($skipBlank && $processed === '') {
+            if ($skipBlank && '' === $processed) {
                 array_pop($this->lines);
                 $this->lookaheadBuffer--;
                 continue;
@@ -114,7 +114,7 @@ class Reader
     public function readLine(): string|null
     {
         $line = $this->peekLine();
-        if ($line === null) {
+        if (null === $line) {
             return null;
         }
 
@@ -135,7 +135,7 @@ class Reader
         $lines = [];
         for ($i = 0; $i < $count; $i++) {
             $line = $this->readLine();
-            if ($line === null) {
+            if (null === $line) {
                 break;
             }
             $lines[] = $line;
@@ -161,11 +161,11 @@ class Reader
 
         while ($this->hasMoreLines()) {
             $line = $this->readLine();
-            if ($line === null) {
+            if (null === $line) {
                 break;
             }
 
-            if (($options['break_on_blank'] ?? false) && $line === '') {
+            if (($options['break_on_blank'] ?? false) && '' === $line) {
                 break;
             }
 
@@ -190,7 +190,7 @@ class Reader
         }
 
         if ($options['chomp_last_line'] ?? false) {
-            while ($lines !== [] && end($lines) === '') {
+            while ([] !== $lines && end($lines) === '') {
                 array_pop($lines);
             }
         }
@@ -254,7 +254,7 @@ class Reader
         $count = 0;
         while (true) {
             $line = $this->peekLine();
-            if ($line === null || !str_starts_with($line, '//')) {
+            if (null === $line || !str_starts_with($line, '//')) {
                 break;
             }
             $this->readLine();

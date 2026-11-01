@@ -8,21 +8,9 @@ count = 6
 
 [[issues]]
 file = "src/Asciidoc.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 2
-
-[[issues]]
-file = "src/Asciidoc.php"
 code = "no-isset"
 message = "Use of the `isset` construct."
 count = 3
-
-[[issues]]
-file = "src/Asciidoc.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 2
 
 [[issues]]
 file = "src/Cli/Application.php"
@@ -40,18 +28,6 @@ count = 1
 file = "src/Cli/Application.php"
 code = "no-else-clause"
 message = "Avoid `else` clauses."
-count = 1
-
-[[issues]]
-file = "src/Cli/Application.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 1
-
-[[issues]]
-file = "src/Cli/Application.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
 count = 1
 
 [[issues]]
@@ -74,12 +50,6 @@ count = 1
 
 [[issues]]
 file = "src/Cli/Invoker.php"
-code = "explicit-octal"
-message = "Use explicit octal numeral notation."
-count = 1
-
-[[issues]]
-file = "src/Cli/Invoker.php"
 code = "kan-defect"
 message = "Class has a high kan defect score."
 count = 1
@@ -93,7 +63,7 @@ count = 1
 [[issues]]
 file = "src/Cli/Invoker.php"
 code = "literal-named-argument"
-message = "Literal argument `0755` should be passed as a named argument for clarity."
+message = "Literal argument `0o755` should be passed as a named argument for clarity."
 count = 1
 
 [[issues]]
@@ -116,27 +86,9 @@ count = 1
 
 [[issues]]
 file = "src/Cli/Invoker.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 6
-
-[[issues]]
-file = "src/Cli/Invoker.php"
 code = "no-negated-ternary"
 message = "Negated ternary condition."
 count = 1
-
-[[issues]]
-file = "src/Cli/Invoker.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 1
-
-[[issues]]
-file = "src/Cli/Invoker.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 12
 
 [[issues]]
 file = "src/Cli/Options.php"
@@ -187,18 +139,6 @@ message = "Avoid `else` clauses."
 count = 1
 
 [[issues]]
-file = "src/Cli/Options.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 30
-
-[[issues]]
-file = "src/Cli/ParseException.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 1
-
-[[issues]]
 file = "src/Converter/AbstractConverter.php"
 code = "ambiguous-function-call"
 message = "Ambiguous function call detected."
@@ -218,8 +158,8 @@ count = 1
 
 [[issues]]
 file = "src/Converter/AbstractConverter.php"
-code = "no-redundant-use"
-message = "Unused import: `AbstractNode`."
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
 count = 1
 
 [[issues]]
@@ -284,39 +224,21 @@ count = 1
 
 [[issues]]
 file = "src/Converter/Html5Converter.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 1
+
+[[issues]]
+file = "src/Converter/Html5Converter.php"
 code = "no-negated-ternary"
 message = "Negated ternary condition."
 count = 18
 
 [[issues]]
 file = "src/Converter/Html5Converter.php"
-code = "prefer-static-closure"
-message = "This arrow function does not use `$this` and should be declared static."
-count = 2
-
-[[issues]]
-file = "src/Converter/Html5Converter.php"
-code = "readable-literal"
-message = "Numeric literal could use underscore separators for readability."
-count = 2
-
-[[issues]]
-file = "src/Converter/Html5Converter.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 6
-
-[[issues]]
-file = "src/Converter/Html5Converter.php"
 code = "too-many-methods"
 message = "Class has too many methods."
 count = 1
-
-[[issues]]
-file = "src/Converter/Html5Converter.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 58
 
 [[issues]]
 file = "src/Document.php"
@@ -356,20 +278,14 @@ count = 4
 
 [[issues]]
 file = "src/Document.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 7
+
+[[issues]]
+file = "src/Document.php"
 code = "no-isset"
 message = "Use of the `isset` construct."
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "no-redundant-use"
-message = "Unused import: `Cursor`."
-count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
 count = 1
 
 [[issues]]
@@ -377,12 +293,6 @@ file = "src/Document.php"
 code = "too-many-methods"
 message = "Class has too many methods."
 count = 1
-
-[[issues]]
-file = "src/Document.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 9
 
 [[issues]]
 file = "src/DocumentInterface.php"
@@ -428,21 +338,9 @@ count = 1
 
 [[issues]]
 file = "src/Node/AbstractBlock.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 1
-
-[[issues]]
-file = "src/Node/AbstractBlock.php"
 code = "too-many-methods"
 message = "Class has too many methods."
 count = 1
-
-[[issues]]
-file = "src/Node/AbstractBlock.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 2
 
 [[issues]]
 file = "src/Node/AbstractNode.php"
@@ -458,39 +356,9 @@ count = 1
 
 [[issues]]
 file = "src/Node/AbstractNode.php"
-code = "no-redundant-use"
-message = "Unused import: `ContentModel`."
-count = 1
-
-[[issues]]
-file = "src/Node/AbstractNode.php"
-code = "no-redundant-use"
-message = "Unused import: `ConverterInterface`."
-count = 1
-
-[[issues]]
-file = "src/Node/AbstractNode.php"
-code = "no-redundant-use"
-message = "Unused import: `Cursor`."
-count = 1
-
-[[issues]]
-file = "src/Node/AbstractNode.php"
 code = "too-many-methods"
 message = "Class has too many methods."
 count = 1
-
-[[issues]]
-file = "src/Node/AbstractNode.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 1
-
-[[issues]]
-file = "src/Node/AsciiList.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 3
 
 [[issues]]
 file = "src/Node/Block.php"
@@ -500,21 +368,21 @@ count = 3
 
 [[issues]]
 file = "src/Node/Block.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 1
+
+[[issues]]
+file = "src/Node/Block.php"
 code = "no-negated-ternary"
 message = "Negated ternary condition."
 count = 3
 
 [[issues]]
-file = "src/Node/Block.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 4
-
-[[issues]]
 file = "src/Node/Inline.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 1
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 2
 
 [[issues]]
 file = "src/Node/Section.php"
@@ -524,15 +392,9 @@ count = 1
 
 [[issues]]
 file = "src/Node/Section.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
 count = 1
-
-[[issues]]
-file = "src/Node/Section.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 3
 
 [[issues]]
 file = "src/Node/Table.php"
@@ -541,22 +403,16 @@ message = "Ambiguous function call detected."
 count = 1
 
 [[issues]]
-file = "src/Node/Table.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 2
-
-[[issues]]
 file = "src/Node/Table/Cell.php"
 code = "excessive-parameter-list"
 message = "Parameter list is too long."
 count = 1
 
 [[issues]]
-file = "src/Node/Table/Row.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 1
+file = "src/NullConverter.php"
+code = "no-fully-qualified-global-class-like"
+message = "Fully-qualified class-like reference detected."
+count = 2
 
 [[issues]]
 file = "src/Parser/AttributeList.php"
@@ -613,18 +469,6 @@ message = "Negated ternary condition."
 count = 1
 
 [[issues]]
-file = "src/Parser/AttributeList.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 1
-
-[[issues]]
-file = "src/Parser/AttributeList.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 20
-
-[[issues]]
 file = "src/Parser/Parser.php"
 code = "ambiguous-constant-access"
 message = "Ambiguous constant access detected."
@@ -646,12 +490,6 @@ count = 1
 file = "src/Parser/Parser.php"
 code = "halstead"
 message = "Method has a high halstead effort"
-count = 1
-
-[[issues]]
-file = "src/Parser/Parser.php"
-code = "inline-variable-return"
-message = "Variable assignment can be inlined into the return statement."
 count = 1
 
 [[issues]]
@@ -736,19 +574,13 @@ count = 2
 file = "src/Parser/Parser.php"
 code = "string-style"
 message = "String concatenation can be replaced with interpolation."
-count = 5
+count = 4
 
 [[issues]]
 file = "src/Parser/Parser.php"
 code = "too-many-methods"
 message = "Class has too many methods."
 count = 1
-
-[[issues]]
-file = "src/Parser/Parser.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 65
 
 [[issues]]
 file = "src/PathResolver.php"
@@ -760,12 +592,6 @@ count = 19
 file = "src/PathResolver.php"
 code = "cyclomatic-complexity"
 message = "Class has high complexity."
-count = 1
-
-[[issues]]
-file = "src/PathResolver.php"
-code = "halstead"
-message = "Method has a high halstead difficulty"
 count = 1
 
 [[issues]]
@@ -791,18 +617,6 @@ file = "src/PathResolver.php"
 code = "no-negated-ternary"
 message = "Negated ternary condition."
 count = 2
-
-[[issues]]
-file = "src/PathResolver.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 2
-
-[[issues]]
-file = "src/PathResolver.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 17
 
 [[issues]]
 file = "src/Reader/PreprocessorReader.php"
@@ -892,7 +706,7 @@ count = 1
 file = "src/Reader/PreprocessorReader.php"
 code = "no-fully-qualified-global-class-like"
 message = "Fully-qualified class-like reference detected."
-count = 4
+count = 2
 
 [[issues]]
 file = "src/Reader/PreprocessorReader.php"
@@ -917,12 +731,6 @@ file = "src/Reader/PreprocessorReader.php"
 code = "too-many-methods"
 message = "Class has too many methods."
 count = 1
-
-[[issues]]
-file = "src/Reader/PreprocessorReader.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 15
 
 [[issues]]
 file = "src/Reader/Reader.php"
@@ -985,12 +793,6 @@ message = "Class has too many methods."
 count = 1
 
 [[issues]]
-file = "src/Reader/Reader.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 12
-
-[[issues]]
 file = "src/Substitutor/SubstitutorsTrait.php"
 code = "ambiguous-constant-access"
 message = "Ambiguous constant access detected."
@@ -1013,12 +815,6 @@ file = "src/Substitutor/SubstitutorsTrait.php"
 code = "halstead"
 message = "Method has a high halstead difficulty"
 count = 1
-
-[[issues]]
-file = "src/Substitutor/SubstitutorsTrait.php"
-code = "inline-variable-return"
-message = "Variable assignment can be inlined into the return statement."
-count = 2
 
 [[issues]]
 file = "src/Substitutor/SubstitutorsTrait.php"
@@ -1106,12 +902,6 @@ count = 1
 
 [[issues]]
 file = "src/Substitutor/SubstitutorsTrait.php"
-code = "no-redundant-use"
-message = "Unused import: `Inline`."
-count = 1
-
-[[issues]]
-file = "src/Substitutor/SubstitutorsTrait.php"
 code = "string-style"
 message = "String concatenation can be replaced with interpolation."
 count = 2
@@ -1121,12 +911,6 @@ file = "src/Substitutor/SubstitutorsTrait.php"
 code = "too-many-methods"
 message = "Trait has too many methods."
 count = 1
-
-[[issues]]
-file = "src/Substitutor/SubstitutorsTrait.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 8
 
 [[issues]]
 file = "test/asset/Reader/DocumentStub.php"
@@ -1159,12 +943,6 @@ message = "Use of the `isset` construct."
 count = 2
 
 [[issues]]
-file = "test/asset/Reader/DocumentStub.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 2
-
-[[issues]]
 file = "test/integration/AsciidocConvertTest.php"
 code = "ambiguous-function-call"
 message = "Ambiguous function call detected."
@@ -1175,12 +953,6 @@ file = "test/integration/AsciidocConvertTest.php"
 code = "assertion-style"
 message = "Inconsistent assertions style."
 count = 49
-
-[[issues]]
-file = "test/integration/AsciidocConvertTest.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 1
 
 [[issues]]
 file = "test/integration/AsciidocConvertTest.php"
@@ -1298,12 +1070,6 @@ count = 15
 
 [[issues]]
 file = "test/unit/Cli/ApplicationTest.php"
-code = "explicit-octal"
-message = "Use explicit octal numeral notation."
-count = 2
-
-[[issues]]
-file = "test/unit/Cli/ApplicationTest.php"
 code = "literal-named-argument"
 message = 'Literal argument `"= Hello\n\nWorld.\n"` should be passed as a named argument for clarity.'
 count = 1
@@ -1317,7 +1083,7 @@ count = 1
 [[issues]]
 file = "test/unit/Cli/ApplicationTest.php"
 code = "literal-named-argument"
-message = "Literal argument `0755` should be passed as a named argument for clarity."
+message = "Literal argument `0o755` should be passed as a named argument for clarity."
 count = 2
 
 [[issues]]
@@ -1387,12 +1153,6 @@ message = "Use `#[Test]` attribute instead of `test` prefix on method `testRunVe
 count = 1
 
 [[issues]]
-file = "test/unit/Cli/ApplicationTest.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 4
-
-[[issues]]
 file = "test/unit/Cli/InvokerTest.php"
 code = "ambiguous-function-call"
 message = "Ambiguous function call detected."
@@ -1412,14 +1172,8 @@ count = 1
 
 [[issues]]
 file = "test/unit/Cli/InvokerTest.php"
-code = "explicit-octal"
-message = "Use explicit octal numeral notation."
-count = 1
-
-[[issues]]
-file = "test/unit/Cli/InvokerTest.php"
 code = "literal-named-argument"
-message = "Literal argument `0755` should be passed as a named argument for clarity."
+message = "Literal argument `0o755` should be passed as a named argument for clarity."
 count = 1
 
 [[issues]]
@@ -1505,12 +1259,6 @@ file = "test/unit/Cli/InvokerTest.php"
 code = "prefer-test-attribute"
 message = "Use `#[Test]` attribute instead of `test` prefix on method `testInvokeWritesToExplicitOutputFile`."
 count = 1
-
-[[issues]]
-file = "test/unit/Cli/InvokerTest.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 20
 
 [[issues]]
 file = "test/unit/Cli/OptionsTest.php"
@@ -1811,12 +1559,6 @@ file = "test/unit/Cli/ParseExceptionTest.php"
 code = "assertion-style"
 message = "Inconsistent assertions style."
 count = 3
-
-[[issues]]
-file = "test/unit/Cli/ParseExceptionTest.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 1
 
 [[issues]]
 file = "test/unit/Cli/ParseExceptionTest.php"
@@ -2312,12 +2054,6 @@ count = 38
 
 [[issues]]
 file = "test/unit/DocumentTest.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 2
-
-[[issues]]
-file = "test/unit/DocumentTest.php"
 code = "prefer-test-attribute"
 message = "Use `#[Test]` attribute instead of `test` prefix on method `testBuiltinAttributesPresent`."
 count = 1
@@ -2591,12 +2327,6 @@ file = "test/unit/Node/AbstractNodeTest.php"
 code = "assertion-style"
 message = "Inconsistent assertions style."
 count = 22
-
-[[issues]]
-file = "test/unit/Node/AbstractNodeTest.php"
-code = "no-redundant-use"
-message = "Unused import: `Section`."
-count = 1
 
 [[issues]]
 file = "test/unit/Node/AbstractNodeTest.php"
@@ -3164,12 +2894,6 @@ count = 18
 
 [[issues]]
 file = "test/unit/Node/TableTest.php"
-code = "no-redundant-use"
-message = "Unused import: `Cell`."
-count = 1
-
-[[issues]]
-file = "test/unit/Node/TableTest.php"
 code = "prefer-test-attribute"
 message = "Use `#[Test]` attribute instead of `test` prefix on method `testAppendColumnAndGetColumns`."
 count = 1
@@ -3722,12 +3446,6 @@ count = 17
 
 [[issues]]
 file = "test/unit/PathResolverTest.php"
-code = "explicit-octal"
-message = "Use explicit octal numeral notation."
-count = 3
-
-[[issues]]
-file = "test/unit/PathResolverTest.php"
 code = "literal-named-argument"
 message = "Literal argument `''` should be passed as a named argument for clarity."
 count = 5
@@ -3735,7 +3453,7 @@ count = 5
 [[issues]]
 file = "test/unit/PathResolverTest.php"
 code = "literal-named-argument"
-message = "Literal argument `0700` should be passed as a named argument for clarity."
+message = "Literal argument `0o700` should be passed as a named argument for clarity."
 count = 3
 
 [[issues]]
@@ -3829,18 +3547,6 @@ message = "Use `#[Test]` attribute instead of `test` prefix on method `testUnsaf
 count = 1
 
 [[issues]]
-file = "test/unit/PathResolverTest.php"
-code = "string-style"
-message = "String concatenation can be replaced with interpolation."
-count = 4
-
-[[issues]]
-file = "test/unit/PathResolverTest.php"
-code = "yoda-conditions"
-message = "Use Yoda condition style for safer comparisons"
-count = 3
-
-[[issues]]
 file = "test/unit/Reader/ConditionalContextTest.php"
 code = "assertion-style"
 message = "Inconsistent assertions style."
@@ -3929,12 +3635,6 @@ file = "test/unit/Reader/IncludeContextTest.php"
 code = "assertion-style"
 message = "Inconsistent assertions style."
 count = 6
-
-[[issues]]
-file = "test/unit/Reader/IncludeContextTest.php"
-code = "no-fully-qualified-global-class-like"
-message = "Fully-qualified class-like reference detected."
-count = 1
 
 [[issues]]
 file = "test/unit/Reader/IncludeContextTest.php"

@@ -6,6 +6,9 @@ namespace Webware\AsciidocPhp\Cli;
 
 use Psr\Log\LoggerInterface;
 use Webware\AsciidocPhp\Asciidoc;
+use Async\TaskGroup;
+use Throwable;
+use RuntimeException;
 
 /**
  * Orchestrates the conversion of one or more input files.
@@ -42,7 +45,7 @@ final class Invoker
         // Multi-file: use TrueAsync TaskGroup when the extension is available,
         // otherwise fall back to sequential processing.
         // @see planning/10-async-runtime.md — "Activating Full Async Support"
-        if (class_exists(\Async\TaskGroup::class)) {
+        if (class_exists(TaskGroup::class)) {
             return $this->invokeConcurrent($files);
         }
 
@@ -65,7 +68,7 @@ final class Invoker
                 $outPath = $this->resolveOutputPath($inputFile);
                 $this->convertFile($inputFile, $outPath);
                 $this->logSuccess($inputFile, $outPath);
-            } catch (\Throwable $e) {
+            } catch (Throwable $e) {
                 $hadError = true;
                 $this->logError($inputFile, $e);
             }
@@ -89,9 +92,9 @@ final class Invoker
     private function invokeConcurrent(array $files): int
     {
         $limit    = $this->options->concurrency > 0 ? $this->options->concurrency : null;
-        $group    = $limit !== null
-            ? new \Async\TaskGroup(concurrency: $limit)
-            : new \Async\TaskGroup();
+        $group    = null !== $limit
+            ? new TaskGroup(concurrency: $limit)
+            : new TaskGroup();
         $hadError = false;
 
         foreach ($files as $inputFile) {
@@ -108,7 +111,7 @@ final class Invoker
         foreach ($group as $inputFile => $outcome) {
             /** @var string $inputFile */
             [, $error] = $outcome;
-            if ($error !== null) {
+            if (null !== $error) {
                 $hadError = true;
                 $this->logError($inputFile, $error);
             } else {
@@ -124,14 +127,14 @@ final class Invoker
 
     private function logSuccess(string $inputFile, string $outPath): void
     {
-        if ($this->options->verbose && $this->logger !== null) {
+        if ($this->options->verbose && null !== $this->logger) {
             $this->logger->info("Converted: {$inputFile} → {$outPath}");
         }
     }
 
-    private function logError(string $inputFile, \Throwable $e): void
+    private function logError(string $inputFile, Throwable $e): void
     {
-        if ($this->logger !== null) {
+        if (null !== $this->logger) {
             $this->logger->warning("Failed: {$inputFile} — {$e->getMessage()}");
         } elseif (!$this->options->quiet) {
             fwrite(STDERR, "asciidoc-php: Failed: {$inputFile} — {$e->getMessage()}\n");
@@ -152,22 +155,22 @@ final class Invoker
             'base_dir'      => $this->options->baseDir,
         ];
 
-        if ($inputFile === '-') {
+        if ('-' === $inputFile) {
             $source = stream_get_contents(STDIN);
-            if ($source === false) {
-                throw new \RuntimeException('Failed to read from STDIN.');
+            if (false === $source) {
+                throw new RuntimeException('Failed to read from STDIN.');
             }
             $html = Asciidoc::convert($source, $opts);
         } else {
             $html = Asciidoc::convertFile($inputFile, $opts);
         }
 
-        if ($outPath === '-') {
+        if ('-' === $outPath) {
             fwrite(STDOUT, $html);
         } else {
             $dir = dirname($outPath);
             if (!is_dir($dir)) {
-                mkdir($dir, 0755, true);
+                mkdir($dir, 0o755, true);
             }
             file_put_contents($outPath, $html);
         }
@@ -179,25 +182,25 @@ final class Invoker
     private function resolveOutputPath(string $inputFile): string
     {
         // Explicit -o flag (also accepts '-' for stdout).
-        if ($this->options->outputFile !== null) {
+        if (null !== $this->options->outputFile) {
             return $this->options->outputFile;
         }
 
         // STDIN: default to stdout.
-        if ($inputFile === '-') {
+        if ('-' === $inputFile) {
             return '-';
         }
 
         $basename   = pathinfo($inputFile, PATHINFO_FILENAME);
-        $outName    = $basename . '.html';
+        $outName    = "{$basename}.html";
 
         // -D flag: place file in destination directory.
-        if ($this->options->destinationDir !== null) {
+        if (null !== $this->options->destinationDir) {
             return rtrim($this->options->destinationDir, '/\\') . DIRECTORY_SEPARATOR . $outName;
         }
 
         // Default: same directory as the input file.
         $dir = pathinfo($inputFile, PATHINFO_DIRNAME);
-        return ($dir !== '' && $dir !== '.') ? $dir . DIRECTORY_SEPARATOR . $outName : $outName;
+        return ('' !== $dir && '.' !== $dir) ? $dir . DIRECTORY_SEPARATOR . $outName : $outName;
     }
 }

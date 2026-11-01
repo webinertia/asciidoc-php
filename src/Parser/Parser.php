@@ -76,7 +76,7 @@ final class Parser
 
         // Peek at first line — is it a level-0 title ("= Title")?
         $first = $reader->peekLine();
-        if ($first === null) {
+        if (null === $first) {
             return;
         }
 
@@ -92,9 +92,9 @@ final class Parser
 
         // Author info line? Must be on the very next non-blank line.
         $authorLine = $reader->peekLine();
-        if ($authorLine !== null && $authorLine !== '' && !str_starts_with($authorLine, ':')) {
+        if (null !== $authorLine && '' !== $authorLine && !str_starts_with($authorLine, ':')) {
             $authorInfo = self::parseAuthorInfo($authorLine);
-            if ($authorInfo !== []) {
+            if ([] !== $authorInfo) {
                 $reader->readLine();
                 foreach ($authorInfo as $k => $v) {
                     $document->setAttribute($k, $v);
@@ -104,9 +104,9 @@ final class Parser
 
         // Revision info line?
         $revLine = $reader->peekLine();
-        if ($revLine !== null && $revLine !== '' && !str_starts_with($revLine, ':')) {
+        if (null !== $revLine && '' !== $revLine && !str_starts_with($revLine, ':')) {
             $revInfo = self::parseRevisionInfo($revLine);
-            if ($revInfo !== []) {
+            if ([] !== $revInfo) {
                 $reader->readLine();
                 foreach ($revInfo as $k => $v) {
                     $document->setAttribute($k, $v);
@@ -136,22 +136,22 @@ final class Parser
             $line  = trim(str_replace($m[0], '', $line));
         }
 
-        if ($line === '') {
+        if ('' === $line) {
             return [];
         }
 
         $parts = preg_split('/\s+/', $line, -1, PREG_SPLIT_NO_EMPTY);
-        if ($parts === false || $parts === []) {
+        if (false === $parts || [] === $parts) {
             return [];
         }
 
         $attrs = [];
 
         $attrs['firstname'] = array_shift($parts);
-        if ($parts !== []) {
+        if ([] !== $parts) {
             $lastName           = array_pop($parts);
             $attrs['lastname']  = $lastName;
-            $attrs['middlename'] = $parts !== [] ? implode(' ', $parts) : '';
+            $attrs['middlename'] = [] !== $parts ? implode(' ', $parts) : '';
         } else {
             $attrs['lastname']   = '';
             $attrs['middlename'] = '';
@@ -164,13 +164,13 @@ final class Parser
         // Initials: first letter of each name part.
         $initials = '';
         foreach (['firstname', 'middlename', 'lastname'] as $part) {
-            if (isset($attrs[$part]) && $attrs[$part] !== '') {
+            if (isset($attrs[$part]) && '' !== $attrs[$part]) {
                 $initials .= strtoupper($attrs[$part][0]);
             }
         }
         $attrs['authorinitials'] = $initials;
 
-        if ($email !== '') {
+        if ('' !== $email) {
             $attrs['email'] = $email;
         }
 
@@ -211,10 +211,10 @@ final class Parser
             $remark = trim($remarkPart);
         }
 
-        if ($line !== '') {
+        if ('' !== $line) {
             $attrs['revdate'] = $line;
         }
-        if ($remark !== '') {
+        if ('' !== $remark) {
             $attrs['revremark'] = $remark;
         }
 
@@ -256,7 +256,7 @@ final class Parser
 
             $block = self::nextBlock($reader, $parent, $blockAttrs, []);
 
-            if ($block === null) {
+            if (null === $block) {
                 break;
             }
 
@@ -273,7 +273,7 @@ final class Parser
             $inPreamble = false;
 
             // Flush any accumulated preamble blocks.
-            if ($preambleBlocks !== []) {
+            if ([] !== $preambleBlocks) {
                 $preamble = new Block($parent->getDocument(), $parent, 'preamble', ContentModel::COMPOUND);
                 foreach ($preambleBlocks as $pb) {
                     $preamble->append($pb);
@@ -299,7 +299,7 @@ final class Parser
         }
 
         // Flush any trailing preamble blocks (document has only preamble, no sections).
-        if ($preambleBlocks !== []) {
+        if ([] !== $preambleBlocks) {
             foreach ($preambleBlocks as $pb) {
                 $parent->append($pb);
             }
@@ -331,7 +331,7 @@ final class Parser
         // the title), push back the attribute list line so it is read before
         // the title on the next parse pass.
         $customId = $section->getId();
-        if ($customId !== null && $customId !== self::generateSectionId($title)) {
+        if (null !== $customId && $customId !== self::generateSectionId($title)) {
             $reader->unshiftLine("[#{$customId}]");
         }
     }
@@ -354,22 +354,22 @@ final class Parser
         self::parseBlockMetadataLines($reader, $parent->getDocument(), $attrs);
 
         $line = $reader->peekLine();
-        if ($line === null) {
+        if (null === $line) {
             return null;
         }
 
         // Skip blank lines between blocks (e.g. blank line after a section title).
-        if ($line === '') {
+        if ('' === $line) {
             $reader->skipBlankLines();
             $line = $reader->peekLine();
-            if ($line === null) {
+            if (null === $line) {
                 return null;
             }
             // Collect metadata lines that immediately follow the blank gap
             // (e.g. [source,php] or [cols=...] that sits after the heading blank).
             self::parseBlockMetadataLines($reader, $parent->getDocument(), $attrs);
             $line = $reader->peekLine();
-            if ($line === null) {
+            if (null === $line) {
                 return null;
             }
         }
@@ -383,7 +383,7 @@ final class Parser
             // Normalise length-agnostic delimiters to their 4-char canonical key.
             $delimKey = self::normaliseDelimiter($delimiter);
 
-            if ($delimKey === '|===') {
+            if ('|===' === $delimKey) {
                 $reader->readLine(); // consume opening delimiter
                 return self::parseTable($reader, $parent, $attrs, $delimiter);
             }
@@ -396,10 +396,9 @@ final class Parser
 
         // ── Check B: Section title ────────────────────────────────────────────
         $secInfo = self::parseSectionTitle($line);
-        if ($secInfo !== false) {
+        if (false !== $secInfo) {
             $reader->readLine(); // consume
-            $sec = self::initializeSection($parent, $attrs, $secInfo['level'], $secInfo['title']);
-            return $sec;
+            return self::initializeSection($parent, $attrs, $secInfo['level'], $secInfo['title']);
         }
 
         // ── Check C: List item ────────────────────────────────────────────────
@@ -467,7 +466,7 @@ final class Parser
     ): void {
         while (true) {
             $line = $reader->peekLine();
-            if ($line === null || $line === '') {
+            if (null === $line || '' === $line) {
                 break;
             }
 
@@ -539,18 +538,18 @@ final class Parser
         $model   = $defaultModel;
 
         // Style remapping.
-        if ($style !== null) {
+        if (null !== $style) {
             [$context, $model] = self::resolveStyledContext($context, $style, $model);
         }
 
         // Read lines until the matching closing delimiter (same as opening).
         $closingPattern = '/' . preg_quote($openingDelimiter, '/') . '\s*$/';
 
-        if ($model === ContentModel::VERBATIM || $model === ContentModel::RAW) {
+        if (ContentModel::VERBATIM === $model || ContentModel::RAW === $model) {
             $reader->setVerbatimMode(true);
         }
         $lines = $reader->readLinesUntil(['terminator' => $closingPattern]);
-        if ($model === ContentModel::VERBATIM || $model === ContentModel::RAW) {
+        if (ContentModel::VERBATIM === $model || ContentModel::RAW === $model) {
             $reader->setVerbatimMode(false);
         }
 
@@ -559,7 +558,7 @@ final class Parser
 
         self::applyAttrsToBlock($attrs, $block);
 
-        if ($model === ContentModel::COMPOUND) {
+        if (ContentModel::COMPOUND === $model) {
             // Parse the body as child blocks.
             $innerReader = new PreprocessorReader(
                 $parent->getDocument(),
@@ -570,7 +569,7 @@ final class Parser
             $empty = [];
             while ($innerReader->hasMoreLines()) {
                 $child = self::nextBlock($innerReader, $block, $empty, []);
-                if ($child !== null) {
+                if (null !== $child) {
                     $block->append($child);
                 }
             }
@@ -682,22 +681,22 @@ final class Parser
         while ($reader->hasMoreLines()) {
             $nextLine = $reader->peekLine();
 
-            if ($nextLine === null) {
+            if (null === $nextLine) {
                 break;
             }
 
             // Skip a single blank line between items.
-            if ($nextLine === '') {
+            if ('' === $nextLine) {
                 $reader->readLine();
                 $nextLine = $reader->peekLine();
-                if ($nextLine === null) {
+                if (null === $nextLine) {
                     break;
                 }
             }
 
             // Try to match same-type list marker.
             $pattern = self::listPattern($listType);
-            if ($pattern === null || preg_match($pattern, $nextLine, $m) !== 1) {
+            if (null === $pattern || preg_match($pattern, $nextLine, $m) !== 1) {
                 break;
             }
 
@@ -729,7 +728,7 @@ final class Parser
         // block delimiter is a soft-wrap of the current item's paragraph.
         while ($reader->hasMoreLines()) {
             $nextLine = $reader->peekLine();
-            if ($nextLine === null || $nextLine === '') {
+            if (null === $nextLine || '' === $nextLine) {
                 break;
             }
             if (preg_match('/^[ \t]+\S/', $nextLine) !== 1) {
@@ -755,17 +754,17 @@ final class Parser
             $peekA = $peek[0] ?? null;
             $peekB = $peek[1] ?? null;
 
-            if ($peekA !== null
+            if (null !== $peekA
                 && trim($peekA) === '+'
-                && $peekB !== null
-                && $peekB !== ''
+                && null !== $peekB
+                && '' !== $peekB
             ) {
                 $reader->readLine(); // consume '+'
 
                 /** @var array<string, mixed> $empty */
                 $empty = [];
                 $continuation = self::nextBlock($reader, $item, $empty, []);
-                if ($continuation !== null) {
+                if (null !== $continuation) {
                     $item->append($continuation);
                 }
             } else {
@@ -782,7 +781,7 @@ final class Parser
      */
     private static function extractListItemParts(array $match, string $listType): array
     {
-        if ($listType === 'colist') {
+        if ('colist' === $listType) {
             // Callout list: match[1] = <N>, match[2] = text
             return [
                 $match[1] ?? '<?>',
@@ -815,7 +814,7 @@ final class Parser
         // Description text may be on the same line after the separator or on the next.
         $descLine = $reader->peekLine();
         $desc     = '';
-        if ($descLine !== null && $descLine !== '') {
+        if (null !== $descLine && '' !== $descLine) {
             $desc = $descLine;
             $reader->readLine();
         }
@@ -954,14 +953,14 @@ final class Parser
         $escapedSep = preg_quote($separator, '/');
         $cellTexts  = preg_split('/(?<!\\\)' . $escapedSep . '/', $body);
 
-        if ($cellTexts === false || $cellTexts === []) {
+        if (false === $cellTexts || [] === $cellTexts) {
             return;
         }
 
         // The first element is before the first separator — ignore it.
         array_shift($cellTexts);
 
-        if ($cellTexts === []) {
+        if ([] === $cellTexts) {
             return;
         }
 
@@ -969,7 +968,7 @@ final class Parser
         $colCount   = count($columns);
 
         // Auto-generate columns if none specified.
-        if ($colCount === 0) {
+        if (0 === $colCount) {
             $colCount = count($cellTexts);
             for ($i = 0; $i < $colCount; $i++) {
                 $col = new Column($i + 1);
@@ -979,7 +978,7 @@ final class Parser
             $colCount = count($columns);
         }
 
-        if ($colCount === 0) {
+        if (0 === $colCount) {
             return;
         }
 
@@ -994,11 +993,11 @@ final class Parser
             foreach ($chunk as $cellIdx => $cellText) {
                 $col  = $columns[$cellIdx % $colCount];
                 // Unescape the separator char that was preceded by a backslash (e.g. \| → |).
-                $rawText = str_replace('\\' . $separator, $separator, trim((string) $cellText));
+                $rawText = str_replace('\\' . $separator, $separator, trim( $cellText));
                 $cell = new Cell($col, $rawText);
                 $row->appendCell($cell);
             }
-            if ($hasHeader && $chunkIdx === 0) {
+            if ($hasHeader && 0 === $chunkIdx) {
                 $table->appendHeadRow($row);
             } else {
                 $table->appendBodyRow($row);
@@ -1043,7 +1042,7 @@ final class Parser
         while ($reader->hasMoreLines()) {
             $line = $reader->peekLine();
 
-            if ($line === null || $line === '') {
+            if (null === $line || '' === $line) {
                 break;
             }
 
@@ -1069,7 +1068,7 @@ final class Parser
 
         $context = 'paragraph';
         if (isset($attrs['style']) && is_string($attrs['style'])) {
-            $context = $attrs['style'] === 'abstract' ? 'paragraph' : $context;
+            $context = 'abstract' === $attrs['style'] ? 'paragraph' : $context;
         }
 
         $block = new Block($parent->getDocument(), $parent, $context, ContentModel::SIMPLE);
@@ -1093,7 +1092,7 @@ final class Parser
 
         while ($reader->hasMoreLines()) {
             $line = $reader->peekLine();
-            if ($line === null || $line === '') {
+            if (null === $line || '' === $line) {
                 break;
             }
             if (preg_match('/^[ \t]/', $line) !== 1) {
@@ -1134,7 +1133,7 @@ final class Parser
         // Continue reading wrapped lines.
         while ($reader->hasMoreLines()) {
             $line = $reader->peekLine();
-            if ($line === null || $line === '') {
+            if (null === $line || '' === $line) {
                 break;
             }
             if (preg_match(Rx::BLOCK_DELIMITER, $line) === 1) {
@@ -1216,12 +1215,12 @@ final class Parser
                 continue;
             }
             $count++;
-            $num = $prefix !== '' ? $prefix . '.' . $count : (string) $count;
+            $num = '' !== $prefix ? "{$prefix}.{$count}" : (string) $count;
             $section->setNumber($num);
             $section->setNumbered(true);
 
             $children = $section->getSections();
-            if ($children !== [] && $section->getLevel() < $maxLevel) {
+            if ([] !== $children && $section->getLevel() < $maxLevel) {
                 self::assignSectionNumbers($children, $num, $maxLevel);
             }
         }
@@ -1299,7 +1298,7 @@ final class Parser
         $char = $delimiter[0];
 
         // Open block is exactly '--'.
-        if ($char === '-' && $delimiter === '--') {
+        if ('-' === $char && '--' === $delimiter) {
             return '--';
         }
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Cli;
 
+use Throwable;
+
 /**
  * Entry-point for the `asciidoc-php` binary.
  *
@@ -87,7 +89,7 @@ HELP;
             return 0;
         }
 
-        if ($options->inputFiles === []) {
+        if ([] === $options->inputFiles) {
             fwrite(STDERR, "asciidoc-php: No input files specified. Use -h for help.\n");
             return 1;
         }
@@ -95,7 +97,7 @@ HELP;
         try {
             $invoker = new Invoker($options);
             return $invoker->invoke();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             if ($options->trace) {
                 fwrite(STDERR, (string) $e . "\n");
             } else {

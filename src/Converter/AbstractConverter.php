@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Converter;
 
-use Webware\AsciidocPhp\Node\AbstractNode;
+
 
 /**
  * Base converter: provides `handles()` and the camelCase method-name resolver.
@@ -20,6 +20,7 @@ abstract class AbstractConverter implements ConverterInterface
      * Return true when a concrete `convertXxx()` method exists for the given
      * transform name (e.g. 'paragraph' → 'convertParagraph').
      */
+    #[\Override]
     public function handles(string $transform): bool
     {
         return method_exists($this, $this->resolveMethodName($transform));
