@@ -146,9 +146,13 @@ Asciidoctor behaviour described below.
 ### Asciidoctor
 
 Asciidoctor, the Ruby implementation, is the reference implementation this port
-follows. Asciidoctor is licensed under the MIT License and is copyright
-(C) 2012-present Dan Allen, Sarah White, Ryan Waldron, and the individual
-contributors to Asciidoctor. See <https://asciidoctor.org>.
+follows. The specific reference targeted by this port is the fork at
+<https://github.com/tyrsson/asciidoctor>, which is a fork of
+<https://github.com/asciidoctor/asciidoctor>. Upstream Asciidoctor is licensed
+under the MIT License and is copyright (C) 2012-present Dan Allen, Sarah White,
+Ryan Waldron, and the individual contributors to Asciidoctor. The fork is
+licensed under the same MIT License and carries the same upstream copyright
+line unchanged. See <https://asciidoctor.org>.
 
 ### Bundled stylesheet
 

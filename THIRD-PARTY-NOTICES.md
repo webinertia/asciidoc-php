@@ -9,6 +9,12 @@ in this repository.
 Asciidoctor is the Ruby implementation of AsciiDoc and the reference
 implementation this port follows.
 
+The specific reference implementation targeted by this port is the fork at
+<https://github.com/tyrsson/asciidoctor>, a fork of
+<https://github.com/asciidoctor/asciidoctor>. That fork is MIT licensed under
+the same upstream copyright line reproduced below, so this file carries one MIT
+license text and one copyright line for both the upstream project and the fork.
+
 Copyright (C) 2012-present Dan Allen, Sarah White, Ryan Waldron, and the individual contributors to Asciidoctor.
 
 Licensed under the MIT License:
