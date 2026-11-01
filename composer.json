@@ -66,11 +66,6 @@
         "test-integration": "phpunit --colors=always --testsuite \"integration test\"",
         "mutation-test": "infection",
         "test-all": "@test && @test-integration && @mutation-test",
-        "sa-gen-baseline": [
-            "mago lint --generate-baseline",
-            "mago analyze --generate-baseline"
-        ],
-        "sa-verbose": "mago analyze --skip-ignores",
         "upload-coverage": "coveralls -v",
         "render": "php bin/asciidoc-php -o test/results/full-document.html test/asset/integration/full-document.adoc",
         "render-embedded": "php bin/asciidoc-php -s -o test/results/full-document-embedded.html test/asset/integration/full-document.adoc",

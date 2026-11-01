@@ -114,6 +114,15 @@ composer test-coverage      # clover.xml plus a text summary
 composer mutation-test      # infection
 ```
 
+Mago is a standalone binary, not a PHP tool, so no composer script wraps it and
+none should be added. Run `mago` directly. Baselines are regenerated with the
+direct command too:
+
+```bash
+mago lint --generate-baseline --baseline lint-baseline.toml
+mago analyze --generate-baseline --baseline analysis-baseline.toml
+```
+
 Compare output against native Asciidoctor:
 
 ```bash
