@@ -17,7 +17,7 @@ use Webware\AsciidocPhp\Node\AbstractNode;
 final class NullConverter implements ConverterInterface
 {
     #[\Override]
-    public function convert(AbstractNode $node, string|null $transform = null, array $opts = []): string
+    public function convert(AbstractNode $node, ?string $transform = null, array $opts = []): string
     {
         return '';
     }

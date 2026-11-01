@@ -14,6 +14,7 @@ use Webware\AsciidocPhp\Node\Table;
 use Webware\AsciidocPhp\Parser\Parser;
 use Webware\AsciidocPhp\Reader\Cursor;
 use Webware\AsciidocPhp\Reader\PreprocessorReader;
+
 #[CoversClass(Parser::class)]
 final class ParserTest extends TestCase
 {
@@ -26,45 +27,20 @@ final class ParserTest extends TestCase
         return Parser::parse($reader, $doc);
     }
 
-    // ── parseSectionTitle() ───────────────────────────────────────────────────
+    // ── Full parse() – admonition paragraph ─────────────────────────────────
 
-    public function testParseSectionTitleLevel1(): void
+    public function testParseAdmonitionParagraph(): void
     {
-        $result = Parser::parseSectionTitle('== Hello World');
-        self::assertNotFalse($result);
-        self::assertSame(1, $result['level']);
-        self::assertSame('Hello World', $result['title']);
+        $doc   = self::parse("NOTE: Pay attention.\n");
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('admonition', $block->getContext());
+        self::assertSame('NOTE', $block->getStyle());
     }
 
-    public function testParseSectionTitleLevel2(): void
+    public function testParseAuthorInfoEmptyReturnsEmpty(): void
     {
-        $result = Parser::parseSectionTitle('=== Section Three');
-        self::assertNotFalse($result);
-        self::assertSame(2, $result['level']);
-        self::assertSame('Section Three', $result['title']);
-    }
-
-    public function testParseSectionTitleLevel0(): void
-    {
-        // Level-0 "= Title" is a document title, not a regular section; the
-        // regex still matches because SECTION_TITLE covers all =+ patterns.
-        $result = Parser::parseSectionTitle('= Document Title');
-        self::assertNotFalse($result);
-        self::assertSame(0, $result['level']);
-    }
-
-    public function testParseSectionTitleReturnsFalseForNonTitle(): void
-    {
-        self::assertFalse(Parser::parseSectionTitle('Just a paragraph'));
-        self::assertFalse(Parser::parseSectionTitle('  == Indented'));
-    }
-
-    public function testParseSectionTitleLevel4(): void
-    {
-        $result = Parser::parseSectionTitle('===== Deep');
-        self::assertNotFalse($result);
-        self::assertSame(4, $result['level']);
-        self::assertSame('Deep', $result['title']);
+        self::assertSame([], Parser::parseAuthorInfo(''));
     }
 
     // ── parseAuthorInfo() ─────────────────────────────────────────────────────
@@ -77,6 +53,13 @@ final class ParserTest extends TestCase
         self::assertSame('', $attrs['middlename']);
         self::assertSame('John Doe', $attrs['author']);
         self::assertSame('JD', $attrs['authorinitials']);
+    }
+
+    public function testParseAuthorInfoSingleName(): void
+    {
+        $attrs = Parser::parseAuthorInfo('Voltaire');
+        self::assertSame('Voltaire', $attrs['firstname']);
+        self::assertSame('', $attrs['lastname']);
     }
 
     public function testParseAuthorInfoWithEmail(): void
@@ -97,51 +80,11 @@ final class ParserTest extends TestCase
         self::assertSame('JMD', $attrs['authorinitials']);
     }
 
-    public function testParseAuthorInfoSingleName(): void
-    {
-        $attrs = Parser::parseAuthorInfo('Voltaire');
-        self::assertSame('Voltaire', $attrs['firstname']);
-        self::assertSame('', $attrs['lastname']);
-    }
-
-    public function testParseAuthorInfoEmptyReturnsEmpty(): void
-    {
-        self::assertSame([], Parser::parseAuthorInfo(''));
-    }
-
-    // ── parseRevisionInfo() ───────────────────────────────────────────────────
-
-    public function testParseRevisionInfoVersionAndDate(): void
-    {
-        $attrs = Parser::parseRevisionInfo('v1.2.3, 2024-01-15');
-        self::assertSame('1.2.3', $attrs['revnumber']);
-        self::assertSame('2024-01-15', $attrs['revdate']);
-    }
-
-    public function testParseRevisionInfoVersionDateAndRemark(): void
-    {
-        $attrs = Parser::parseRevisionInfo('v2.0, 2024-06-01: Initial public release');
-        self::assertSame('2.0', $attrs['revnumber']);
-        self::assertSame('2024-06-01', $attrs['revdate']);
-        self::assertSame('Initial public release', $attrs['revremark']);
-    }
-
-    public function testParseRevisionInfoNoVersionPrefix(): void
-    {
-        $attrs = Parser::parseRevisionInfo('1.0.0');
-        self::assertSame('1.0.0', $attrs['revnumber']);
-    }
-
-    public function testParseRevisionInfoNonRevisionLineReturnsEmpty(): void
-    {
-        self::assertSame([], Parser::parseRevisionInfo('just some text'));
-    }
-
     // ── parseBlockMetadataLine() ──────────────────────────────────────────────
 
     public function testParseBlockMetadataLineAnchor(): void
     {
-        $attrs = [];
+        $attrs  = [];
         $result = Parser::parseBlockMetadataLine('[[my-anchor]]', $attrs);
         self::assertTrue($result);
         self::assertSame('my-anchor', $attrs['id']);
@@ -157,7 +100,7 @@ final class ParserTest extends TestCase
 
     public function testParseBlockMetadataLineAttrList(): void
     {
-        $attrs = [];
+        $attrs  = [];
         $result = Parser::parseBlockMetadataLine('[source,ruby]', $attrs);
         self::assertTrue($result);
         self::assertSame('source', $attrs['style']);
@@ -165,36 +108,54 @@ final class ParserTest extends TestCase
 
     public function testParseBlockMetadataLineBlockTitle(): void
     {
-        $attrs = [];
+        $attrs  = [];
         $result = Parser::parseBlockMetadataLine('.My Block Title', $attrs);
         self::assertTrue($result);
         self::assertSame('My Block Title', $attrs['title']);
     }
 
+    public function testParseBlockMetadataLineReturnsFalseForNonMeta(): void
+    {
+        $attrs  = [];
+        $result = Parser::parseBlockMetadataLine('This is a paragraph.', $attrs);
+        self::assertFalse($result);
+    }
+
     public function testParseBlockMetadataLineSingleLineComment(): void
     {
-        $attrs = [];
+        $attrs  = [];
         $result = Parser::parseBlockMetadataLine('// This is a comment', $attrs);
         self::assertTrue($result);
         self::assertSame([], $attrs); // nothing added
     }
 
-    public function testParseBlockMetadataLineReturnsFalseForNonMeta(): void
+    public function testParseBlockWithAttrListStyle(): void
     {
-        $attrs = [];
-        $result = Parser::parseBlockMetadataLine('This is a paragraph.', $attrs);
-        self::assertFalse($result);
+        $src   = "[source,php]\n----\n<?php\n----\n";
+        $doc   = self::parse($src);
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('source', $block->getStyle());
     }
 
-    // ── parseColSpec() ────────────────────────────────────────────────────────
+    // ── Full parse() – block with attribute list ─────────────────────────────
 
-    public function testParseColSpecSimpleWidths(): void
+    public function testParseBlockWithIdAttribute(): void
     {
-        $cols = Parser::parseColSpec('1,2,3');
-        self::assertCount(3, $cols);
-        self::assertSame(1, $cols[0]->width);
-        self::assertSame(2, $cols[1]->width);
-        self::assertSame(3, $cols[2]->width);
+        $src   = "[[my-block]]\nHello World\n";
+        $doc   = self::parse($src);
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('my-block', $block->getAttribute('id', null));
+    }
+
+    public function testParseBlockWithTitle(): void
+    {
+        $src   = ".My Code Listing\n----\ncode here\n----\n";
+        $doc   = self::parse($src);
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('My Code Listing', $block->getTitle());
     }
 
     public function testParseColSpecMultiplierShorthand(): void
@@ -214,6 +175,17 @@ final class ParserTest extends TestCase
         self::assertSame(50, $cols[2]->width);
     }
 
+    // ── parseColSpec() ────────────────────────────────────────────────────────
+
+    public function testParseColSpecSimpleWidths(): void
+    {
+        $cols = Parser::parseColSpec('1,2,3');
+        self::assertCount(3, $cols);
+        self::assertSame(1, $cols[0]->width);
+        self::assertSame(2, $cols[1]->width);
+        self::assertSame(3, $cols[2]->width);
+    }
+
     public function testParseColSpecSingle(): void
     {
         $cols = Parser::parseColSpec('1');
@@ -221,19 +193,17 @@ final class ParserTest extends TestCase
         self::assertSame(1, $cols[0]->colnumber);
     }
 
-    // ── Full parse() – document header ───────────────────────────────────────
+    // ── Full parse() – description list ─────────────────────────────────────
 
-    public function testParseEmptyDocumentReturnsDocument(): void
+    public function testParseDescriptionList(): void
     {
-        $doc = self::parse('');
-        self::assertInstanceOf(Document::class, $doc);
-    }
-
-    public function testParseDocumentTitleIsSet(): void
-    {
-        $doc = self::parse("= My Title\n\n");
-        self::assertSame('My Title', $doc->getAttribute('doctitle', null));
-        self::assertSame('My Title', $doc->getTitle());
+        $src    = "term::\ndefinition\n";
+        $doc    = self::parse($src);
+        $blocks = $doc->getBlocks();
+        self::assertCount(1, $blocks);
+        $list = $blocks[0];
+        self::assertInstanceOf(AsciiList::class, $list);
+        self::assertSame('dlist', $list->getContext());
     }
 
     public function testParseDocumentTitleAndAuthor(): void
@@ -251,24 +221,88 @@ final class ParserTest extends TestCase
         self::assertSame('2024-01-01', $doc->getAttribute('revdate', null));
     }
 
-    // ── Full parse() – single paragraph ─────────────────────────────────────
-
-    public function testParseSingleParagraph(): void
+    public function testParseDocumentTitleIsSet(): void
     {
-        $doc    = self::parse("Hello World\n");
+        $doc = self::parse("= My Title\n\n");
+        self::assertSame('My Title', $doc->getAttribute('doctitle', null));
+        self::assertSame('My Title', $doc->getTitle());
+    }
+
+    // ── Full parse() – document header ───────────────────────────────────────
+
+    public function testParseEmptyDocumentReturnsDocument(): void
+    {
+        $doc = self::parse('');
+        self::assertInstanceOf(Document::class, $doc);
+    }
+
+    // ── Full parse() – example block (compound) ──────────────────────────────
+
+    public function testParseExampleBlock(): void
+    {
+        $src   = "====\nSome content.\n====\n";
+        $doc   = self::parse($src);
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('example', $block->getContext());
+    }
+
+    // ── Full parse() – block macro ────────────────────────────────────────────
+
+    public function testParseImageMacro(): void
+    {
+        $src   = "image::photo.png[Alt text]\n";
+        $doc   = self::parse($src);
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('image', $block->getContext());
+        self::assertSame('photo.png', $block->getAttribute('target', null));
+    }
+
+    // ── Full parse() – delimited listing block ───────────────────────────────
+
+    public function testParseListingBlock(): void
+    {
+        $src    = "----\necho hello\n----\n";
+        $doc    = self::parse($src);
         $blocks = $doc->getBlocks();
         self::assertCount(1, $blocks);
         $block = $blocks[0];
         self::assertInstanceOf(Block::class, $block);
-        self::assertSame('paragraph', $block->getContext());
+        self::assertSame('listing', $block->getContext());
     }
 
-    public function testParseParagraphLines(): void
+    public function testParseListingBlockLines(): void
     {
-        $doc   = self::parse("Line one\nLine two\n");
+        $src   = "----\nline one\nline two\n----\n";
+        $doc   = self::parse($src);
         $block = $doc->getBlocks()[0];
         self::assertInstanceOf(Block::class, $block);
         self::assertCount(2, $block->getLines());
+    }
+
+    // ── Full parse() – literal paragraph ────────────────────────────────────
+
+    public function testParseLiteralParagraph(): void
+    {
+        $doc   = self::parse("    indented text\n");
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('literal', $block->getContext());
+    }
+
+    // ── Full parse() – multiple paragraphs ───────────────────────────────────
+
+    public function testParseMultipleParagraphsWithBlankLineSeparator(): void
+    {
+        $src    = "First paragraph.\n\nSecond paragraph.\n";
+        $doc    = self::parse($src);
+        $blocks = $doc->getBlocks();
+        self::assertCount(2, $blocks);
+        foreach ($blocks as $block) {
+            self::assertInstanceOf(Block::class, $block);
+            self::assertSame('paragraph', $block->getContext());
+        }
     }
 
     // ── Full parse() – sections ──────────────────────────────────────────────
@@ -283,14 +317,33 @@ final class ParserTest extends TestCase
         self::assertSame('Section One', $secs[0]->getTitle());
     }
 
-    public function testParseTwoLevelOneSections(): void
+    public function testParseOrderedList(): void
     {
-        $src = "= Doc\n\n== First\n\n== Second\n";
-        $doc = self::parse($src);
-        $secs = $doc->getSections();
-        self::assertCount(2, $secs);
-        self::assertSame('First', $secs[0]->getTitle());
-        self::assertSame('Second', $secs[1]->getTitle());
+        $doc    = self::parse(". First\n. Second\n");
+        $blocks = $doc->getBlocks();
+        self::assertCount(1, $blocks);
+        $list = $blocks[0];
+        self::assertInstanceOf(AsciiList::class, $list);
+        self::assertSame('olist', $list->getContext());
+        self::assertCount(2, $list->getItems());
+    }
+
+    // ── Full parse() – page break ─────────────────────────────────────────────
+
+    public function testParsePageBreak(): void
+    {
+        $doc   = self::parse("<<<\n");
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('page_break', $block->getContext());
+    }
+
+    public function testParseParagraphLines(): void
+    {
+        $doc   = self::parse("Line one\nLine two\n");
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertCount(2, $block->getLines());
     }
 
     public function testParsePreambleBeforeFirstSection(): void
@@ -305,6 +358,118 @@ final class ParserTest extends TestCase
         self::assertInstanceOf(Section::class, $last);
     }
 
+    public function testParseRevisionInfoNonRevisionLineReturnsEmpty(): void
+    {
+        self::assertSame([], Parser::parseRevisionInfo('just some text'));
+    }
+
+    public function testParseRevisionInfoNoVersionPrefix(): void
+    {
+        $attrs = Parser::parseRevisionInfo('1.0.0');
+        self::assertSame('1.0.0', $attrs['revnumber']);
+    }
+
+    // ── parseRevisionInfo() ───────────────────────────────────────────────────
+
+    public function testParseRevisionInfoVersionAndDate(): void
+    {
+        $attrs = Parser::parseRevisionInfo('v1.2.3, 2024-01-15');
+        self::assertSame('1.2.3', $attrs['revnumber']);
+        self::assertSame('2024-01-15', $attrs['revdate']);
+    }
+
+    public function testParseRevisionInfoVersionDateAndRemark(): void
+    {
+        $attrs = Parser::parseRevisionInfo('v2.0, 2024-06-01: Initial public release');
+        self::assertSame('2.0', $attrs['revnumber']);
+        self::assertSame('2024-06-01', $attrs['revdate']);
+        self::assertSame('Initial public release', $attrs['revremark']);
+    }
+
+    public function testParseSectionTitleLevel0(): void
+    {
+        // Level-0 "= Title" is a document title, not a regular section; the
+        // regex still matches because SECTION_TITLE covers all =+ patterns.
+        $result = Parser::parseSectionTitle('= Document Title');
+        self::assertNotFalse($result);
+        self::assertSame(0, $result['level']);
+    }
+
+    // ── parseSectionTitle() ───────────────────────────────────────────────────
+
+    public function testParseSectionTitleLevel1(): void
+    {
+        $result = Parser::parseSectionTitle('== Hello World');
+        self::assertNotFalse($result);
+        self::assertSame(1, $result['level']);
+        self::assertSame('Hello World', $result['title']);
+    }
+
+    public function testParseSectionTitleLevel2(): void
+    {
+        $result = Parser::parseSectionTitle('=== Section Three');
+        self::assertNotFalse($result);
+        self::assertSame(2, $result['level']);
+        self::assertSame('Section Three', $result['title']);
+    }
+
+    public function testParseSectionTitleLevel4(): void
+    {
+        $result = Parser::parseSectionTitle('===== Deep');
+        self::assertNotFalse($result);
+        self::assertSame(4, $result['level']);
+        self::assertSame('Deep', $result['title']);
+    }
+
+    public function testParseSectionTitleReturnsFalseForNonTitle(): void
+    {
+        self::assertFalse(Parser::parseSectionTitle('Just a paragraph'));
+        self::assertFalse(Parser::parseSectionTitle('  == Indented'));
+    }
+
+    // ── Full parse() – table ─────────────────────────────────────────────────
+
+    public function testParseSimpleTable(): void
+    {
+        $src    = "|===\n|A |B\n|C |D\n|===\n";
+        $doc    = self::parse($src);
+        $blocks = $doc->getBlocks();
+        self::assertCount(1, $blocks);
+        self::assertInstanceOf(Table::class, $blocks[0]);
+    }
+
+    // ── Full parse() – single paragraph ─────────────────────────────────────
+
+    public function testParseSingleParagraph(): void
+    {
+        $doc    = self::parse("Hello World\n");
+        $blocks = $doc->getBlocks();
+        self::assertCount(1, $blocks);
+        $block = $blocks[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('paragraph', $block->getContext());
+    }
+
+    // ── Full parse() – thematic break ────────────────────────────────────────
+
+    public function testParseThematicBreak(): void
+    {
+        $doc   = self::parse("'''\n");
+        $block = $doc->getBlocks()[0];
+        self::assertInstanceOf(Block::class, $block);
+        self::assertSame('thematic_break', $block->getContext());
+    }
+
+    public function testParseTwoLevelOneSections(): void
+    {
+        $src  = "= Doc\n\n== First\n\n== Second\n";
+        $doc  = self::parse($src);
+        $secs = $doc->getSections();
+        self::assertCount(2, $secs);
+        self::assertSame('First', $secs[0]->getTitle());
+        self::assertSame('Second', $secs[1]->getTitle());
+    }
+
     // ── Full parse() – unordered list ────────────────────────────────────────
 
     public function testParseUnorderedList(): void
@@ -316,169 +481,5 @@ final class ParserTest extends TestCase
         self::assertInstanceOf(AsciiList::class, $list);
         self::assertSame('ulist', $list->getContext());
         self::assertCount(3, $list->getItems());
-    }
-
-    public function testParseOrderedList(): void
-    {
-        $doc    = self::parse(". First\n. Second\n");
-        $blocks = $doc->getBlocks();
-        self::assertCount(1, $blocks);
-        $list = $blocks[0];
-        self::assertInstanceOf(AsciiList::class, $list);
-        self::assertSame('olist', $list->getContext());
-        self::assertCount(2, $list->getItems());
-    }
-
-    // ── Full parse() – delimited listing block ───────────────────────────────
-
-    public function testParseListingBlock(): void
-    {
-        $src = "----\necho hello\n----\n";
-        $doc = self::parse($src);
-        $blocks = $doc->getBlocks();
-        self::assertCount(1, $blocks);
-        $block = $blocks[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('listing', $block->getContext());
-    }
-
-    public function testParseListingBlockLines(): void
-    {
-        $src = "----\nline one\nline two\n----\n";
-        $doc = self::parse($src);
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertCount(2, $block->getLines());
-    }
-
-    // ── Full parse() – example block (compound) ──────────────────────────────
-
-    public function testParseExampleBlock(): void
-    {
-        $src = "====\nSome content.\n====\n";
-        $doc = self::parse($src);
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('example', $block->getContext());
-    }
-
-    // ── Full parse() – admonition paragraph ─────────────────────────────────
-
-    public function testParseAdmonitionParagraph(): void
-    {
-        $doc = self::parse("NOTE: Pay attention.\n");
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('admonition', $block->getContext());
-        self::assertSame('NOTE', $block->getStyle());
-    }
-
-    // ── Full parse() – literal paragraph ────────────────────────────────────
-
-    public function testParseLiteralParagraph(): void
-    {
-        $doc = self::parse("    indented text\n");
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('literal', $block->getContext());
-    }
-
-    // ── Full parse() – thematic break ────────────────────────────────────────
-
-    public function testParseThematicBreak(): void
-    {
-        $doc = self::parse("'''\n");
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('thematic_break', $block->getContext());
-    }
-
-    // ── Full parse() – page break ─────────────────────────────────────────────
-
-    public function testParsePageBreak(): void
-    {
-        $doc = self::parse("<<<\n");
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('page_break', $block->getContext());
-    }
-
-    // ── Full parse() – table ─────────────────────────────────────────────────
-
-    public function testParseSimpleTable(): void
-    {
-        $src = "|===\n|A |B\n|C |D\n|===\n";
-        $doc = self::parse($src);
-        $blocks = $doc->getBlocks();
-        self::assertCount(1, $blocks);
-        self::assertInstanceOf(Table::class, $blocks[0]);
-    }
-
-    // ── Full parse() – block with attribute list ─────────────────────────────
-
-    public function testParseBlockWithIdAttribute(): void
-    {
-        $src = "[[my-block]]\nHello World\n";
-        $doc = self::parse($src);
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('my-block', $block->getAttribute('id', null));
-    }
-
-    public function testParseBlockWithAttrListStyle(): void
-    {
-        $src = "[source,php]\n----\n<?php\n----\n";
-        $doc = self::parse($src);
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('source', $block->getStyle());
-    }
-
-    public function testParseBlockWithTitle(): void
-    {
-        $src = ".My Code Listing\n----\ncode here\n----\n";
-        $doc = self::parse($src);
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('My Code Listing', $block->getTitle());
-    }
-
-    // ── Full parse() – block macro ────────────────────────────────────────────
-
-    public function testParseImageMacro(): void
-    {
-        $src = "image::photo.png[Alt text]\n";
-        $doc = self::parse($src);
-        $block = $doc->getBlocks()[0];
-        self::assertInstanceOf(Block::class, $block);
-        self::assertSame('image', $block->getContext());
-        self::assertSame('photo.png', $block->getAttribute('target', null));
-    }
-
-    // ── Full parse() – description list ─────────────────────────────────────
-
-    public function testParseDescriptionList(): void
-    {
-        $src = "term::\ndefinition\n";
-        $doc = self::parse($src);
-        $blocks = $doc->getBlocks();
-        self::assertCount(1, $blocks);
-        $list = $blocks[0];
-        self::assertInstanceOf(AsciiList::class, $list);
-        self::assertSame('dlist', $list->getContext());
-    }
-
-    // ── Full parse() – multiple paragraphs ───────────────────────────────────
-
-    public function testParseMultipleParagraphsWithBlankLineSeparator(): void
-    {
-        $src = "First paragraph.\n\nSecond paragraph.\n";
-        $doc = self::parse($src);
-        $blocks = $doc->getBlocks();
-        self::assertCount(2, $blocks);
-        foreach ($blocks as $block) {
-            self::assertInstanceOf(Block::class, $block);
-            self::assertSame('paragraph', $block->getContext());
-        }
     }
 }

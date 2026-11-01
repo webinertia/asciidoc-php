@@ -11,6 +11,27 @@ namespace Webware\AsciidocPhp;
 interface DocumentInterface
 {
     /**
+     * Return the attribute value, or $default when missing / explicitly unset.
+     */
+    public function getAttribute(string $name, mixed $default = null): mixed;
+
+    /**
+     * The base directory for resolving relative include paths, or null when
+     * the source was loaded from a string with no associated path.
+     */
+    public function getBaseDir(): ?string;
+
+    /**
+     * The safe mode that governs include:: resolution and other security decisions.
+     */
+    public function getSafeMode(): SafeMode;
+
+    /**
+     * Return true when the attribute is defined and NOT explicitly unset.
+     */
+    public function hasAttribute(string $name): bool;
+
+    /**
      * Set a document attribute.
      *
      * @param bool $overridable If false, the attribute is locked and cannot be
@@ -23,25 +44,4 @@ interface DocumentInterface
      * Respects the lock: a locked attribute cannot be unset from document source.
      */
     public function unsetAttribute(string $name): void;
-
-    /**
-     * Return true when the attribute is defined and NOT explicitly unset.
-     */
-    public function hasAttribute(string $name): bool;
-
-    /**
-     * Return the attribute value, or $default when missing / explicitly unset.
-     */
-    public function getAttribute(string $name, mixed $default = null): mixed;
-
-    /**
-     * The safe mode that governs include:: resolution and other security decisions.
-     */
-    public function getSafeMode(): SafeMode;
-
-    /**
-     * The base directory for resolving relative include paths, or null when
-     * the source was loaded from a string with no associated path.
-     */
-    public function getBaseDir(): string|null;
 }

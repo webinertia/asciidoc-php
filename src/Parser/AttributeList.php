@@ -35,6 +35,33 @@ final class AttributeList
     private function __construct() {}
 
     /**
+     * Merge a parsed attribute map into an existing block attributes array.
+     *
+     * - Positional index 0  → 'style' (if not already set)
+     * - id / role / options already extracted by shorthand
+     * - All named attributes pass through
+     *
+     * The caller is expected to have run `parse()` first.
+     *
+     * @param array<int|string, string>  $parsed   Output of parse()
+     * @param array<int|string, mixed>   $blockAttrs  Existing block attrs (modified in place)
+     */
+    public static function applyTo(array $parsed, array &$blockAttrs): void
+    {
+        foreach ($parsed as $key => $value) {
+            if (is_int($key)) {
+                if (0 === $key && ! isset($blockAttrs['style'])) {
+                    $blockAttrs['style'] = $value;
+                }
+                // Other positional indices are stored as-is for block-specific use
+                $blockAttrs[$key] = $value;
+            } else {
+                $blockAttrs[$key] = $value;
+            }
+        }
+    }
+
+    /**
      * Parse the inner content of an attribute list bracket and return the
      * resulting attribute map.
      *
@@ -49,8 +76,8 @@ final class AttributeList
         }
 
         /** @var array<int|string, string> $attrs */
-        $attrs          = [];
-        $positionalIdx  = 0;
+        $attrs         = [];
+        $positionalIdx = 0;
 
         // ── Step 1: Shorthand prefix (#id, .role, %option) ────────────────────
         if (strlen($str) > 0 && ('#' === $str[0] || '.' === $str[0] || '%' === $str[0])) {
@@ -74,8 +101,8 @@ final class AttributeList
 
             // Named: key=value  or  key="value"
             if (preg_match('/^([a-zA-Z_][a-zA-Z0-9_-]*)=(.*)$/', $token, $m) === 1) {
-                $key   = $m[1];
-                $value = trim($m[2], '"\'');
+                $key         = $m[1];
+                $value       = trim($m[2], '"\'');
                 $attrs[$key] = $value;
             } else {
                 // Positional
@@ -85,33 +112,6 @@ final class AttributeList
         }
 
         return $attrs;
-    }
-
-    /**
-     * Merge a parsed attribute map into an existing block attributes array.
-     *
-     * - Positional index 0  → 'style' (if not already set)
-     * - id / role / options already extracted by shorthand
-     * - All named attributes pass through
-     *
-     * The caller is expected to have run `parse()` first.
-     *
-     * @param array<int|string, string>  $parsed   Output of parse()
-     * @param array<int|string, mixed>   $blockAttrs  Existing block attrs (modified in place)
-     */
-    public static function applyTo(array $parsed, array &$blockAttrs): void
-    {
-        foreach ($parsed as $key => $value) {
-            if (is_int($key)) {
-                if (0 === $key && !isset($blockAttrs['style'])) {
-                    $blockAttrs['style'] = $value;
-                }
-                // Other positional indices are stored as-is for block-specific use
-                $blockAttrs[$key] = $value;
-            } else {
-                $blockAttrs[$key] = $value;
-            }
-        }
     }
 
     // ── Private helpers ───────────────────────────────────────────────────────
@@ -128,9 +128,9 @@ final class AttributeList
      */
     private static function parseShorthand(string $str, array $attrs, int $positionalIdx): array
     {
-        $roles   = [];
-        $pos     = 0;
-        $len     = strlen($str);
+        $roles = [];
+        $pos   = 0;
+        $len   = strlen($str);
 
         while ($pos < $len && ('#' === $str[$pos] || '.' === $str[$pos] || '%' === $str[$pos])) {
             $sigil = $str[$pos];
@@ -138,7 +138,13 @@ final class AttributeList
             $start = $pos;
 
             // Collect token characters: stop at # . % , or end
-            while ($pos < $len && '#' !== $str[$pos] && '.' !== $str[$pos] && '%' !== $str[$pos] && ',' !== $str[$pos]) {
+            while (
+                $pos < $len
+                && '#' !== $str[$pos]
+                && '.' !== $str[$pos]
+                && '%' !== $str[$pos]
+                && ',' !== $str[$pos]
+            ) {
                 $pos++;
             }
 
@@ -149,9 +155,9 @@ final class AttributeList
             }
 
             match ($sigil) {
-                '#' => $attrs['id']                    = $token,
-                '.' => $roles[]                        = $token,
-                '%' => $attrs["{$token}-option"]      = '',
+                '#' => $attrs['id'] = $token,
+                '.' => $roles[] = $token,
+                '%' => $attrs["{$token}-option"] = '',
             };
         }
 
@@ -184,15 +190,15 @@ final class AttributeList
         for ($i = 0; $i < $len; $i++) {
             $ch = $str[$i];
 
-            if ('"' === $ch && !$inQuote) {
-                $inQuote  = true;
+            if ('"' === $ch && ! $inQuote) {
+                $inQuote = true;
                 $current .= $ch;
             } elseif ('"' === $ch && $inQuote) {
-                $inQuote  = false;
+                $inQuote = false;
                 $current .= $ch;
-            } elseif (',' === $ch && !$inQuote) {
-                $tokens[]  = $current;
-                $current   = '';
+            } elseif (',' === $ch && ! $inQuote) {
+                $tokens[] = $current;
+                $current  = '';
             } else {
                 $current .= $ch;
             }

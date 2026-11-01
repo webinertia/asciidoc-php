@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Webware\AsciidocPhp\Substitutor;
 
-
 use Webware\AsciidocPhp\Node\Section;
 
 /**
@@ -76,7 +75,7 @@ trait SubstitutorsTrait
         }
 
         $this->passthroughs = [];
-        $text = $this->extractPassthroughs($text);
+        $text               = $this->extractPassthroughs($text);
 
         foreach ($subs as $sub) {
             $text = match ($sub) {
@@ -113,39 +112,66 @@ trait SubstitutorsTrait
         );
     }
 
-    // ── Individual passes (Tier 1 stubs — return text unchanged) ─────────────
-
-    protected function subSpecialChars(string $text): string
+    /**
+     * @param list<string> $subs
+     * @return list<string>
+     */
+    protected function expandSubsList(array $subs): array
     {
-        // Asciidoctor's specialcharacters substitution only encodes &, < and >.
-        // Double-quotes are left as-is (they are safe in HTML text content).
-        return htmlspecialchars($text, ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+        $groups = [
+            'normal'   => self::NORMAL_SUBS,
+            'verbatim' => self::VERBATIM_SUBS,
+            'header'   => self::HEADER_SUBS,
+            'basic'    => self::BASIC_SUBS,
+            'none'     => self::NO_SUBS,
+            'title'    => self::TITLE_SUBS,
+        ];
+
+        $result = [];
+        foreach ($subs as $sub) {
+            if (isset($groups[$sub])) {
+                $result = [...$result, ...$groups[$sub]];
+            } else {
+                $result[] = $sub;
+            }
+        }
+
+        // Deduplicate while preserving order.
+        return array_values(array_unique($result));
     }
 
-    protected function subQuotes(string $text): string
+    // ── Passthrough management ────────────────────────────────────────────────
+
+    protected function extractPassthroughs(string $text): string
     {
-        // Process unconstrained (double-marker) patterns first so they are
-        // not accidentally split by the single-marker constrained patterns.
+        // Tier 2: full extraction of +++…+++, $$…$$, +…+, pass:[…].
+        return $text;
+    }
 
-        // Typographic curved quotes (unconstrained).
-        $text = (string) preg_replace(Rx::DOUBLE_CURVED_QUOTE, '&#8220;$1&#8221;', $text);
-        $text = (string) preg_replace(Rx::SINGLE_CURVED_QUOTE, '&#8216;$1&#8217;', $text);
+    // ── Utilities ─────────────────────────────────────────────────────────────
 
-        // Unconstrained inline marks.
-        $text = (string) preg_replace(Rx::STRONG_UNCONSTRAINED,   '<strong>$1</strong>', $text);
-        $text = (string) preg_replace(Rx::EMPHASIS_UNCONSTRAINED,  '<em>$1</em>',         $text);
-        $text = (string) preg_replace(Rx::MONO_UNCONSTRAINED,      '<code>$1</code>',     $text);
-        $text = (string) preg_replace(Rx::MARK_UNCONSTRAINED,      '<mark>$1</mark>',     $text);
+    /**
+     * Expand any named group references (e.g. 'normal') to their constituent
+     * substitution names and return the deduplicated list.
+     *
+     * @param list<string>|string $subs
+     * @return list<string>
+     */
+    protected function normalizeSubsList(array|string $subs): array
+    {
+        if (is_string($subs)) {
+            $subs = [$subs];
+        }
+        return $this->expandSubsList($subs);
+    }
 
-        // Constrained inline marks (require word boundaries).
-        $text = (string) preg_replace(Rx::STRONG_CONSTRAINED,   '<strong>$1</strong>', $text);
-        $text = (string) preg_replace(Rx::EMPHASIS_CONSTRAINED,  '<em>$1</em>',         $text);
-        $text = (string) preg_replace(Rx::MONO_CONSTRAINED,      '<code>$1</code>',     $text);
-        $text = (string) preg_replace(Rx::MARK_CONSTRAINED,      '<mark>$1</mark>',     $text);
-
-        // Superscript and subscript (always unconstrained by design).
-        $text = (string) preg_replace(Rx::SUPERSCRIPT, '<sup>$1</sup>', $text);
-        return (string) preg_replace(Rx::SUBSCRIPT,   '<sub>$1</sub>', $text);
+    protected function restorePassthroughs(string $text): string
+    {
+        if ([] === $this->passthroughs) {
+            return $text;
+        }
+        // Tier 2: replace \x02N\x03 placeholders.
+        return $text;
     }
 
     /** @param array<string, mixed> $opts */
@@ -155,9 +181,9 @@ trait SubstitutorsTrait
         return $text;
     }
 
-    protected function subReplacements(string $text): string
+    protected function subCallouts(string $text): string
     {
-        // Tier 2: typographic replacements.
+        // Tier 2: strip/register <N> callout markers in verbatim blocks.
         return $text;
     }
 
@@ -216,71 +242,44 @@ trait SubstitutorsTrait
         return $text;
     }
 
-    protected function subCallouts(string $text): string
+    protected function subQuotes(string $text): string
     {
-        // Tier 2: strip/register <N> callout markers in verbatim blocks.
+        // Process unconstrained (double-marker) patterns first so they are
+        // not accidentally split by the single-marker constrained patterns.
+
+        // Typographic curved quotes (unconstrained).
+        $text = (string) preg_replace(Rx::DOUBLE_CURVED_QUOTE, '&#8220;$1&#8221;', $text);
+        $text = (string) preg_replace(Rx::SINGLE_CURVED_QUOTE, '&#8216;$1&#8217;', $text);
+
+        // Unconstrained inline marks.
+        $text = (string) preg_replace(Rx::STRONG_UNCONSTRAINED, '<strong>$1</strong>', $text);
+        $text = (string) preg_replace(Rx::EMPHASIS_UNCONSTRAINED, '<em>$1</em>', $text);
+        $text = (string) preg_replace(Rx::MONO_UNCONSTRAINED, '<code>$1</code>', $text);
+        $text = (string) preg_replace(Rx::MARK_UNCONSTRAINED, '<mark>$1</mark>', $text);
+
+        // Constrained inline marks (require word boundaries).
+        $text = (string) preg_replace(Rx::STRONG_CONSTRAINED, '<strong>$1</strong>', $text);
+        $text = (string) preg_replace(Rx::EMPHASIS_CONSTRAINED, '<em>$1</em>', $text);
+        $text = (string) preg_replace(Rx::MONO_CONSTRAINED, '<code>$1</code>', $text);
+        $text = (string) preg_replace(Rx::MARK_CONSTRAINED, '<mark>$1</mark>', $text);
+
+        // Superscript and subscript (always unconstrained by design).
+        $text = (string) preg_replace(Rx::SUPERSCRIPT, '<sup>$1</sup>', $text);
+        return (string) preg_replace(Rx::SUBSCRIPT, '<sub>$1</sub>', $text);
+    }
+
+    protected function subReplacements(string $text): string
+    {
+        // Tier 2: typographic replacements.
         return $text;
     }
 
-    // ── Passthrough management ────────────────────────────────────────────────
+    // ── Individual passes (Tier 1 stubs — return text unchanged) ─────────────
 
-    protected function extractPassthroughs(string $text): string
+    protected function subSpecialChars(string $text): string
     {
-        // Tier 2: full extraction of +++…+++, $$…$$, +…+, pass:[…].
-        return $text;
-    }
-
-    protected function restorePassthroughs(string $text): string
-    {
-        if ([] === $this->passthroughs) {
-            return $text;
-        }
-        // Tier 2: replace \x02N\x03 placeholders.
-        return $text;
-    }
-
-    // ── Utilities ─────────────────────────────────────────────────────────────
-
-    /**
-     * Expand any named group references (e.g. 'normal') to their constituent
-     * substitution names and return the deduplicated list.
-     *
-     * @param list<string>|string $subs
-     * @return list<string>
-     */
-    protected function normalizeSubsList(array|string $subs): array
-    {
-        if (is_string($subs)) {
-            $subs = [$subs];
-        }
-        return $this->expandSubsList($subs);
-    }
-
-    /**
-     * @param list<string> $subs
-     * @return list<string>
-     */
-    protected function expandSubsList(array $subs): array
-    {
-        $groups = [
-            'normal'   => self::NORMAL_SUBS,
-            'verbatim' => self::VERBATIM_SUBS,
-            'header'   => self::HEADER_SUBS,
-            'basic'    => self::BASIC_SUBS,
-            'none'     => self::NO_SUBS,
-            'title'    => self::TITLE_SUBS,
-        ];
-
-        $result = [];
-        foreach ($subs as $sub) {
-            if (isset($groups[$sub])) {
-                $result = [...$result, ...$groups[$sub]];
-            } else {
-                $result[] = $sub;
-            }
-        }
-
-        // Deduplicate while preserving order.
-        return array_values(array_unique($result));
+        // Asciidoctor's specialcharacters substitution only encodes &, < and >.
+        // Double-quotes are left as-is (they are safe in HTML text content).
+        return htmlspecialchars($text, ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
     }
 }

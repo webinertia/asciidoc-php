@@ -27,9 +27,9 @@ final class PathResolver
      */
     public static function resolve(
         string $target,
-        string|null $baseDir,
+        ?string $baseDir,
         SafeMode $safeMode,
-    ): string|null {
+    ): ?string {
         // SECURE: no file I/O permitted at all.
         if (SafeMode::SECURE === $safeMode) {
             return null;
@@ -45,7 +45,7 @@ final class PathResolver
         $target = str_replace('\\', '/', $target);
 
         // Resolve relative to baseDir when the path is not absolute.
-        if (null !== $baseDir && !self::isAbsolute($target)) {
+        if (null !== $baseDir && ! self::isAbsolute($target)) {
             $resolved = str_replace('\\', '/', $baseDir) . '/' . $target;
         } else {
             $resolved = $target;
@@ -56,7 +56,10 @@ final class PathResolver
 
         // SAFE / SERVER: the resolved path must be within baseDir.
         if (
-            (SafeMode::SAFE === $safeMode || SafeMode::SERVER === $safeMode)
+            (
+                SafeMode::SAFE === $safeMode
+                || SafeMode::SERVER === $safeMode
+            )
             && null !== $baseDir
         ) {
             $realResolved = realpath($resolved);
@@ -67,44 +70,18 @@ final class PathResolver
             }
 
             // Ensure the resolved path is inside (or equal to) baseDir.
-            $realBase = rtrim(str_replace('\\', '/', $realBase), '/');
+            $realBase     = rtrim(str_replace('\\', '/', $realBase), '/');
             $realResolved = str_replace('\\', '/', $realResolved);
 
             if (
                 $realResolved !== $realBase
-                && !str_starts_with($realResolved, "{$realBase}/")
+                && ! str_starts_with($realResolved, "{$realBase}/")
             ) {
                 return null;
             }
         }
 
         return $resolved;
-    }
-
-    // -------------------------------------------------------------------------
-    // Private helpers
-    // -------------------------------------------------------------------------
-
-    private static function isAbsolute(string $path): bool
-    {
-        // Unix absolute: starts with /
-        // Windows absolute: starts with drive letter + colon (C:\)
-        return str_starts_with($path, '/')
-            || (strlen($path) >= 2 && ':' === $path[1]);
-    }
-
-    private static function expandHome(string $path): string
-    {
-        if (!str_starts_with($path, '~')) {
-            return $path;
-        }
-
-        $home = getenv('HOME');
-        if (false === $home || '' === $home) {
-            return $path;
-        }
-
-        return $home . substr($path, 1);
     }
 
     private static function expandEnvVars(string $path): string
@@ -117,6 +94,34 @@ final class PathResolver
                 return false !== $value ? $value : $m[0];
             },
             $path,
+        );
+    }
+
+    private static function expandHome(string $path): string
+    {
+        if (! str_starts_with($path, '~')) {
+            return $path;
+        }
+
+        $home = getenv('HOME');
+        if (false === $home || '' === $home) {
+            return $path;
+        }
+
+        return $home . substr($path, 1);
+    }
+
+    // -------------------------------------------------------------------------
+    // Private helpers
+    // -------------------------------------------------------------------------
+
+    private static function isAbsolute(string $path): bool
+    {
+        // Unix absolute: starts with /
+        // Windows absolute: starts with drive letter + colon (C:\)
+        return (
+            str_starts_with($path, '/')
+                || (strlen($path) >= 2 && ':' === $path[1])
         );
     }
 

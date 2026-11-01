@@ -15,16 +15,12 @@ final class AsciiListTest extends TestCase
 {
     private Document $doc;
 
-    protected function setUp(): void
-    {
-        $this->doc = new Document();
-    }
-
-    public function testContextAndNodeName(): void
+    public function testAppendItemAlsoPopulatesBlocks(): void
     {
         $list = new AsciiList($this->doc, null, 'ulist');
-        self::assertSame('ulist', $list->getContext());
-        self::assertSame('ulist', $list->getNodeName());
+        $item = new ListItem($this->doc, $list, 'One', '*');
+        $list->appendItem($item);
+        self::assertSame([$item], $list->getBlocks());
     }
 
     // ── appendItem / getItems ─────────────────────────────────────────────────
@@ -40,12 +36,11 @@ final class AsciiListTest extends TestCase
         self::assertSame([$item1, $item2], $list->getItems());
     }
 
-    public function testAppendItemAlsoPopulatesBlocks(): void
+    public function testContextAndNodeName(): void
     {
         $list = new AsciiList($this->doc, null, 'ulist');
-        $item = new ListItem($this->doc, $list, 'One', '*');
-        $list->appendItem($item);
-        self::assertSame([$item], $list->getBlocks());
+        self::assertSame('ulist', $list->getContext());
+        self::assertSame('ulist', $list->getNodeName());
     }
 
     public function testHasItemsFalseWhenEmpty(): void
@@ -61,18 +56,10 @@ final class AsciiListTest extends TestCase
         self::assertTrue($list->hasItems());
     }
 
-    // ── isOutline ─────────────────────────────────────────────────────────────
-
-    public function testIsOutlineTrueForUlist(): void
+    public function testIsOutlineFalseForColist(): void
     {
-        $list = new AsciiList($this->doc, null, 'ulist');
-        self::assertTrue($list->isOutline());
-    }
-
-    public function testIsOutlineTrueForOlist(): void
-    {
-        $list = new AsciiList($this->doc, null, 'olist');
-        self::assertTrue($list->isOutline());
+        $list = new AsciiList($this->doc, null, 'colist');
+        self::assertFalse($list->isOutline());
     }
 
     public function testIsOutlineFalseForDlist(): void
@@ -81,9 +68,22 @@ final class AsciiListTest extends TestCase
         self::assertFalse($list->isOutline());
     }
 
-    public function testIsOutlineFalseForColist(): void
+    public function testIsOutlineTrueForOlist(): void
     {
-        $list = new AsciiList($this->doc, null, 'colist');
-        self::assertFalse($list->isOutline());
+        $list = new AsciiList($this->doc, null, 'olist');
+        self::assertTrue($list->isOutline());
+    }
+
+    // ── isOutline ─────────────────────────────────────────────────────────────
+
+    public function testIsOutlineTrueForUlist(): void
+    {
+        $list = new AsciiList($this->doc, null, 'ulist');
+        self::assertTrue($list->isOutline());
+    }
+
+    protected function setUp(): void
+    {
+        $this->doc = new Document();
     }
 }

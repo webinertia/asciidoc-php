@@ -21,7 +21,10 @@ final class ConditionalContextTest extends TestCase
 
     public function testConstructorWithSawElse(): void
     {
-        $ctx = new ConditionalContext(satisfying: false, sawElse: true);
+        $ctx = new ConditionalContext(
+            satisfying: false,
+            sawElse   : true,
+        );
 
         $this->assertFalse($ctx->satisfying);
         $this->assertTrue($ctx->sawElse);

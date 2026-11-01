@@ -19,35 +19,12 @@ class ListItem extends AbstractBlock
     /** @param array<string, mixed> $markerInfo e.g. ['type' => 'olist', 'number' => 1] */
     public function __construct(
         Document $document,
-        AbstractBlock|null $parent,
+        ?AbstractBlock $parent,
         private string $text,
         private string $marker,
         private array $markerInfo = [],
     ) {
         parent::__construct('list_item', 'list_item', $document, $parent, ContentModel::SIMPLE);
-    }
-
-    // ── Accessors ─────────────────────────────────────────────────────────────
-
-    /**
-     * Return the principal text with NORMAL_SUBS applied.
-     */
-    public function getText(): string
-    {
-        return $this->applySubstitutions($this->text, self::NORMAL_SUBS);
-    }
-
-    /**
-     * Return the raw text (no substitutions).
-     */
-    public function getRawText(): string
-    {
-        return $this->text;
-    }
-
-    public function setText(string $text): void
-    {
-        $this->text = $text;
     }
 
     public function getMarker(): string
@@ -63,6 +40,24 @@ class ListItem extends AbstractBlock
         return $this->markerInfo;
     }
 
+    /**
+     * Return the raw text (no substitutions).
+     */
+    public function getRawText(): string
+    {
+        return $this->text;
+    }
+
+    // ── Accessors ─────────────────────────────────────────────────────────────
+
+    /**
+     * Return the principal text with NORMAL_SUBS applied.
+     */
+    public function getText(): string
+    {
+        return $this->applySubstitutions($this->text, self::NORMAL_SUBS);
+    }
+
     // ── Item type helpers ─────────────────────────────────────────────────────
 
     /**
@@ -70,6 +65,11 @@ class ListItem extends AbstractBlock
      */
     public function isSimple(): bool
     {
-        return !$this->hasBlocks();
+        return ! $this->hasBlocks();
+    }
+
+    public function setText(string $text): void
+    {
+        $this->text = $text;
     }
 }

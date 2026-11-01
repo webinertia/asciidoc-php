@@ -14,6 +14,6 @@ class Column
         public int $width = 1,
         public string $halign = 'left',
         public string $valign = 'top',
-        public string|null $style = null,
+        public ?string $style = null,
     ) {}
 }

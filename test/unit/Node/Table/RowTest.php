@@ -13,13 +13,6 @@ use Webware\AsciidocPhp\Node\Table\Row;
 #[CoversClass(Row::class)]
 final class RowTest extends TestCase
 {
-    public function testEmptyRowHasNoCells(): void
-    {
-        $row = new Row();
-        self::assertSame([], $row->getCells());
-        self::assertFalse($row->hasCells());
-    }
-
     public function testAppendCellAndGetCells(): void
     {
         $row  = new Row();
@@ -39,5 +32,12 @@ final class RowTest extends TestCase
         $row->appendCell($cell1);
         $row->appendCell($cell2);
         self::assertSame([$cell1, $cell2], $row->getCells());
+    }
+
+    public function testEmptyRowHasNoCells(): void
+    {
+        $row = new Row();
+        self::assertSame([], $row->getCells());
+        self::assertFalse($row->hasCells());
     }
 }

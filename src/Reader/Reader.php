@@ -18,7 +18,7 @@ class Reader
     protected string $source;
 
     /** @var int|null Reserved for Tier 3 save/restore (not used in MVP) */
-    protected int|null $mark = null;
+    protected ?int $mark = null;
 
     /**
      * @param string|list<string> $data
@@ -47,10 +47,56 @@ class Reader
     }
 
     /**
+     * Consume one line and discard it. Returns false at EOF.
+     */
+    public function advance(): bool
+    {
+        return $this->readLine() !== null;
+    }
+
+    public function getCursor(): Cursor
+    {
+        return $this->cursor;
+    }
+
+    public function getLineno(): int
+    {
+        return $this->cursor->lineno;
+    }
+
+    /**
+     * Return all remaining lines in source order (without consuming them).
+     *
+     * @return list<string>
+     */
+    public function getLines(): array
+    {
+        return array_reverse($this->lines);
+    }
+
+    /**
+     * Return all remaining lines joined by newlines (without consuming them).
+     */
+    public function getSource(): string
+    {
+        return implode("\n", $this->getLines());
+    }
+
+    public function hasMoreLines(): bool
+    {
+        return $this->peekLine() !== null;
+    }
+
+    public function isNextLineEmpty(): bool
+    {
+        return $this->peekLine() === '';
+    }
+
+    /**
      * Return the next line without consuming it. When skipBlank is true, blank
      * lines are consumed silently until a non-blank line (or EOF) is found.
      */
-    public function peekLine(bool $skipBlank = false): string|null
+    public function peekLine(bool $skipBlank = false): ?string
     {
         while (true) {
             if ($this->lookaheadBuffer > 0) {
@@ -111,7 +157,7 @@ class Reader
      * Consume and return the next line, advancing the cursor.
      * Returns null at EOF.
      */
-    public function readLine(): string|null
+    public function readLine(): ?string
     {
         $line = $this->peekLine();
         if (null === $line) {
@@ -198,38 +244,6 @@ class Reader
         return $lines;
     }
 
-    public function hasMoreLines(): bool
-    {
-        return $this->peekLine() !== null;
-    }
-
-    public function isNextLineEmpty(): bool
-    {
-        return $this->peekLine() === '';
-    }
-
-    /**
-     * Push a line back so it becomes the next line to be read.
-     */
-    public function unshiftLine(string $line): void
-    {
-        $this->lines[]        = $line;
-        $this->lookaheadBuffer = 0;
-    }
-
-    /**
-     * Push multiple lines back in order so $lines[0] is the next line to read.
-     *
-     * @param list<string> $lines
-     */
-    public function unshiftLines(array $lines): void
-    {
-        foreach (array_reverse($lines) as $line) {
-            $this->lines[] = $line;
-        }
-        $this->lookaheadBuffer = 0;
-    }
-
     /**
      * Consume and discard leading blank lines. Returns the count skipped.
      */
@@ -254,7 +268,7 @@ class Reader
         $count = 0;
         while (true) {
             $line = $this->peekLine();
-            if (null === $line || !str_starts_with($line, '//')) {
+            if (null === $line || ! str_starts_with($line, '//')) {
                 break;
             }
             $this->readLine();
@@ -264,51 +278,25 @@ class Reader
     }
 
     /**
-     * Consume one line and discard it. Returns false at EOF.
+     * Push a line back so it becomes the next line to be read.
      */
-    public function advance(): bool
+    public function unshiftLine(string $line): void
     {
-        return $this->readLine() !== null;
+        $this->lines[]         = $line;
+        $this->lookaheadBuffer = 0;
     }
 
     /**
-     * Return all remaining lines in source order (without consuming them).
+     * Push multiple lines back in order so $lines[0] is the next line to read.
      *
-     * @return list<string>
+     * @param list<string> $lines
      */
-    public function getLines(): array
+    public function unshiftLines(array $lines): void
     {
-        return array_reverse($this->lines);
-    }
-
-    /**
-     * Return all remaining lines joined by newlines (without consuming them).
-     */
-    public function getSource(): string
-    {
-        return implode("\n", $this->getLines());
-    }
-
-    public function getLineno(): int
-    {
-        return $this->cursor->lineno;
-    }
-
-    public function getCursor(): Cursor
-    {
-        return $this->cursor;
-    }
-
-    /**
-     * Process a raw source line. Return null to consume the line silently
-     * (used by PreprocessorReader for directives). Return the line string to
-     * pass it through as content.
-     *
-     * Subclasses override this to handle include::, ifdef::, :attr:, etc.
-     */
-    protected function processLine(string $line): string|null
-    {
-        return $line;
+        foreach (array_reverse($lines) as $line) {
+            $this->lines[] = $line;
+        }
+        $this->lookaheadBuffer = 0;
     }
 
     /**
@@ -319,5 +307,17 @@ class Reader
     protected function onEof(): bool
     {
         return false;
+    }
+
+    /**
+     * Process a raw source line. Return null to consume the line silently
+     * (used by PreprocessorReader for directives). Return the line string to
+     * pass it through as content.
+     *
+     * Subclasses override this to handle include::, ifdef::, :attr:, etc.
+     */
+    protected function processLine(string $line): ?string
+    {
+        return $line;
     }
 }
