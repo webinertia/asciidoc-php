@@ -27,21 +27,23 @@
             "php": "8.4.99"
         },
         "allow-plugins": {
-            "composer/package-versions-deprecated": true
+            "composer/package-versions-deprecated": true,
+            "infection/extension-installer": true
         }
     },
     "bin": [
         "bin/asciidoc-php"
     ],
     "require": {
-        "php": "~8.4.0 || ~8.5.0"
+        "php": "~8.4.1 || ~8.5.0"
     },
     "require-dev": {
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-phpunit": "^2.0",
+        "infection/infection": "^0.35.0",
+        "phpbench/phpbench": "^1.7",
         "phpunit/phpunit": "^13.0.0",
         "psr/log": "^3.0",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "webware/webware-tools": "^1.0.0-rc.8"
     },
     "autoload": {
         "psr-4": {
@@ -67,9 +69,14 @@
         "test": "phpunit --colors=always --testsuite \"unit test\"",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "test-integration": "phpunit --colors=always --testsuite \"integration test\"",
-        "sa": "vendor/bin/phpstan analyse --memory-limit=256M",
-        "sa-gen-baseline": "vendor/bin/phpstan analyse --memory-limit=256M --generate-baseline",
-        "sa-verbose": "vendor/bin/phpstan analyse --memory-limit=256M -vv",
+        "mutation-test": "infection",
+        "test-all": "@test && @test-integration && @mutation-test",
+        "sa": "mago lint && mago analyze && mago guard",
+        "sa-gen-baseline": [
+            "mago lint --generate-baseline",
+            "mago analyze --generate-baseline"
+        ],
+        "sa-verbose": "mago analyze --skip-ignores",
         "upload-coverage": "coveralls -v",
         "render": "php bin/asciidoc-php -o test/results/full-document.html test/asset/integration/full-document.adoc",
         "render-embedded": "php bin/asciidoc-php -s -o test/results/full-document-embedded.html test/asset/integration/full-document.adoc",

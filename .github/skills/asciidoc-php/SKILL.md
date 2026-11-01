@@ -172,7 +172,7 @@ specialcharacters → quotes → attributes → replacements → macros → post
 |---|---|
 | Reference implementation | Asciidoctor 2.0.26 (Ruby) |
 | highlight.js | v9.18.3 CDN (`highlightBlock()` init, not `highlightAll()`) |
-| PHP target | `~8.4.0 \|\| ~8.5.0` (dev container runs 8.6.0-dev) |
-| PHPStan level | 10 |
+| PHP target | `~8.4.1 \|\| ~8.5.0` (dev container runs 8.6.0-dev) |
+| Static analysis | Mago: `format --check`, `lint`, `analyze`, `guard` (baselined) |
 | Test count | 479 unit + 17 integration (496 total) |
 | Async speedup (24-file corpus) | ~2.1× with `true-async` |

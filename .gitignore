@@ -1,15 +1,40 @@
-/.php-cs-fixer.cache
 /.phpunit.cache
 /.phpunit.result.cache
-/.phpstan-cache
-/phpstan.neon
-/phpbench.json
 /clover.xml
+/coverage/
 /coveralls-upload.json
+/coverage.txt
+/phpbench.json
 /phpunit.xml
+/infection.log
+/summary.log
 /vendor/
 /.vscode
+/mago-results.txt
+*:Zone.Identifier
 
-# Benchmark corpus (generated — do not commit)
+# `/mago.bat` is deliberately NOT listed here. It is a tracked artifact, shipped
+# by the alignment task list and present in the repository template, because
+# Infection cannot run Mago on Windows without it. See issue 59.
+
+# Spec Kit is used locally for planning but its scaffolding is not tracked in
+# this repository: `.specify/` and `specs/` are working notes that complete their
+# purpose when alignment lands. `.github/skills/` is tracked, because the skills
+# there describe this package to agents.
+#
+# Installed presets live under `.specify/presets/` and are ignored with it. To
+# track a preset, remove `/.specify/` below; `.specify/presets/.registry` is then
+# the authoritative record of what is installed, and without it the preset
+# directory is ignored and every template falls back to core.
+#
+# Ignored instead are the artifacts that belong to the machine rather than the
+# project.
+/.specify/
+/specs/
+/.specify/extensions/.cache/
+__pycache__/
+*.pyc
+
+# Benchmark corpus (generated, do not commit)
 /test/benchmark/corpus/*
 !/test/benchmark/corpus/.gitkeep
