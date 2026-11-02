@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\ContentModel;
 use Webware\AsciidocPhp\Document;
 use Webware\AsciidocPhp\Node\Block;
+use Webware\AsciidocPhp\Substitutor\LinkMacros;
 
 /**
  * Inline `link:` macro rendering and bare-URL autolinking, exercised through the
@@ -17,6 +18,7 @@ use Webware\AsciidocPhp\Node\Block;
  */
 #[CoversClass(Block::class)]
 #[CoversMethod(Block::class, 'content')]
+#[CoversClass(LinkMacros::class)]
 final class SubstitutionLinkTest extends TestCase
 {
     private Document $doc;
