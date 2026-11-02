@@ -787,6 +787,24 @@ message = "Class has too many methods."
 count = 1
 
 [[issues]]
+file = "src/Substitutor/LinkMacros.php"
+code = "ambiguous-constant-access"
+message = "Ambiguous constant access detected."
+count = 3
+
+[[issues]]
+file = "src/Substitutor/LinkMacros.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 12
+
+[[issues]]
+file = "src/Substitutor/LinkMacros.php"
+code = "no-negated-ternary"
+message = "Negated ternary condition."
+count = 1
+
+[[issues]]
 file = "src/Substitutor/SubstitutorsTrait.php"
 code = "ambiguous-constant-access"
 message = "Ambiguous constant access detected."
@@ -3322,6 +3340,108 @@ count = 1
 file = "test/unit/Node/SectionTest.php"
 code = "prefer-test-attribute"
 message = "Use `#[Test]` attribute instead of `test` prefix on method `testTitleSetAndGet`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "ambiguous-function-call"
+message = "Ambiguous function call detected."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "assertion-style"
+message = "Inconsistent assertions style."
+count = 17
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testBareUrlAtEndOfSentenceKeepsTrailingPeriod`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testBareUrlBecomesAnchor`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testBareUrlInCodeSpanStaysLiteral`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testBareUrlInListingBlockStaysLiteral`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testBareUrlShorthandWithLabelStaysLiteral`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroDropsUnknownAttributes`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroEscapesAmpersandOnce`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroKeepsRelativeAdocTarget`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroOutputIsNotAutolinked`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroWithBareUrlTarget`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroWithBlankWindow`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroWithEmptyLabelUsesTarget`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroWithLabel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testLinkMacroWithNonBlankWindowHasNoRel`."
+count = 1
+
+[[issues]]
+file = "test/unit/Node/SubstitutionLinkTest.php"
+code = "prefer-test-attribute"
+message = "Use `#[Test]` attribute instead of `test` prefix on method `testXrefMacroStillEmitsFragmentHref`."
 count = 1
 
 [[issues]]

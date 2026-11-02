@@ -132,8 +132,17 @@ final class Rx
 
     // ── Inline macros ─────────────────────────────────────────────────────────
 
-    public const string LINK_MACRO     = '/\blink:(\S+?)\[([^\]]*)\]/';
-    public const string URL_MACRO      = '/\b(https?|ftp|file):\/\/\S+?(?=\[|[.,;:?!]?\s|$)/';
+    public const string LINK_MACRO = '/\blink:(\S+?)\[([^\]]*)\]/';
+
+    /**
+     * Bare URL:  https://example.com
+     *
+     * The final character class excludes trailing punctuation, so a sentence
+     * ending period stays in the prose instead of being captured into the href.
+     * The leading negative lookahead rejects a URL immediately followed by `[`,
+     * which is the `url[label]` link shorthand and stays literal.
+     */
+    public const string URL_MACRO      = '/\b(?:https?|ftp|file):\/\/(?![^\s\[\]]*\[)[^\s\[\]]*[^\s\[\].,;:!?]/';
     public const string XREF_SHORTHAND = '/<<(\S+?)(?:,\s*([^\]]+?))?>>/';
     public const string XREF_MACRO     = '/\bxref:(\S+?)\[([^\]]*)\]/';
     public const string IMAGE_MACRO    = '/\bimage:(\S+?)\[([^\]]*)\]/';
