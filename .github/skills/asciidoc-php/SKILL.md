@@ -24,8 +24,8 @@ Use this workflow whenever output appears incorrect or a diff is needed.
 ### 1 — Regenerate both sides
 
 ```bash
-php bin/asciidoc-php docs/usage.adoc -o test/php-output/usage.html
-asciidoctor docs/usage.adoc -o test/reference/usage.html
+php bin/asciidoc-php docs/v1/usage.adoc -o test/php-output/usage.html
+asciidoctor docs/v1/usage.adoc -o test/reference/usage.html
 ```
 
 ### 2 — Run the diff

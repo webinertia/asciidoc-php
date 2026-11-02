@@ -18,7 +18,7 @@ test/
   integration/    AsciidocConvertTest — full pipeline, compares to reference HTML
   asset/          Fixture .adoc files (do not modify without updating expectations)
   benchmark/      Corpus + seeds for benchmark runner (not PHPUnit tests)
-  php-output/     Generated output (overwritten by `php bin/asciidoc-php`)
+  php-output/     Scratch output for manual diffs (not committed)
   reference/      Reference output (overwritten by `asciidoctor`)
 ```
 
@@ -55,8 +55,8 @@ Without this annotation the test will fail in CI where the extension is absent.
 
 ```bash
 # Regenerate both sides:
-php bin/asciidoc-php docs/usage.adoc -o test/php-output/usage.html
-asciidoctor docs/usage.adoc -o test/reference/usage.html
+php bin/asciidoc-php docs/v1/usage.adoc -o test/php-output/usage.html
+asciidoctor docs/v1/usage.adoc -o test/reference/usage.html
 ```
 
 ## Known Intentional Diffs (do not fix)

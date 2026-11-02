@@ -54,8 +54,8 @@ The stylesheet is covered by the Asciidoctor MIT License and copyright notice
 reproduced above.
 
 The default converter embeds this stylesheet inline in generated HTML. The
-committed HTML artifacts under `test/reference/`, `test/php-output/`,
-`test/results/`, `test/benchmark/output/`, and `docs/` therefore contain the
+committed HTML artifacts under `test/reference/`, `test/asset/usage/`,
+`test/results/`, and `test/benchmark/output/` therefore contain the
 stylesheet inline.
 
 ## AsciiDoc and AsciiDoc.py
