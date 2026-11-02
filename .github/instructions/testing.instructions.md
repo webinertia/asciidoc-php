@@ -15,11 +15,11 @@ test/
     Parser/       Parser tests
     Reader/       Reader + PreprocessorReader tests
     Node/         AST node tests
-  integration/    AsciidocConvertTest — full pipeline, compares to reference HTML
+  integration/    AsciidocConvertTest, full pipeline over inline sources
   asset/          Fixture .adoc files (do not modify without updating expectations)
   benchmark/      Corpus + seeds for benchmark runner (not PHPUnit tests)
-  php-output/     Generated output (overwritten by `php bin/asciidoc-php`)
-  reference/      Reference output (overwritten by `asciidoctor`)
+  php-output/     Scratch output for manual diffs (not committed)
+  reference/      Native Asciidoctor render, manual comparison only
 ```
 
 ## PHPUnit 13 Patterns
@@ -48,15 +48,16 @@ Any test that directly or indirectly uses `\Async\TaskGroup`, `spawn()`, or
 other TrueAsync primitives **must** be annotated with `@requires extension true-async`.
 Without this annotation the test will fail in CI where the extension is absent.
 
-## Integration Tests
+## Reference Render
 
-`test/integration/AsciidocConvertTest.php` compares full pipeline output against
-`test/reference/usage.html`. Before running or updating integration tests:
+`test/reference/usage.html` is the native Asciidoctor render of the same source,
+kept as the reference side of the manual intentional-diff comparison below. No
+automated test reads it. Regenerate both sides before comparing:
 
 ```bash
 # Regenerate both sides:
-php bin/asciidoc-php docs/usage.adoc -o test/php-output/usage.html
-asciidoctor docs/usage.adoc -o test/reference/usage.html
+php bin/asciidoc-php docs/v1/usage.adoc -o test/php-output/usage.html
+asciidoctor docs/v1/usage.adoc -o test/reference/usage.html
 ```
 
 ## Known Intentional Diffs (do not fix)

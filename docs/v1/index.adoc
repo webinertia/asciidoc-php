@@ -1,0 +1,59 @@
+= asciidoc-php
+
+`webware/asciidoc-php` is a PHP port of the Asciidoctor toolchain that converts
+AsciiDoc source files to HTML5. The package namespace is `Webware\AsciidocPhp`.
+
+It follows https://asciidoctor.org/[Asciidoctor] as its reference implementation
+and targets documentation-quality feature coverage rather than 1:1 API
+compatibility with Asciidoctor. It is not affiliated with, sponsored by, or
+endorsed by the Asciidoctor project.
+
+== Requirements
+
+* PHP 8.4 or PHP 8.5, with the CLI SAPI available as `php`
+* Composer, to install the package and its autoloader
+* No PHP runtime dependencies beyond PHP itself
+
+== Installation
+
+Install with Composer:
+
+[source,bash]
+----
+composer require webware/asciidoc-php
+----
+
+The command line entry point is installed as `vendor/bin/asciidoc-php`. When
+working from a git clone, run `php bin/asciidoc-php` instead.
+
+== Quick start
+
+Convert a single file, writing the HTML next to the source:
+
+[source,bash]
+----
+vendor/bin/asciidoc-php docs/guide.adoc
+----
+
+Convert to a specific output file:
+
+[source,bash]
+----
+vendor/bin/asciidoc-php docs/guide.adoc -o build/guide.html
+----
+
+The same conversion is available from PHP through the facade:
+
+[source,php]
+----
+use Webware\AsciidocPhp\Asciidoc;
+
+$html = Asciidoc::convert('= Hello World');
+$html = Asciidoc::convertFile('/path/to/guide.adoc', [
+    'attributes' => ['toc' => 'left', 'sectnums' => ''],
+]);
+----
+
+== Reference
+
+link:usage.adoc[CLI usage]

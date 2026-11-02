@@ -69,8 +69,8 @@ Suppress with `-a webfonts=` (empty attribute value) or `-a webfonts!`.
 After any converter/CSS change, regenerate and diff:
 
 ```bash
-php bin/asciidoc-php docs/usage.adoc -o test/php-output/usage.html
-asciidoctor docs/usage.adoc -o test/reference/usage.html
+php bin/asciidoc-php docs/v1/usage.adoc -o test/php-output/usage.html
+asciidoctor docs/v1/usage.adoc -o test/reference/usage.html
 diff test/php-output/usage.html test/reference/usage.html
 ```
 

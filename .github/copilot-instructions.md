@@ -126,8 +126,8 @@ mago analyze --generate-baseline --baseline analysis-baseline.toml
 Compare output against native Asciidoctor:
 
 ```bash
-php bin/asciidoc-php docs/usage.adoc -o test/php-output/usage.html
-asciidoctor docs/usage.adoc -o test/reference/usage.html
+php bin/asciidoc-php docs/v1/usage.adoc -o test/php-output/usage.html
+asciidoctor docs/v1/usage.adoc -o test/reference/usage.html
 diff test/php-output/usage.html test/reference/usage.html
 ```
 
