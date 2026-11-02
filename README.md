@@ -98,9 +98,9 @@ $html = Asciidoc::convertFile('/path/to/guide.adoc', [
 ]);
 ```
 
-See [docs/usage.adoc](docs/usage.adoc) for the full option reference, the PHP
-API option keys, YAML front matter handling, and the built-in document
-attributes.
+See the [reference page](https://docs.webinertia.net/asciidoc-php/v1/usage.html)
+for the full option reference, the PHP API option keys, YAML front matter
+handling, and the built-in document attributes.
 
 ## Project status
 
