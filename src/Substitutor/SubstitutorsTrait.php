@@ -214,7 +214,7 @@ trait SubstitutorsTrait
         );
 
         // Xref macro: xref:id[label]
-        return (string) preg_replace_callback(
+        $text = (string) preg_replace_callback(
             Rx::XREF_MACRO,
             function (array $m): string {
                 $refid = $m[1];
@@ -234,6 +234,10 @@ trait SubstitutorsTrait
             },
             $text,
         );
+
+        // Inline link macro and bare-URL autolinking. The macro runs first so its
+        // target is never scanned a second time.
+        return LinkMacros::apply($text);
     }
 
     protected function subPostReplacements(string $text): string
