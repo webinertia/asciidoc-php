@@ -40,9 +40,8 @@ These five lines **always** differ and should be ignored:
 1. `<meta http-equiv="X-UA-Compatible">` — native only
 2. `<meta name="generator">` — tool identity
 3. Google Fonts `<link>` position (1 line earlier in ours)
-4. `<col style="width: 50%;">` vs `50.0002%` — rounding
-5. `Last updated` timestamp (different generation times; format now matches)
-6. Trailing newline at EOF
+4. `Last updated` timestamp (different generation times; format now matches)
+5. Trailing newline at EOF
 
 Any remaining diff lines are genuine bugs.
 

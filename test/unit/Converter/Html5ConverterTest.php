@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WebwareTest\AsciidocPhp\Converter;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Webware\AsciidocPhp\ContentModel;
 use Webware\AsciidocPhp\Converter\Html5Converter;
@@ -29,6 +30,47 @@ final class Html5ConverterTest extends TestCase
         Parser::parse($reader, $doc);
         $transform = $embedded ? 'embedded' : null;
         return $doc->getConverter()->convert($doc, $transform);
+    }
+
+    #[Test]
+    public function singleColumnTableHasNoBalanceToDonate(): void
+    {
+        $html = self::convert("[cols=\"1\"]\n|===\n|a\n|===\n");
+
+        static::assertStringContainsString(
+            "<colgroup>\n<col style=\"width: 100%;\">\n</colgroup>",
+            $html,
+        );
+    }
+
+    #[Test]
+    public function tableColumnWidthsDonateTheTruncatedBalanceToTheLastColumn(): void
+    {
+        $html = self::convert("[cols=\"1,1,1,3\"]\n|===\n|a |b |c |d\n|===\n");
+
+        static::assertStringContainsString(
+            "<colgroup>\n"
+                . "<col style=\"width: 16.6666%;\">\n"
+                . "<col style=\"width: 16.6666%;\">\n"
+                . "<col style=\"width: 16.6666%;\">\n"
+                . "<col style=\"width: 50.0002%;\">\n"
+                . '</colgroup>',
+            $html,
+        );
+    }
+
+    #[Test]
+    public function tableColumnWidthsThatAlreadyTotalOneHundredAreUnchanged(): void
+    {
+        $html = self::convert("[cols=\"1,3\"]\n|===\n|a |b\n|===\n");
+
+        static::assertStringContainsString(
+            "<colgroup>\n"
+                . "<col style=\"width: 25%;\">\n"
+                . "<col style=\"width: 75%;\">\n"
+                . '</colgroup>',
+            $html,
+        );
     }
 
     // ── Admonition ────────────────────────────────────────────────────────────
@@ -885,7 +927,7 @@ final class Html5ConverterTest extends TestCase
         $html = self::convert("[cols=\"1,2\"]\n|===\n|a |b\n|c |d\n|===\n");
 
         self::assertStringContainsString('<col style="width: 33.3333%;">', $html);
-        self::assertStringContainsString('<col style="width: 66.6666%;">', $html);
+        self::assertStringContainsString('<col style="width: 66.6667%;">', $html);
         self::assertSame(2, substr_count($html, '<tr>'));
         self::assertSame(4, substr_count($html, '<td class="tableblock'));
     }

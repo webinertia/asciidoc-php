@@ -211,13 +211,12 @@ MIT license, and `THIRD-PARTY-NOTICES.md` depends on that fact. Never edit it.
 
 #### Known intentional diffs vs native Asciidoctor
 
-These five differences are expected and must not be fixed:
+These four differences are expected and must not be fixed:
 
 1. `<meta http-equiv="X-UA-Compatible">`: we do not emit this
 2. `<meta name="generator">`: different tool name
 3. Google Fonts `<link>` position (one line earlier in ours)
-4. `<col style="width: 50%">` vs `50.0002%`: rounding
-5. Trailing newline at EOF
+4. Trailing newline at EOF
 
 ### PHP version and async runtime
 

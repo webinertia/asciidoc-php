@@ -63,13 +63,12 @@ asciidoctor docs/v1/usage.adoc -o test/reference/usage.html
 ## Known Intentional Diffs (do not fix)
 
 When comparing `test/php-output/usage.html` vs `test/reference/usage.html`,
-these five differences are expected:
+these four differences are expected:
 
 1. `<meta http-equiv="X-UA-Compatible" content="IE=edge">` — native Asciidoctor only
 2. `<meta name="generator">` — tool identity differs
 3. Google Fonts `<link>` line position — 1 line earlier in our output
-4. `<col style="width: 50%;">` vs `50.0002%` — floating-point rounding in Ruby
-5. Trailing newline at EOF — we emit one; native does not
+4. Trailing newline at EOF: we emit one; native does not
 
 ## Running Tests
 
