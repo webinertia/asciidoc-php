@@ -13,6 +13,9 @@ use Webware\AsciidocPhp\Node\Inline;
 use Webware\AsciidocPhp\Node\Section;
 use Webware\AsciidocPhp\Node\Table;
 
+use function array_pop;
+use function round;
+
 /**
  * HTML5 backend converter.
  *
@@ -594,11 +597,23 @@ final class Html5Converter extends AbstractConverter
         $colgroup = '';
         if ($colCount > 0) {
             $totalWidth = array_sum(array_map(static fn($c) => $c->width, $columns));
-            if (0 === $totalWidth) {
+            $hasWidths  = $totalWidth > 0;
+            if (! $hasWidths) {
                 $totalWidth = $colCount;
             }
+            $pcts     = [];
+            $assigned = 0.0;
             foreach ($columns as $col) {
-                $pct      = $totalWidth > 0 ? floor(($col->width / $totalWidth) * 1_000_000) / 10_000 : 0.0;
+                $pct      = $hasWidths ? floor(($col->width / $totalWidth) * 1_000_000) / 10_000 : 0.0;
+                $assigned += $pct;
+                $pcts[]   = $pct;
+            }
+            // Asciidoctor donates the balance lost to truncation to the last column.
+            if ($hasWidths && 100.0 !== $assigned) {
+                $lastPct = array_pop($pcts) ?? 0.0;
+                $pcts[]  = round(100 - $assigned + $lastPct, precision: 4);
+            }
+            foreach ($pcts as $pct) {
                 $colgroup .= "<col style=\"width: {$pct}%;\">\n";
             }
         }

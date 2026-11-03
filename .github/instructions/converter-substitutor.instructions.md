@@ -78,5 +78,4 @@ diff test/php-output/usage.html test/reference/usage.html
 1. `<meta http-equiv="X-UA-Compatible">` — native only
 2. `<meta name="generator">` — different tool names
 3. Google Fonts `<link>` line position (1 line earlier in ours)
-4. `<col style="width: 50%">` vs `50.0002%` — floating-point rounding
-5. Trailing newline at EOF
+4. Trailing newline at EOF
