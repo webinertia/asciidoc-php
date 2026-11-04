@@ -30,6 +30,7 @@ compatibility.
 | [08-attribute-system.md](08-attribute-system.md) | Document attribute precedence, built-in attributes, attribute list parsing |
 | [09-extension-system.md](09-extension-system.md) | Post-MVP extension system design |
 | [10-async-runtime.md](10-async-runtime.md) | TrueAsync integration: concurrency model, TaskGroup batch processing, Scope lifecycle |
+| [research/1.0.0-exec-flow.md](research/1.0.0-exec-flow.md) | Execution flow of a single run, mapped from 0.1.x, with cut points for 2.0 |
 
 ---
 
