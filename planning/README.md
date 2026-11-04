@@ -31,6 +31,7 @@ compatibility.
 | [09-extension-system.md](09-extension-system.md) | Post-MVP extension system design |
 | [10-async-runtime.md](10-async-runtime.md) | TrueAsync integration: concurrency model, TaskGroup batch processing, Scope lifecycle |
 | [research/1.0.0-exec-flow.md](research/1.0.0-exec-flow.md) | Execution flow of a single run, mapped from 0.1.x, with cut points for 2.0 |
+| [research/reader.md](research/reader.md) | Reader lookahead: peek semantics, call sites, idempotency invariant |
 
 ---
 
